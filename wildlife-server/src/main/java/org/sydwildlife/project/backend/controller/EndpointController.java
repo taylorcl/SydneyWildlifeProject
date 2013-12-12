@@ -1,4 +1,3 @@
-/* Copyright 2012 VMware, Inc. All rights reserved. -- VMware Confidential */
 package org.sydwildlife.project.backend.controller;
 
 import static org.springframework.web.bind.annotation.RequestMethod.GET;
@@ -19,9 +18,9 @@ import org.sydwildlife.project.backend.service.EntityService;
 
 @Controller
 @RequestMapping("api/dns")
-public class DnsEndpointController {
+public class EndpointController {
 
-   private static final Logger logger = LoggerFactory.getLogger(DnsEndpointController.class);
+   private static final Logger logger = LoggerFactory.getLogger(EndpointController.class);
 
    @Autowired
    private EntityService entityService;
