@@ -10,6 +10,6 @@ public interface EntityRepository extends JpaRepository<EntityExemple, UUID> {
 
    public List<EntityExemple> findByDomainName(String domainName);
 
-   public List<EntityExemple> findByReversedIp(String reversedIp);
+   public List<EntityExemple> findByIp(String reversedIp);
 
 }
