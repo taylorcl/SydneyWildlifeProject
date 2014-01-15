@@ -6,7 +6,7 @@
   <head prefix="og: http://ogp.me/ns# fb: http://ogp.me/ns/fb# githubog: http://ogp.me/ns/fb/githubog#">
     <meta charset='utf-8'>
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <title>angular-seed/test/lib/angular/version.txt at master · angular/angular-seed</title>
+        <title>angular-seed/scripts/update-angular.sh at master · angular/angular-seed</title>
     <link rel="search" type="application/opensearchdescription+xml" href="/opensearch.xml" title="GitHub" />
     <link rel="fluid-icon" href="https://github.com/fluidicon.png" title="GitHub" />
     <link rel="apple-touch-icon" sizes="57x57" href="/apple-touch-icon-114.png" />
@@ -15,7 +15,7 @@
     <link rel="apple-touch-icon" sizes="144x144" href="/apple-touch-icon-144.png" />
     <link rel="logo" type="image/svg" href="https://github-media-downloads.s3.amazonaws.com/github-logo.svg" />
     <meta property="og:image" content="https://github.global.ssl.fastly.net/images/modules/logos_page/Octocat.png">
-    <meta name="hostname" content="github-fe136-cp1-prd.iad.github.net">
+    <meta name="hostname" content="github-fe125-cp1-prd.iad.github.net">
     <meta name="ruby" content="ruby 2.1.0p0-github-tcmalloc (60139581e1) [x86_64-linux]">
     <link rel="assets" href="https://github.global.ssl.fastly.net/">
     <link rel="conduit-xhr" href="https://ghconduit.com:25035/">
@@ -26,7 +26,7 @@
     <meta name="msapplication-TileImage" content="/windows-tile.png" />
     <meta name="msapplication-TileColor" content="#ffffff" />
     <meta name="selected-link" value="repo_source" data-pjax-transient />
-    <meta content="collector.githubapp.com" name="octolytics-host" /><meta content="collector-cdn.github.com" name="octolytics-script-host" /><meta content="github" name="octolytics-app-id" /><meta content="7A988C44:4B95:1FE91E4:52D5D4B3" name="octolytics-dimension-request_id" /><meta content="6166832" name="octolytics-actor-id" /><meta content="clementcur" name="octolytics-actor-login" /><meta content="f5dd2cd6c8456e1233f17e45810b1041d7ab951a3bdab0735d8386433dec7ab3" name="octolytics-actor-hash" />
+    <meta content="collector.githubapp.com" name="octolytics-host" /><meta content="collector-cdn.github.com" name="octolytics-script-host" /><meta content="github" name="octolytics-app-id" /><meta content="7A988C44:4B99:41D2123:52D5D41F" name="octolytics-dimension-request_id" /><meta content="6166832" name="octolytics-actor-id" /><meta content="clementcur" name="octolytics-actor-login" /><meta content="f5dd2cd6c8456e1233f17e45810b1041d7ab951a3bdab0735d8386433dec7ab3" name="octolytics-actor-hash" />
     
 
     
@@ -46,7 +46,7 @@
       
       <meta http-equiv="x-pjax-version" content="6df5a434560ce83d5c2befd5029a8ce3">
 
-        <link data-pjax-transient rel='permalink' href='/angular/angular-seed/blob/f129467714a558aaea878e59925826b77b100166/test/lib/angular/version.txt'>
+        <link data-pjax-transient rel='permalink' href='/angular/angular-seed/blob/f129467714a558aaea878e59925826b77b100166/scripts/update-angular.sh'>
   <meta property="og:title" content="angular-seed"/>
   <meta property="og:type" content="githubog:gitrepository"/>
   <meta property="og:url" content="https://github.com/angular/angular-seed"/>
@@ -477,7 +477,7 @@
           
 
 
-<!-- blob contrib key: blob_contributors:v21:63163773244ea096b3732652d3b4125e -->
+<!-- blob contrib key: blob_contributors:v21:2eda5bc1b352a2ed176a0e8fee1e4fba -->
 
 <p title="This is a placeholder element" class="js-history-link-replace hidden"></p>
 
@@ -527,7 +527,7 @@
 
             <div class="select-menu-item js-navigation-item selected">
               <span class="select-menu-item-icon octicon octicon-check"></span>
-              <a href="/angular/angular-seed/blob/master/test/lib/angular/version.txt"
+              <a href="/angular/angular-seed/blob/master/scripts/update-angular.sh"
                  data-name="master"
                  data-skip-pjax="true"
                  rel="nofollow"
@@ -536,7 +536,7 @@
             </div> <!-- /.select-menu-item -->
             <div class="select-menu-item js-navigation-item ">
               <span class="select-menu-item-icon octicon octicon-check"></span>
-              <a href="/angular/angular-seed/blob/v0.10.x/test/lib/angular/version.txt"
+              <a href="/angular/angular-seed/blob/v0.10.x/scripts/update-angular.sh"
                  data-name="v0.10.x"
                  data-skip-pjax="true"
                  rel="nofollow"
@@ -562,67 +562,30 @@
 </div> <!-- /.select-menu -->
 
   <div class="breadcrumb">
-    <span class='repo-root js-repo-root'><span itemscope="" itemtype="http://data-vocabulary.org/Breadcrumb"><a href="/angular/angular-seed" data-branch="master" data-direction="back" data-pjax="true" itemscope="url"><span itemprop="title">angular-seed</span></a></span></span><span class="separator"> / </span><span itemscope="" itemtype="http://data-vocabulary.org/Breadcrumb"><a href="/angular/angular-seed/tree/master/test" data-branch="master" data-direction="back" data-pjax="true" itemscope="url"><span itemprop="title">test</span></a></span><span class="separator"> / </span><span itemscope="" itemtype="http://data-vocabulary.org/Breadcrumb"><a href="/angular/angular-seed/tree/master/test/lib" data-branch="master" data-direction="back" data-pjax="true" itemscope="url"><span itemprop="title">lib</span></a></span><span class="separator"> / </span><span itemscope="" itemtype="http://data-vocabulary.org/Breadcrumb"><a href="/angular/angular-seed/tree/master/test/lib/angular" data-branch="master" data-direction="back" data-pjax="true" itemscope="url"><span itemprop="title">angular</span></a></span><span class="separator"> / </span><strong class="final-path">version.txt</strong> <span class="js-zeroclipboard minibutton zeroclipboard-button" data-clipboard-text="test/lib/angular/version.txt" data-copied-hint="copied!" title="copy to clipboard"><span class="octicon octicon-clippy"></span></span>
+    <span class='repo-root js-repo-root'><span itemscope="" itemtype="http://data-vocabulary.org/Breadcrumb"><a href="/angular/angular-seed" data-branch="master" data-direction="back" data-pjax="true" itemscope="url"><span itemprop="title">angular-seed</span></a></span></span><span class="separator"> / </span><span itemscope="" itemtype="http://data-vocabulary.org/Breadcrumb"><a href="/angular/angular-seed/tree/master/scripts" data-branch="master" data-direction="back" data-pjax="true" itemscope="url"><span itemprop="title">scripts</span></a></span><span class="separator"> / </span><strong class="final-path">update-angular.sh</strong> <span class="js-zeroclipboard minibutton zeroclipboard-button" data-clipboard-text="scripts/update-angular.sh" data-copied-hint="copied!" title="copy to clipboard"><span class="octicon octicon-clippy"></span></span>
   </div>
 </div>
 
 
 
   <div class="commit file-history-tease">
-    <img class="main-avatar" height="24" src="https://0.gravatar.com/avatar/ea7155347bd759897c7133b8dd93d298?d=https%3A%2F%2Fidenticons.github.com%2F973743552fd866d9947794c257276d9e.png&amp;r=x&amp;s=140" width="24" />
-    <span class="author"><a href="/NgDashboard" rel="author">NgDashboard</a></span>
-    <time class="js-relative-date" datetime="2014-01-10T12:54:17-08:00" title="2014-01-10 12:54:17">January 10, 2014</time>
+    <img class="main-avatar" height="24" src="https://1.gravatar.com/avatar/2735fe44c5f69fa5a1d2c256e051203a?d=https%3A%2F%2Fidenticons.github.com%2Fd2c243f43a36514922130501bdb55ce9.png&amp;r=x&amp;s=140" width="24" />
+    <span class="author"><a href="/tbosch" rel="author">tbosch</a></span>
+    <time class="js-relative-date" datetime="2014-01-08T10:15:25-08:00" title="2014-01-08 10:15:25">January 08, 2014</time>
     <div class="commit-title">
-        <a href="/angular/angular-seed/commit/f129467714a558aaea878e59925826b77b100166" class="message" data-pjax="true" title="update(angular): bump to 1.2.8">update(angular): bump to 1.2.8</a>
+        <a href="/angular/angular-seed/commit/b4e286767396e670dd2c0f8d496f2a6a4a992fed" class="message" data-pjax="true" title="chore(build): refactor update angular and run tests">chore(build): refactor update angular and run tests</a>
     </div>
 
     <div class="participation">
-      <p class="quickstat"><a href="#blob_contributors_box" rel="facebox"><strong>8</strong> contributors</a></p>
-          <a class="avatar tooltipped downwards" title="IgorMinar" href="/angular/angular-seed/commits/master/test/lib/angular/version.txt?author=IgorMinar"><img height="20" src="https://0.gravatar.com/avatar/fc5dc0d579fb554752763792a2d5f449?d=https%3A%2F%2Fidenticons.github.com%2Faa9c063177ca69eec92c9dda4e7aec59.png&amp;r=x&amp;s=140" width="20" /></a>
-    <a class="avatar tooltipped downwards" title="btford" href="/angular/angular-seed/commits/master/test/lib/angular/version.txt?author=btford"><img height="20" src="https://1.gravatar.com/avatar/721cc7667947af96cc416729fc497107?d=https%3A%2F%2Fidenticons.github.com%2F911eafaf782fbdf8f95ca3a4a5ac8ae6.png&amp;r=x&amp;s=140" width="20" /></a>
-    <a class="avatar tooltipped downwards" title="vojtajina" href="/angular/angular-seed/commits/master/test/lib/angular/version.txt?author=vojtajina"><img height="20" src="https://1.gravatar.com/avatar/d59bdceef864e67df13167d806d6da63?d=https%3A%2F%2Fidenticons.github.com%2F5bb0b4dd9a4f5c0de3564b63d74bcf5f.png&amp;r=x&amp;s=140" width="20" /></a>
-    <a class="avatar tooltipped downwards" title="petebacondarwin" href="/angular/angular-seed/commits/master/test/lib/angular/version.txt?author=petebacondarwin"><img height="20" src="https://1.gravatar.com/avatar/9a952bcf6fd701bb1303cd9f64cf9620?d=https%3A%2F%2Fidenticons.github.com%2F128482b5773c09ed87e7630fd24d9e6f.png&amp;r=x&amp;s=140" width="20" /></a>
-    <a class="avatar tooltipped downwards" title="tbosch" href="/angular/angular-seed/commits/master/test/lib/angular/version.txt?author=tbosch"><img height="20" src="https://0.gravatar.com/avatar/2735fe44c5f69fa5a1d2c256e051203a?d=https%3A%2F%2Fidenticons.github.com%2Fd2c243f43a36514922130501bdb55ce9.png&amp;r=x&amp;s=140" width="20" /></a>
-    <a class="avatar tooltipped downwards" title="NgDashboard" href="/angular/angular-seed/commits/master/test/lib/angular/version.txt?author=NgDashboard"><img height="20" src="https://0.gravatar.com/avatar/ea7155347bd759897c7133b8dd93d298?d=https%3A%2F%2Fidenticons.github.com%2F973743552fd866d9947794c257276d9e.png&amp;r=x&amp;s=140" width="20" /></a>
-    <a class="avatar tooltipped downwards" title="cburgdorf" href="/angular/angular-seed/commits/master/test/lib/angular/version.txt?author=cburgdorf"><img height="20" src="https://2.gravatar.com/avatar/1bb69b75c5e73a7c9f4ebbc4835d622f?d=https%3A%2F%2Fidenticons.github.com%2Fc94ab8cc222b741c3b8ca0f9fc60dd3b.png&amp;r=x&amp;s=140" width="20" /></a>
-    <a class="avatar tooltipped downwards" title="mhevery" href="/angular/angular-seed/commits/master/test/lib/angular/version.txt?author=mhevery"><img height="20" src="https://2.gravatar.com/avatar/8d67eedc1442e8392a7add197abacd66?d=https%3A%2F%2Fidenticons.github.com%2F65b8376e9cd93c4ab07aedbf3ef4d89d.png&amp;r=x&amp;s=140" width="20" /></a>
-
-
+      <p class="quickstat"><a href="#blob_contributors_box" rel="facebox"><strong>1</strong> contributor</a></p>
+      
     </div>
     <div id="blob_contributors_box" style="display:none">
       <h2 class="facebox-header">Users who have contributed to this file</h2>
       <ul class="facebox-user-list">
           <li class="facebox-user-list-item">
-            <img height="24" src="https://0.gravatar.com/avatar/fc5dc0d579fb554752763792a2d5f449?d=https%3A%2F%2Fidenticons.github.com%2Faa9c063177ca69eec92c9dda4e7aec59.png&amp;r=x&amp;s=140" width="24" />
-            <a href="/IgorMinar">IgorMinar</a>
-          </li>
-          <li class="facebox-user-list-item">
-            <img height="24" src="https://1.gravatar.com/avatar/721cc7667947af96cc416729fc497107?d=https%3A%2F%2Fidenticons.github.com%2F911eafaf782fbdf8f95ca3a4a5ac8ae6.png&amp;r=x&amp;s=140" width="24" />
-            <a href="/btford">btford</a>
-          </li>
-          <li class="facebox-user-list-item">
-            <img height="24" src="https://1.gravatar.com/avatar/d59bdceef864e67df13167d806d6da63?d=https%3A%2F%2Fidenticons.github.com%2F5bb0b4dd9a4f5c0de3564b63d74bcf5f.png&amp;r=x&amp;s=140" width="24" />
-            <a href="/vojtajina">vojtajina</a>
-          </li>
-          <li class="facebox-user-list-item">
-            <img height="24" src="https://1.gravatar.com/avatar/9a952bcf6fd701bb1303cd9f64cf9620?d=https%3A%2F%2Fidenticons.github.com%2F128482b5773c09ed87e7630fd24d9e6f.png&amp;r=x&amp;s=140" width="24" />
-            <a href="/petebacondarwin">petebacondarwin</a>
-          </li>
-          <li class="facebox-user-list-item">
-            <img height="24" src="https://0.gravatar.com/avatar/2735fe44c5f69fa5a1d2c256e051203a?d=https%3A%2F%2Fidenticons.github.com%2Fd2c243f43a36514922130501bdb55ce9.png&amp;r=x&amp;s=140" width="24" />
+            <img height="24" src="https://1.gravatar.com/avatar/2735fe44c5f69fa5a1d2c256e051203a?d=https%3A%2F%2Fidenticons.github.com%2Fd2c243f43a36514922130501bdb55ce9.png&amp;r=x&amp;s=140" width="24" />
             <a href="/tbosch">tbosch</a>
-          </li>
-          <li class="facebox-user-list-item">
-            <img height="24" src="https://0.gravatar.com/avatar/ea7155347bd759897c7133b8dd93d298?d=https%3A%2F%2Fidenticons.github.com%2F973743552fd866d9947794c257276d9e.png&amp;r=x&amp;s=140" width="24" />
-            <a href="/NgDashboard">NgDashboard</a>
-          </li>
-          <li class="facebox-user-list-item">
-            <img height="24" src="https://2.gravatar.com/avatar/1bb69b75c5e73a7c9f4ebbc4835d622f?d=https%3A%2F%2Fidenticons.github.com%2Fc94ab8cc222b741c3b8ca0f9fc60dd3b.png&amp;r=x&amp;s=140" width="24" />
-            <a href="/cburgdorf">cburgdorf</a>
-          </li>
-          <li class="facebox-user-list-item">
-            <img height="24" src="https://2.gravatar.com/avatar/8d67eedc1442e8392a7add197abacd66?d=https%3A%2F%2Fidenticons.github.com%2F65b8376e9cd93c4ab07aedbf3ef4d89d.png&amp;r=x&amp;s=140" width="24" />
-            <a href="/mhevery">mhevery</a>
           </li>
       </ul>
     </div>
@@ -634,8 +597,8 @@
       <div class="info">
         <span class="icon"><b class="octicon octicon-file-text"></b></span>
         <span class="mode" title="File Mode">executable file</span>
-          <span>1 lines (1 sloc)</span>
-        <span>0.005 kb</span>
+          <span>32 lines (26 sloc)</span>
+        <span>0.831 kb</span>
       </div>
       <div class="actions">
         <div class="button-group">
@@ -645,14 +608,14 @@
             </a>
                 <a class="minibutton tooltipped upwards"
                    title="Clicking this button will automatically fork this project so you can edit the file"
-                   href="/angular/angular-seed/edit/master/test/lib/angular/version.txt"
+                   href="/angular/angular-seed/edit/master/scripts/update-angular.sh"
                    data-method="post" rel="nofollow">Edit</a>
-          <a href="/angular/angular-seed/raw/master/test/lib/angular/version.txt" class="button minibutton " id="raw-url">Raw</a>
-            <a href="/angular/angular-seed/blame/master/test/lib/angular/version.txt" class="button minibutton ">Blame</a>
-          <a href="/angular/angular-seed/commits/master/test/lib/angular/version.txt" class="button minibutton " rel="nofollow">History</a>
+          <a href="/angular/angular-seed/raw/master/scripts/update-angular.sh" class="button minibutton " id="raw-url">Raw</a>
+            <a href="/angular/angular-seed/blame/master/scripts/update-angular.sh" class="button minibutton ">Blame</a>
+          <a href="/angular/angular-seed/commits/master/scripts/update-angular.sh" class="button minibutton " rel="nofollow">History</a>
         </div><!-- /.button-group -->
           <a class="minibutton danger empty-icon tooltipped downwards"
-             href="/angular/angular-seed/delete/master/test/lib/angular/version.txt"
+             href="/angular/angular-seed/delete/master/scripts/update-angular.sh"
              title="Fork this project and delete file"
              data-method="post" data-test-id="delete-blob-file" rel="nofollow">
           Delete
@@ -660,15 +623,45 @@
       </div><!-- /.actions -->
 
     </div>
-        <div class="blob-wrapper data type-text js-blob-data">
+        <div class="blob-wrapper data type-shell js-blob-data">
         <table class="file-code file-diff">
           <tr class="file-code-line">
             <td class="blob-line-nums">
               <span id="L1" rel="#L1">1</span>
+<span id="L2" rel="#L2">2</span>
+<span id="L3" rel="#L3">3</span>
+<span id="L4" rel="#L4">4</span>
+<span id="L5" rel="#L5">5</span>
+<span id="L6" rel="#L6">6</span>
+<span id="L7" rel="#L7">7</span>
+<span id="L8" rel="#L8">8</span>
+<span id="L9" rel="#L9">9</span>
+<span id="L10" rel="#L10">10</span>
+<span id="L11" rel="#L11">11</span>
+<span id="L12" rel="#L12">12</span>
+<span id="L13" rel="#L13">13</span>
+<span id="L14" rel="#L14">14</span>
+<span id="L15" rel="#L15">15</span>
+<span id="L16" rel="#L16">16</span>
+<span id="L17" rel="#L17">17</span>
+<span id="L18" rel="#L18">18</span>
+<span id="L19" rel="#L19">19</span>
+<span id="L20" rel="#L20">20</span>
+<span id="L21" rel="#L21">21</span>
+<span id="L22" rel="#L22">22</span>
+<span id="L23" rel="#L23">23</span>
+<span id="L24" rel="#L24">24</span>
+<span id="L25" rel="#L25">25</span>
+<span id="L26" rel="#L26">26</span>
+<span id="L27" rel="#L27">27</span>
+<span id="L28" rel="#L28">28</span>
+<span id="L29" rel="#L29">29</span>
+<span id="L30" rel="#L30">30</span>
+<span id="L31" rel="#L31">31</span>
 
             </td>
             <td class="blob-line-code">
-                    <div class="code-body highlight"><pre><div class='line' id='LC1'>1.2.8</div></pre></div>
+                    <div class="code-body highlight"><pre><div class='line' id='LC1'><span class="c">#! /bin/sh</span></div><div class='line' id='LC2'><span class="nv">NG_BUILD_DIR</span><span class="o">=</span><span class="nv">$1</span></div><div class='line' id='LC3'><span class="k">if</span> <span class="o">[[</span> ! -e <span class="s2">&quot;$NG_BUILD_DIR/angular.js&quot;</span> <span class="o">]]</span><span class="p">;</span> <span class="k">then</span></div><div class='line' id='LC4'><span class="k">  </span><span class="nb">echo</span> <span class="s2">&quot;Usage: update-angular &lt;build-dir&gt;&quot;</span></div><div class='line' id='LC5'>&nbsp;&nbsp;<span class="nb">exit </span>1</div><div class='line' id='LC6'><span class="k">fi</span></div><div class='line' id='LC7'><br/></div><div class='line' id='LC8'><span class="nv">SCRIPT_DIR</span><span class="o">=</span><span class="k">$(</span>dirname <span class="nv">$0</span><span class="k">)</span></div><div class='line' id='LC9'><span class="nv">ROOT_DIR</span><span class="o">=</span><span class="nv">$SCRIPT_DIR</span>/../</div><div class='line' id='LC10'><span class="nv">VERSION</span><span class="o">=</span><span class="k">$(</span>cat <span class="nv">$NG_BUILD_DIR</span>/version.txt<span class="k">)</span></div><div class='line' id='LC11'><br/></div><div class='line' id='LC12'><span class="nb">cd</span> <span class="nv">$ROOT_DIR</span></div><div class='line' id='LC13'><br/></div><div class='line' id='LC14'>rm -fr app/lib/angular</div><div class='line' id='LC15'>mkdir app/lib/angular</div><div class='line' id='LC16'>cp -r <span class="nv">$NG_BUILD_DIR</span>/* app/lib/angular</div><div class='line' id='LC17'>rm -fr app/lib/angular/docs</div><div class='line' id='LC18'>rm app/lib/angular/*.zip</div><div class='line' id='LC19'>mv app/lib/angular/angular-mocks.js <span class="nb">test</span>/lib/angular</div><div class='line' id='LC20'>mv app/lib/angular/angular-scenario.js <span class="nb">test</span>/lib/angular</div><div class='line' id='LC21'>cp app/lib/angular/version.txt <span class="nb">test</span>/lib/angular</div><div class='line' id='LC22'><br/></div><div class='line' id='LC23'><span class="c"># Update the inlined angular-loader in app/index-async.html</span></div><div class='line' id='LC24'>sed <span class="s1">&#39;/@@NG_LOADER@@/{</span></div><div class='line' id='LC25'><span class="s1">    s/@@NG_LOADER@@//g</span></div><div class='line' id='LC26'><span class="s1">    r app/lib/angular/angular-loader.min.js</span></div><div class='line' id='LC27'><span class="s1">}&#39;</span> app/index-async.html.template &gt; app/index-async.html</div><div class='line' id='LC28'><br/></div><div class='line' id='LC29'>git add <span class="nv">$ROOT_DIR</span>/app</div><div class='line' id='LC30'>git add <span class="nv">$ROOT_DIR</span>/test</div><div class='line' id='LC31'>git commit -m <span class="s2">&quot;update(angular): bump to $VERSION&quot;</span></div></pre></div>
             </td>
           </tr>
         </table>
@@ -712,7 +705,7 @@
     </a>
 
     <ul class="site-footer-links">
-      <li>&copy; 2014 <span title="0.03736s from github-fe136-cp1-prd.iad.github.net">GitHub</span>, Inc.</li>
+      <li>&copy; 2014 <span title="0.04358s from github-fe125-cp1-prd.iad.github.net">GitHub</span>, Inc.</li>
         <li><a href="/site/terms">Terms</a></li>
         <li><a href="/site/privacy">Privacy</a></li>
         <li><a href="/security">Security</a></li>
