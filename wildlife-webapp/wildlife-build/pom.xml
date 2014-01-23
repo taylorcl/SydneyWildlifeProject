@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+	<modelVersion>4.0.0</modelVersion>
+	<groupId>org.sydwildlife</groupId>
+	<version>1.0.0-SNAPSHOT</version>
+	<artifactId>wildlife-build</artifactId>
+	<packaging>pom</packaging>
+	<name>Wildlife Build</name>
+	<inceptionYear>2014</inceptionYear>
+	<description>
+		<![CDATA[This project is used to build all Sydney Wildlife projects]]>
+	</description>
+
+    <modules>
+      <module>../wildlife-parent</module>
+      <module>../wildlife-domain</module>
+      <module>../wildlife-service</module>
+      <module>../wildlife-api</module>     
+      <module>../wildlife-web</module>
+    </modules>
+</project>
