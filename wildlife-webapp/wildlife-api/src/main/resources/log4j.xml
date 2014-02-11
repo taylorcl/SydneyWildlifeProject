@@ -21,7 +21,7 @@
     	
 	
 	<!-- Application Loggers -->
-	<logger name="com.nayidisha.pointy">
+	<logger name="org.sydwildlife">
 		<level value="debug" />
 	</logger>
 	
