@@ -19,15 +19,16 @@
       <maven.plugin.war>2.4</maven.plugin.war>
       <maven.plugin.compiler>3.1</maven.plugin.compiler>
 	  
-	   <!-- Back-end Dev -->
+	   <!-- Libraries -->
       <eclipseLink.version>2.5.1</eclipseLink.version>
       <jackson.version>1.9.11</jackson.version>
-      <jdbc.postgresql.version>9.2-1000.jdbc4</jdbc.postgresql.version>
+      <jdbc.postgresql.version>9.2-1004-jdbc4</jdbc.postgresql.version>
       <slf4j.version>1.7.5</slf4j.version>
-      <spring.version>3.2.5.RELEASE</spring.version>
-      <spring.data.version>1.4.2.RELEASE</spring.data.version>
+      <spring.version>4.0.2.RELEASE</spring.version>
+      <spring.data.version>1.5.0.RELEASE</spring.data.version>
+	  <apache.commons.version>3.1</apache.commons.version>
 
-	   <!-- Back-end Testing -->
+	   <!-- Testing -->
       <junit.version>4.11</junit.version>
    </properties>
         
