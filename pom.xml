@@ -3,12 +3,12 @@
    
    <modelVersion>4.0.0</modelVersion>
    <groupId>org.sydwildlife</groupId>
-   <artifactId>wildlife-project</artifactId>
+   <artifactId>wildlife</artifactId>
    <version>1.0.0-SNAPSHOT</version>
    <packaging>pom</packaging>
    
    <modules>
-      <module>wildlife-server</module>
+      <module>wildlife-api</module>
       <module>wildlife-ui</module>
    </modules>
   
@@ -21,19 +21,20 @@
 	  
 	   <!-- Libraries -->
       <eclipseLink.version>2.5.1</eclipseLink.version>
+	  <h2.version>1.3.175</h2.version>
       <jackson.version>1.9.11</jackson.version>
-      <jdbc.postgresql.version>9.2-1004-jdbc4</jdbc.postgresql.version>
+	  <logback.version>1.1.1</logback.version>
       <slf4j.version>1.7.5</slf4j.version>
       <spring.version>4.0.2.RELEASE</spring.version>
       <spring.data.version>1.5.0.RELEASE</spring.data.version>
 	  <apache.commons.version>3.1</apache.commons.version>
+	  
 
 	   <!-- Testing -->
       <junit.version>4.11</junit.version>
    </properties>
         
    <build>
-      <finalName>wildlife-project</finalName>
       <plugins>
          <plugin>
              <groupId>org.apache.maven.plugins</groupId>

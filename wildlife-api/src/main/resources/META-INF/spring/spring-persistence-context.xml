@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+    xmlns:context="http://www.springframework.org/schema/context"
+    xmlns:jdbc="http://www.springframework.org/schema/jdbc"
+    xsi:schemaLocation="
+	  http://www.springframework.org/schema/beans
+      http://www.springframework.org/schema/beans/spring-beans-4.0.xsd
+      http://www.springframework.org/schema/jdbc 
+      http://www.springframework.org/schema/jdbc/spring-jdbc-4.0.xsd ">
+    
+    <jdbc:embedded-database id="dataSource" type="H2">
+        <!--  <jdbc:script location="classpath:schema.sql"/>-->
+    </jdbc:embedded-database>
+
+    <!-- Entity Manager Factory -->
+    <bean id="entityManagerFactory"
+        class="org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean">
+        <property name="packagesToScan">
+            <list>
+                <value>org.sydwildlife.api.*</value>
+            </list>
+        </property>
+        <property name="jpaProperties">
+            <props>
+                <prop key="eclipselink.ddl-generation">create-tables</prop>
+                <prop key="eclipselink.ddl-generation.output-mode">database</prop>
+            </props>
+        </property>
+        <property name="dataSource" ref="dataSource" />
+        <property name="jpaDialect" ref="jpaDialect" />
+        <property name="jpaVendorAdapter" ref="jpaAdapter" />
+        <property name="loadTimeWeaver" ref="loadTimeWeaver"/>
+    </bean>
+    
+    <bean id="jpaAdapter" class="org.springframework.orm.jpa.vendor.EclipseLinkJpaVendorAdapter"/>
+    <bean id="jpaDialect" class="org.springframework.orm.jpa.vendor.EclipseLinkJpaDialect" />
+        
+
+    <bean id="loadTimeWeaver" class="org.springframework.instrument.classloading.InstrumentationLoadTimeWeaver" />
+    
+    <!-- <beans profile="Junit">
+      <bean id="loadTimeWeaver" class="org.springframework.instrument.classloading.SimpleLoadTimeWeaver" />
+    </beans> -->
+    
+    <!-- <bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource ">
+	    <property name="driverClassName" value="org.postgresql.Driver" /> 
+        <property name="url" value="jdbc:postgresql://localhost:5432/vdns" /> 
+        <property name="username" value="vdns" /> 
+        <property name="password" value="vdns" /> 
+    </bean> -->
+</beans>

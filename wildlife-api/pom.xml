@@ -1,0 +1,135 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+
+   <parent>
+      <groupId>org.sydwildlife</groupId>
+      <artifactId>wildlife</artifactId>
+      <version>1.0.0-SNAPSHOT</version>
+   </parent>
+   
+   <modelVersion>4.0.0</modelVersion>
+   <artifactId>wildlife-api</artifactId>
+   <packaging>war</packaging>
+   
+   <dependencies>
+   
+      <!-- Spring -->
+      <dependency>
+         <groupId>org.springframework</groupId>
+         <artifactId>spring-context</artifactId>
+         <version>${spring.version}</version>
+         <exclusions>
+            <exclusion>
+               <artifactId>commons-logging</artifactId>
+               <groupId>commons-logging</groupId>
+            </exclusion>
+         </exclusions>
+      </dependency>
+      <dependency>
+         <groupId>org.springframework</groupId>
+         <artifactId>spring-webmvc</artifactId>
+         <version>${spring.version}</version>
+      </dependency>
+      <dependency>
+         <groupId>org.springframework</groupId>
+         <artifactId>spring-tx</artifactId>
+         <version>${spring.version}</version>
+      </dependency>
+      <dependency>
+         <groupId>org.springframework</groupId>
+         <artifactId>spring-orm</artifactId>
+         <version>${spring.version}</version>
+      </dependency>
+      <dependency>
+         <groupId>org.springframework.data</groupId>
+         <artifactId>spring-data-jpa</artifactId>
+         <version>${spring.data.version}</version>
+      </dependency>
+<dependency>
+	<groupId>org.springframework</groupId>
+	<artifactId>spring-instrument</artifactId>
+	<version>4.0.2.RELEASE</version>
+</dependency>
+            
+      
+      <!-- Jackson JSON Mapper -->
+      <dependency>
+         <groupId>org.codehaus.jackson</groupId>
+         <artifactId>jackson-mapper-asl</artifactId>
+         <version>${jackson.version}</version>
+      </dependency>
+      <dependency>
+         <groupId>javax.servlet</groupId>
+         <artifactId>javax.servlet-api</artifactId>
+         <version>3.0.1</version>
+      </dependency>
+      
+      <!-- Persistence -->
+      <dependency>
+         <groupId>org.eclipse.persistence</groupId>
+         <artifactId>org.eclipse.persistence.jpa</artifactId>
+         <version>${eclipseLink.version}</version>
+      </dependency>
+      <dependency>
+         <groupId>com.h2database</groupId>
+         <artifactId>h2</artifactId>
+         <version>${h2.version}</version>
+      </dependency>
+      
+      <!-- Common Utils -->
+      <dependency>
+         <groupId>org.apache.commons</groupId>
+         <artifactId>commons-lang3</artifactId>
+         <version>${apache.commons.version}</version>
+      </dependency>          
+      
+      <!-- Logging -->
+      <dependency>
+         <groupId>org.slf4j</groupId>
+         <artifactId>slf4j-api</artifactId>
+         <version>${slf4j.version}</version>
+      </dependency>
+      <dependency>
+         <groupId>ch.qos.logback</groupId>
+         <artifactId>logback-classic</artifactId>
+         <version>${logback.version}</version>
+      </dependency>
+      
+      <!-- Test -->
+      <dependency>
+         <groupId>junit</groupId>
+         <artifactId>junit-dep</artifactId>
+         <version>${junit.version}</version>
+         <scope>test</scope>
+      </dependency>
+      <dependency>
+         <groupId>org.springframework</groupId>
+         <artifactId>spring-test</artifactId>
+         <version>${spring.version}</version>
+         <scope>test</scope>
+      </dependency>
+   </dependencies>
+   
+   <build>
+      <finalName>wildlife-api</finalName>
+      <plugins>
+         <plugin>
+             <groupId>org.apache.maven.plugins</groupId>
+             <artifactId>maven-compiler-plugin</artifactId>
+             <version>${maven.plugin.compiler}</version>
+             <configuration>
+                 <source>${jdk.version}</source>
+                 <target>${jdk.version}</target>
+             </configuration>
+         </plugin>
+         <plugin>
+             <groupId>org.apache.maven.plugins</groupId>
+             <artifactId>maven-surefire-plugin</artifactId>
+             <configuration>
+                 <argLine>-javaagent:${settings.localRepository}\org\springframework\spring-instrument\4.0.2.RELEASE\spring-instrument-4.0.2.RELEASE.jar</argLine>
+             </configuration>
+         </plugin>
+         
+      </plugins> 
+   </build>
+</project>
