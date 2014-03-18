@@ -1,0 +1,31 @@
+<div style="padding-left:20px; padding-right:20px">
+    <div class="container" >
+        <h4>Edit Member</h4>
+		<alert ng-show=$parent.showFeedback close="closeAlert()" type=alertType>{{status}}</alert>
+		<button type="submit" class="btn btn-primary" ng-click="newMember(member)">New</button>
+        <hr/>
+        <div ng-init="memberDetail()" />
+        <form name="memberForm">
+            <fieldset>
+                <label for="firstName">Name:</label>
+                <input id="firstName" type="text" required placeholder="First Name..." ng-model="member.firstName" />
+                <input id="lastName" type="text" required placeholder="Last Name..." ng-model="member.lastName" />                
+                <label for="visitDate">Visit Date:</label>
+	            <input id="visitDate" type="text" required date-picker data-date-format="mm/dd/yyyy" placeholder="format (mm/dd/yyyy)..." ng-model="member.visitDate" /> 
+                <label for="visitLocation">Location:</label>
+                <input id="visitLocation" type="text"  placeholder="Address..." ng-model="member.address" />
+                <br />
+                <input id="visitCity" type="text"  class="input-small" placeholder="City..." ng-model="member.city" />
+                <input id="visitState" type="text"  class="input-small" placeholder="State..." ng-model="member.state" />
+                
+                <input id="id" type="hidden"  ng-model="member.id" />
+            </fieldset>
+
+            <br />
+
+            <button id="save-member-button" type="submit" class="btn btn-primary"  ng-click="saveMember(member, memberForm)">Save</button>
+            <button id="delete-member-button" type="button" class="btn btn-default" ng-click="deleteMember()">Delete</button>
+
+        </form>
+    </div>   
+</div>
