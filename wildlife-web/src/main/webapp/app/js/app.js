@@ -38,16 +38,6 @@ var sydneyWildlifeApp = angular.module('sydneyWildlifeApp', ['restangular', 'ui.
 				            templateUrl: 'views/User.html',
 				            controller: 'UserController'
 				        });						    
-				    $routeProvider.when('/pointyPieChart',
-				        {
-				            templateUrl: 'views/PieChart.html',
-				            controller: 'PieChartController'
-				        });				    
-				    $routeProvider.when('/pointyBarChart',
-				        {
-				            templateUrl: 'views/BarChart.html',
-				            controller: 'BarChartController'
-				        });	
 				    $routeProvider.otherwise({redirectTo: '/registerUser'});
 				    //$locationProvider.html5Mode(true);
 });
