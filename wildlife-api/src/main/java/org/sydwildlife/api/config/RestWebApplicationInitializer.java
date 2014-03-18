@@ -17,11 +17,11 @@ public class RestWebApplicationInitializer implements WebApplicationInitializer 
       // setup the ContextLoaderListener listener
       XmlWebApplicationContext rootContext = new XmlWebApplicationContext();
       rootContext.setConfigLocations(new String[] {
-            "classpath*:/META-INF/spring-service-context.xml" });
+            "classpath*:/META-INF/spring/spring-service-context.xml" });
       servletContext.addListener(new ContextLoaderListener(rootContext));
 
       XmlWebApplicationContext appContext = new XmlWebApplicationContext();
-      appContext.setConfigLocation("/META-INF/spring/spring-mvc-context.xml");
+      appContext.setConfigLocation("classpath*:/META-INF/spring/spring-mvc-context.xml");
 
       // setup the Spring dispatcher servlet listener
       ServletRegistration.Dynamic registration =
