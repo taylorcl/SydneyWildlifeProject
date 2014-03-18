@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+   xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+   <modelVersion>4.0.0</modelVersion>
+   <artifactId>wildlife-web</artifactId>
+   <packaging>war</packaging>
+   
+   <parent>
+      <groupId>org.sydwildlife</groupId>
+      <artifactId>wildlife</artifactId>
+      <version>1.0.0-SNAPSHOT</version>
+      <relativePath>../</relativePath>
+   </parent>
+
+   <build>
+      <finalName>wildlife-web</finalName>
+      <plugins>
+         <plugin>
+            <artifactId>maven-war-plugin</artifactId>
+            <version>${maven.plugin.war}</version>
+            <configuration>
+               <failOnMissingWebXml>true</failOnMissingWebXml>
+               <webResources>
+                  <resource>
+                     <directory>src/main/webapp</directory>
+                  </resource>
+               </webResources>
+            </configuration>
+         </plugin>
+         <plugin>
+            <groupId>com.github.searls</groupId>
+            <artifactId>jasmine-maven-plugin</artifactId>
+            <version>1.3.1.4</version>
+            <extensions>true</extensions>
+            <executions>
+               <execution>
+                  <goals>
+                     <goal>test</goal>
+                  </goals>
+               </execution>
+            </executions>
+            <configuration>
+               <jsSrcDir>src/main/webapp/app/js</jsSrcDir>
+               <jsTestSrcDir>src/test/unit</jsTestSrcDir>
+               <preloadSources combine.children="append">
+                  <!-- This order is important -->
+                  <!-- If not followed then bad things can happen like: -->
+                  <!-- Exception invoking Node.removeEventListener() etc. -->
+                  <!-- which are thrown deep from the bowels of httpUnit 
+                     code -->
+                  <!-- and are a pain to debug -->
+                  <source>${project.basedir}/src/test/lib/console.js</source>
+                  <source>${project.basedir}/src/main/webapp/app/lib/jquery/jquery-1.10.2.js</source>
+                  <source>${project.basedir}/src/main/webapp/app/lib/jquery/jquery-ui-1.10.3.js</source>
+                  <source>${project.basedir}/src/test/lib/jasmine-jquery-1.4.2.js</source>
+                  <source>${project.basedir}/src/test/lib/jasmine.console_reporter.js</source>
+                  <source>${project.basedir}/src/main/webapp/app/lib/angular/angular.js</source>
+                  <source>${project.basedir}/src/main/webapp/app/lib/bootstrap/ui-bootstrap-tpls-0.4.0.js</source>
+
+                  <source>${project.basedir}/src/test/lib/angular-mocks.js</source>
+                  <source>${project.basedir}/src/main/webapp/app/lib/angular/restangular.js</source>
+                  <source>${project.basedir}/src/main/webapp/app/lib/underscore/underscore.js</source>
+                  <source>${project.basedir}/src/main/webapp/app/lib/date/xdate.js</source>
+               </preloadSources>
+            </configuration>
+         </plugin>
+      </plugins>
+   </build>
+</project>

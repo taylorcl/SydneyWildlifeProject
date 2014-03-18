@@ -9,7 +9,7 @@
    
    <modules>
       <module>wildlife-api</module>
-      <module>wildlife-ui</module>
+      <module>wildlife-web</module>
    </modules>
   
    <properties>
