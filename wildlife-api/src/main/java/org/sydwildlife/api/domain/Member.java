@@ -13,7 +13,17 @@ public class Member extends UuidEntityBase {
 
    private String lastName;
 
-   private String emailAddress;
+   private String suburb;
+
+   private String address; // TODO: need to separate street, postcode, suburb?
+
+   private String postalAddress;
+
+   private String email;
+
+   private String branch; // TODO: use Branch in the future after Branch api built.
+
+   private String phone;
 
    public String getFirstName() {
       return firstName;
@@ -31,16 +41,56 @@ public class Member extends UuidEntityBase {
       this.lastName = lastName;
    }
 
-   public String getEmailAddress() {
-      return emailAddress;
+   public String getEmail() {
+      return email;
    }
 
-   public void setEmailAddress(String emailAddress) {
-      this.emailAddress = emailAddress;
+   public void setEmail(String email) {
+      this.email = email;
    }
 
    public static Builder builder() {
       return new Builder();
+   }
+
+   public String getSuburb() {
+      return suburb;
+   }
+
+   public void setSuburb(String suburb) {
+      this.suburb = suburb;
+   }
+
+   public String getAddress() {
+      return address;
+   }
+
+   public void setAddress(String address) {
+      this.address = address;
+   }
+
+   public String getPostalAddress() {
+      return postalAddress;
+   }
+
+   public void setPostalAddress(String postalAddress) {
+      this.postalAddress = postalAddress;
+   }
+
+   public String getBranch() {
+      return branch;
+   }
+
+   public void setBranch(String branch) {
+      this.branch = branch;
+   }
+
+   public String getPhone() {
+      return phone;
+   }
+
+   public void setPhone(String phone) {
+      this.phone = phone;
    }
 
    public static class Builder extends UuidEntityBase.Builder<Member> {
@@ -55,8 +105,18 @@ public class Member extends UuidEntityBase {
          return this;
       }
 
-      public Builder withEmailAddress(String emailAddress) {
-         getMember().setEmailAddress(emailAddress);
+      public Builder withEmail(String email) {
+         getMember().setEmail(email);
+         return this;
+      }
+
+      public Builder withSuburb(String suburb) {
+         getMember().setSuburb(suburb);
+         return this;
+      }
+
+      public Builder withBranch(String branch) {
+         getMember().setBranch(branch);
          return this;
       }
 

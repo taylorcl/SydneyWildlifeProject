@@ -20,4 +20,19 @@ public class MemberServiceImpl extends AbstractCrudService<Member, UUID> impleme
       return memberRepo;
    }
 
+   @Override
+   public void updateMember(Member member) {
+      Member existingMember = memberRepo.findOne(member.getId());
+      if (existingMember != null) {
+         memberRepo.save(member);
+      } else {
+         // TODO: throw resource not found exception
+      }
+   }
+
+   @Override
+   public Member createMember(Member member) {
+      return memberRepo.save(member);
+   }
+
 }
