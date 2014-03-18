@@ -19,7 +19,6 @@ import org.sydwildlife.api.domain.common.Identifiable;
 import org.sydwildlife.api.service.CrudService;
 
 @RestController
-@RequestMapping("/api/members")
 public abstract class AbstractCrudController<Entity extends Identifiable<Id>, Id extends Serializable> {
 
    protected abstract CrudService<Entity, Id> getCrudService();
