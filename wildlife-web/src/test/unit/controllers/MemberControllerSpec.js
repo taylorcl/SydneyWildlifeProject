@@ -12,7 +12,7 @@ describe('MemberController Tests', function() {
     
     beforeEach(module('sydneyWildlifeApp'));
 	beforeEach(inject(function($rootScope, $controller, MemberService, $routeParams, $q) {
-		member = {"id":"1", "firstName":"Joe", "lastName":"Longfellow", "visitDate":"03/04/2000", "address":"anAddress", "city":"aCity", "state":"aState"};
+		member = {"id":"1", "firstName":"Joe", "lastName":"Longfellow"};
 	    localScope = $rootScope.$new();
 	    localMemberService = MemberService;
 	    localRouteParams = $routeParams;			    
@@ -40,11 +40,11 @@ describe('MemberController Tests', function() {
 		//Solution based on: https://groups.google.com/forum/#!msg/angular/icQGGKZy-Is/zwnmZZdfT-0J
 		it('should save member', inject(function($rootScope, $compile) {	
 			form = {$valid:true};
-		    deferred.resolve({"id":"xyz"});
+		    deferred.resolve({"firstName":"Joe"});
 		    spyOn(localMemberService, "save").andReturn(deferred.promise);			
 			localScope.saveMember(member, form);
 			$rootScope.$digest();
-			expect(member.id).toBe("xyz");
+			expect(member.firstName).toBe("Joe");
 			expect(localScope.alertType).toBe("success");
 		}));
 		

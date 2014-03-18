@@ -12,25 +12,14 @@ sydneyWildlifeApp.factory('MemberService',['Restangular', 'DateService', functio
     return {
         save: function(member) {
         	var baseMembers = Restangular.all("members");
-        	var originalDate = member.visitDate;
-        	member.visitDate = DateService.convertMMDDYYYYToJSONDate(originalDate);
         	
         	var aPromise = baseMembers.post(member);
-        	member.visitDate = originalDate;
         	return aPromise;
-
         },
         list: function() {
         	var baseMembers = Restangular.all("members");
         	
-        	var aPromise = baseMembers.getList().then(function(object){
-        		for (var i = 0; i < object.length; i++){
-        			var member = object[i];
-        			var readableDate = massageDate(member.visitDate);	
-        			member.visitDate = readableDate;
-        		}
-        		return object;
-        	});
+        	var aPromise = baseMembers.getList();
         	return aPromise;
         },
         memberDetail: function(id){

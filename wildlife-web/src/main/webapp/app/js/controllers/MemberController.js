@@ -13,7 +13,6 @@ sydneyWildlifeApp.controller('MemberController',
             if(form.$valid) {
             	var aPromise = MemberService.save(member);
             	aPromise.then(function(object){
-            		member.id = object.id;
             		showAlert("success", "Member registered successfully! Just went over to sydwildlife-api webapp using Restangular and saved this member!");
             	}, function errorCallback(error) {
             		showAlert("error", error);
@@ -69,7 +68,7 @@ sydneyWildlifeApp.controller('MemberController',
         /**
          * Clear the member object
          */
-        $scope.newMember = function (member) {
+        $scope.createMember = function (member) {
         	$scope.member = {};
         	this.closeAlert();
         };

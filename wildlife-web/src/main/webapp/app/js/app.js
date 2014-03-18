@@ -6,23 +6,19 @@ var sydneyWildlifeApp = angular.module('sydneyWildlifeApp', ['restangular', 'ui.
 					// TODO: we need to derive this
 					RestangularProvider.setBaseUrl('http://localhost:8080/wildlife-api/api');
 					
-					RestangularProvider.setResponseExtractor(function(response, operation, what, url) {
-					  var newResponse = response.payload;
-					  if (angular.isArray(newResponse)) {
-						    angular.forEach(newResponse, function(value, key) {
-						    	if (newResponse[key] != undefined){
-						    		newResponse[key].originalElement = angular.copy(value);
-						    	}
-						    });
-					  } else {
-						  if (newResponse != undefined) {
-							  newResponse.originalElement = angular.copy(newResponse);
-					  	  }
-					  }						
-					  return newResponse;
-					  
-				    });
-				    
+					RestangularProvider.addResponseInterceptor(function(data, operation, what, url, response, deferred){
+						if (operation === 'getList') {
+					        var newResponse = response.data.content;
+				            newResponse._resultmeta = {
+				                "count": response.count,
+				                "next": response.next,
+				                "previous": response.previous
+				            };
+				            return newResponse;
+						}
+						return response;
+					});
+					
 					$routeProvider.when('/registerMember',
 				        {
 				            templateUrl:'views/Member.html',

@@ -5,19 +5,17 @@
 	    <alert ng-show=$member.showFeedback close="closeAlert()" type=alertType>{{status}}</alert>
 		<table ng-init="listMembers()" class="table">  
 	        <thead>  
-	          <tr>  
-	            <th>Member ID</th>  
+	          <tr>
 	            <th>First Name</th>  
-	            <th>Last Name</th>  
-	            <th>Visit Date</th>  
+	            <th>Last Name</th>
+	            <th>Email</th>
 	          </tr>  
 	        </thead>  
 	        <tbody ng-repeat="member in memberList">  
 	          <tr>  
-	            <td><a href="#/memberDetail/{{member.id}}">{{member.id}}</a></td>  
 	            <td>{{member.firstName}} </td>  
 	            <td>{{member.lastName}}</td>  
-	            <td>{{member.visitDate}}</td>  
+	            <td>{{member.email}}</td>
 	          </tr>  
 	        </tbody>  
 	      </table>  
