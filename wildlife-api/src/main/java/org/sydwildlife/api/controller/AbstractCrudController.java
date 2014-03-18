@@ -12,9 +12,10 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.util.Assert;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-import org.sydwildlife.api.domain.Identifiable;
+import org.sydwildlife.api.domain.common.Identifiable;
 import org.sydwildlife.api.service.CrudService;
 
 @RestController
@@ -29,13 +30,13 @@ public abstract class AbstractCrudController<Entity extends Identifiable<Id>, Id
    }
 
    @RequestMapping(method = POST)
-   public Entity post(@Validated Entity entity) {
+   public Entity post(@Validated @RequestBody Entity entity) {
       Assert.notNull(entity, "The message content shouldn't be null.");
       return getCrudService().save(entity);
    }
 
    @RequestMapping(value = "/{id}", method = PUT)
-   public Entity putOne(@PathVariable Id id, @Validated Entity entity) {
+   public Entity putOne(@PathVariable Id id, @Validated @RequestBody Entity entity) {
       Assert.notNull(id, "The resource Identifier shouldn't be null.");
       Assert.notNull(entity, "The message content shouldn't be null.");
 

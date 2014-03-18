@@ -5,7 +5,7 @@ package org.sydwildlife.api.persistence.common;
 import java.io.Serializable;
 
 import org.apache.commons.lang3.builder.HashCodeBuilder;
-import org.sydwildlife.api.domain.Identifiable;
+import org.sydwildlife.api.domain.common.Identifiable;
 
 public abstract class EntityBase<T extends Serializable> implements Identifiable<T> {
 

@@ -1,5 +1,7 @@
 package org.sydwildlife.api.rest.exception;
 
+import javax.validation.ValidationException;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.http.HttpStatus;
@@ -29,6 +31,12 @@ public class RestExceptionHandler extends ResponseEntityExceptionHandler {
    @ResponseStatus(value = HttpStatus.INTERNAL_SERVER_ERROR)
    public void handleUnexpectedException(Exception ex) {
       logger.error(ex.toString(), ex);
+   }
+
+   @ExceptionHandler(ValidationException.class)
+   @ResponseStatus(value = HttpStatus.BAD_REQUEST)
+   public void handleValidationExceptionException(Exception ex) {
+
    }
 
 }

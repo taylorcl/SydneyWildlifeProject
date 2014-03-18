@@ -5,7 +5,7 @@ import java.io.Serializable;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
-import org.sydwildlife.api.domain.Identifiable;
+import org.sydwildlife.api.domain.common.Identifiable;
 import org.sydwildlife.api.service.CrudService;
 
 public abstract class AbstractCrudService<T extends Identifiable<ID>, ID extends Serializable>

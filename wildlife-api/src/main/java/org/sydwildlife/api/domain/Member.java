@@ -1,16 +1,24 @@
 package org.sydwildlife.api.domain;
 
 import javax.persistence.Cacheable;
+import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
+import javax.validation.constraints.NotNull;
 
+import org.sydwildlife.api.domain.common.HasStatus;
+import org.sydwildlife.api.domain.enumeration.Status;
 import org.sydwildlife.api.persistence.common.UuidEntityBase;
 
 @Entity
 @Cacheable
-public class Member extends UuidEntityBase {
+public class Member extends UuidEntityBase implements HasStatus {
 
+   @NotNull
    private String firstName;
 
+   @NotNull
    private String lastName;
 
    private String suburb;
@@ -24,6 +32,11 @@ public class Member extends UuidEntityBase {
    private String branch; // TODO: use Branch in the future after Branch api built.
 
    private String phone;
+
+   @NotNull
+   @Column(length = 10, nullable = false)
+   @Enumerated(EnumType.STRING)
+   private Status status = Status.ACTIVE;
 
    public String getFirstName() {
       return firstName;
@@ -93,6 +106,16 @@ public class Member extends UuidEntityBase {
       this.phone = phone;
    }
 
+   @Override
+   public Status getStatus() {
+      return status;
+   }
+
+   @Override
+   public void setStatus(Status status) {
+      this.status = status;
+   }
+
    public static class Builder extends UuidEntityBase.Builder<Member> {
 
       public Builder withLastName(String lastName) {
@@ -117,6 +140,11 @@ public class Member extends UuidEntityBase {
 
       public Builder withBranch(String branch) {
          getMember().setBranch(branch);
+         return this;
+      }
+
+      public Builder withStatus(Status status) {
+         getMember().setStatus(status);
          return this;
       }
 

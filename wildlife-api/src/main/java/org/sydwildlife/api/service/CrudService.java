@@ -4,7 +4,7 @@ import java.io.Serializable;
 
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
-import org.sydwildlife.api.domain.Identifiable;
+import org.sydwildlife.api.domain.common.Identifiable;
 
 public interface CrudService<Entity extends Identifiable<Id>, Id extends Serializable> {
 

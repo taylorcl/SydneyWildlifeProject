@@ -37,7 +37,10 @@ public class MemberControllerTest extends AbstractControllerTest {
 
    @Test
    public void testGetOneOk() throws Exception {
-      Member m = Member.builder().withFirstName("mathieu").build();
+      Member m = Member.builder()
+            .withFirstName("mathieu")
+            .withLastName("carrot")
+            .build();
       memberRepository.save(m);
       assertNotNull(m.getId());
 
@@ -61,7 +64,10 @@ public class MemberControllerTest extends AbstractControllerTest {
 
    @Test
    public void testGetAllOk() throws Exception {
-      Member m = Member.builder().withFirstName("mathieu").build();
+      Member m = Member.builder()
+            .withFirstName("mathieu")
+            .withLastName("carrot")
+            .build();
       memberRepository.save(m);
       assertNotNull(m.getId());
 
@@ -75,9 +81,10 @@ public class MemberControllerTest extends AbstractControllerTest {
 
    @Test
    public void createMemberShouldReturnOk() throws Exception {
-      Member m = Member.builder().withFirstName("carrot").build();
-      memberRepository.save(m);
-      assertNotNull(m.getId());
+      Member m = Member.builder()
+            .withFirstName("carrot")
+            .withLastName("carrot")
+            .build();
 
       mockMvc
             .perform(post(API_URL, "")
@@ -85,6 +92,22 @@ public class MemberControllerTest extends AbstractControllerTest {
                   .content(JsonHelper.getJson(m)))
             .andDo(print())
             .andExpect(status().isOk())
+            .andReturn();
+   }
+
+   @Test
+   public void createMemberShouldReturnBadRequest() throws Exception {
+      Member m = Member.builder()
+            .withFirstName("carrot")
+            .withStatus(null)
+            .build();
+
+      mockMvc
+            .perform(post(API_URL, "")
+                  .contentType(APPLICATION_JSON)
+                  .content(JsonHelper.getJson(m)))
+            .andDo(print())
+            .andExpect(status().isBadRequest())
             .andReturn();
    }
 }

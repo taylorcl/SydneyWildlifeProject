@@ -18,6 +18,8 @@
        </mvc:argument-resolvers>
     </mvc:annotation-driven>
     
+  
+    
 	<context:component-scan base-package="org.sydwildlife.api.controller"/>
 	<context:component-scan base-package="org.sydwildlife.api.rest"/>
    

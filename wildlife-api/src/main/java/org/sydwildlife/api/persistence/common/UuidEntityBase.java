@@ -9,7 +9,7 @@ import javax.persistence.MappedSuperclass;
 import org.eclipse.persistence.annotations.Convert;
 import org.eclipse.persistence.annotations.Converter;
 import org.eclipse.persistence.annotations.UuidGenerator;
-import org.sydwildlife.api.domain.Identifiable;
+import org.sydwildlife.api.domain.common.Identifiable;
 import org.sydwildlife.api.persistence.converter.UUIDConverter;
 
 @MappedSuperclass
