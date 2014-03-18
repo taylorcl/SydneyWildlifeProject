@@ -1,7 +1,10 @@
 package org.sydwildlife.api.domain;
 
+import javax.persistence.AttributeOverride;
+import javax.persistence.AttributeOverrides;
 import javax.persistence.Cacheable;
 import javax.persistence.Column;
+import javax.persistence.Embedded;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
@@ -28,14 +31,25 @@ public class Member extends UuidEntityBase implements HasStatus {
 
    private String title;
 
+   @Embedded
+   @AttributeOverrides({
+         @AttributeOverride(name = "line1", column = @Column(name = "HOMELINE1")),
+         @AttributeOverride(name = "line2", column = @Column(name = "HOMELINE2")),
+         @AttributeOverride(name = "suburb", column = @Column(name = "HOMESUBURB")),
+         @AttributeOverride(name = "postcode", column = @Column(name = "HOMEPOSTCODE")),
+         @AttributeOverride(name = "state", column = @Column(name = "HOMESTATE"))
+   })
    private Address homeAddress;
 
-   // @Embedded
-   // @AttributeOverrides({
-   // @AttributeOverride(name = "postalLine1", column = @Column("LINE1")),
-   // @AttributeOverride(name = "postalLine2", column = @Column("LINE2"))
-   // })
-   // private Address postalAddress;
+   @Embedded
+   @AttributeOverrides({
+         @AttributeOverride(name = "line1", column = @Column(name = "POSTALLINE1")),
+         @AttributeOverride(name = "line2", column = @Column(name = "POSTALLINE2")),
+         @AttributeOverride(name = "suburb", column = @Column(name = "POSTALSUBURB")),
+         @AttributeOverride(name = "postcode", column = @Column(name = "POSTALPOSTCODE")),
+         @AttributeOverride(name = "State", column = @Column(name = "POSTALSTATE"))
+   })
+   private Address postalAddress;
 
    private String email;
 
@@ -80,14 +94,14 @@ public class Member extends UuidEntityBase implements HasStatus {
       return new Builder();
    }
 
-   // public Address getPostalAddress() {
-   // return postalAddress;
-   // }
-   //
-   // @Embedded
-   // public void setPostalAddress(Address postalAddress) {
-   // this.postalAddress = postalAddress;
-   // }
+   public Address getPostalAddress() {
+      return postalAddress;
+   }
+
+   @Embedded
+   public void setPostalAddress(Address postalAddress) {
+      this.postalAddress = postalAddress;
+   }
 
    public Branch getBranch() {
       return branch;
@@ -173,6 +187,11 @@ public class Member extends UuidEntityBase implements HasStatus {
 
       public Builder withHomeAddress(Address address) {
          getMember().setHomeAddress(address);
+         return this;
+      }
+
+      public Builder withPostalAddress(Address address) {
+         getMember().setPostalAddress(address);
          return this;
       }
 

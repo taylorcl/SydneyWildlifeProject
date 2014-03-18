@@ -83,14 +83,32 @@ public class MemberControllerTest extends AbstractControllerTest {
    }
 
    @Test
+   public void createMemberWithAddressShouldReturnOk() throws Exception {
+      Address homeAdd = new Address("line1", "line2", "Sydney", "nsw", "2000");
+      Address postalAdd = new Address("line1", "line2", "Sydney", "nsw", "2000");
+      Member m = Member.builder()
+            .withFirstName("carrot")
+            .withLastName("poison")
+            .withHomeAddress(homeAdd)
+            .withPostalAddress(postalAdd)
+            .build();
+
+      mockMvc
+            .perform(post(API_URL, "")
+                  .contentType(APPLICATION_JSON)
+                  .content(JsonHelper.getJson(m)))
+            .andDo(print())
+            .andExpect(status().isOk())
+            .andReturn();
+   }
+
+   @Test
    public void createMemberShouldReturnOk() throws Exception {
-      Address add = new Address("line1", "line2", "Sydney", "nsw", "2000");
       Member m = Member.builder()
             .withFirstName("mathieu")
             .withLastName("carrot")
             .withBranch(Branch.EAST)
             .withPosition(MemberPosition.BOARD_SECRETARY)
-            .withHomeAddress(add)
             .build();
 
       mockMvc
