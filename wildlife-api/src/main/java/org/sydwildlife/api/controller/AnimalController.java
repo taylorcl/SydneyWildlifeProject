@@ -5,19 +5,19 @@ import java.util.UUID;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-import org.sydwildlife.api.domain.Member;
+import org.sydwildlife.api.domain.Animal;
+import org.sydwildlife.api.service.AnimalService;
 import org.sydwildlife.api.service.CrudService;
-import org.sydwildlife.api.service.MemberService;
 
 @RestController
-@RequestMapping("/api/members")
-public class MemberController extends AbstractCrudController<Member, UUID> {
+@RequestMapping("/api/animals")
+public class AnimalController extends AbstractCrudController<Animal, UUID> {
 
    @Autowired
-   private MemberService memberService;
+   private AnimalService animalService;
 
    @Override
-   protected CrudService<Member, UUID> getCrudService() {
-      return memberService;
+   protected CrudService<Animal, UUID> getCrudService() {
+      return animalService;
    }
 }

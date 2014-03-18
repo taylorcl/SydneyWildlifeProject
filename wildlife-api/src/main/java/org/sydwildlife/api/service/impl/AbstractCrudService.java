@@ -27,11 +27,6 @@ public abstract class AbstractCrudService<T extends Identifiable<ID>, ID extends
    }
 
    @Override
-   public long count() {
-      return getRepository().count();
-   }
-
-   @Override
    public void delete(ID id) {
       getRepository().delete(id);
    }
@@ -39,11 +34,6 @@ public abstract class AbstractCrudService<T extends Identifiable<ID>, ID extends
    @Override
    public void delete(T entity) {
       getRepository().delete(entity);
-   }
-
-   @Override
-   public void deleteAll() {
-      getRepository().deleteAll();
    }
 
    protected abstract JpaRepository<T, ID> getRepository();

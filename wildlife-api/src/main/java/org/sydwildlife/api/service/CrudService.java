@@ -6,7 +6,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.sydwildlife.api.domain.Identifiable;
 
-public interface CrudService<T extends Identifiable<ID>, ID extends Serializable> {
+public interface CrudService<Entity extends Identifiable<Id>, Id extends Serializable> {
 
    /**
     * Saves a given entity. Use the returned instance for further operations as the save operation
@@ -15,7 +15,7 @@ public interface CrudService<T extends Identifiable<ID>, ID extends Serializable
     * @param entity
     * @return the saved entity
     */
-   T save(T entity);
+   Entity save(Entity entity);
 
    /**
     * Retrieves an entity by its id.
@@ -26,7 +26,7 @@ public interface CrudService<T extends Identifiable<ID>, ID extends Serializable
     * @throws IllegalArgumentException
     *         if {@code id} is {@literal null}
     */
-   T findOne(ID id);
+   Entity findOne(Id id);
 
    /**
     * Returns a {@link Page} of entities meeting the paging restriction provided in the
@@ -35,14 +35,7 @@ public interface CrudService<T extends Identifiable<ID>, ID extends Serializable
     * @param pageable
     * @return a page of entities
     */
-   Page<T> findAll(Pageable pageable);
-
-   /**
-    * Returns the number of entities available.
-    * 
-    * @return the number of entities
-    */
-   long count();
+   Page<Entity> findAll(Pageable pageable);
 
    /**
     * Deletes the entity with the given id.
@@ -52,7 +45,7 @@ public interface CrudService<T extends Identifiable<ID>, ID extends Serializable
     * @throws IllegalArgumentException
     *         in case the given {@code id} is {@literal null}
     */
-   void delete(ID id);
+   void delete(Id id);
 
    /**
     * Deletes a given entity.
@@ -61,10 +54,6 @@ public interface CrudService<T extends Identifiable<ID>, ID extends Serializable
     * @throws IllegalArgumentException
     *         in case the given entity is (@literal null}.
     */
-   void delete(T entity);
+   void delete(Entity entity);
 
-   /**
-    * Deletes all entities managed by the repository.
-    */
-   void deleteAll();
 }
