@@ -10,9 +10,12 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 import java.util.UUID;
 
 import org.junit.Test;
+import org.sydwildlife.api.domain.Address;
 import org.sydwildlife.api.domain.Member;
 import org.sydwildlife.api.testing.AbstractControllerTest;
 import org.sydwildlife.api.testing.JsonHelper;
+import org.sydwildlife.enumeration.Branch;
+import org.sydwildlife.enumeration.MemberPosition;
 
 /**
  * Warning, all tests must be run with the following VM argument:
@@ -81,9 +84,13 @@ public class MemberControllerTest extends AbstractControllerTest {
 
    @Test
    public void createMemberShouldReturnOk() throws Exception {
+      Address add = new Address("line1", "line2", "Sydney", "nsw", "2000");
       Member m = Member.builder()
-            .withFirstName("carrot")
+            .withFirstName("mathieu")
             .withLastName("carrot")
+            .withBranch(Branch.EAST)
+            .withPosition(MemberPosition.BOARD_SECRETARY)
+            .withHomeAddress(add)
             .build();
 
       mockMvc

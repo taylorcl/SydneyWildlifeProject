@@ -16,8 +16,7 @@ public final class JsonHelper {
       MAPPER = new ObjectMapper();
    }
 
-   public JsonHelper() {
-
+   private JsonHelper() {
    }
 
    public static String getJson(Object obj) throws JsonGenerationException, JsonMappingException,

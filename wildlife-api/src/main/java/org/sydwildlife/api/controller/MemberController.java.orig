@@ -1,0 +1,51 @@
+package org.sydwildlife.api.controller;
+
+import java.util.UUID;
+
+import org.springframework.beans.factory.annotation.Autowired;
+<<<<<<< Updated upstream
+=======
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+import org.springframework.web.bind.annotation.PathVariable;
+>>>>>>> Stashed changes
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
+import org.sydwildlife.api.domain.Member;
+import org.sydwildlife.api.service.CrudService;
+import org.sydwildlife.api.service.MemberService;
+
+@RestController
+@RequestMapping("/api/members")
+public class MemberController extends AbstractCrudController<Member, UUID> {
+
+   @Autowired
+   private MemberService memberService;
+
+<<<<<<< Updated upstream
+   @Override
+   protected CrudService<Member, UUID> getCrudService() {
+      return memberService;
+=======
+   @RequestMapping(method = GET)
+   public Page<Member> findMany(Pageable pageable) {
+      return memberService.findAll(pageable);
+   }
+
+   @RequestMapping(value = "/{id}", method = GET)
+   public Member findOne(@PathVariable UUID id) {
+      return memberService.findOne(id);
+   }
+
+   @RequestMapping(method = POST)
+   public Member createMember(Member member) {
+      return memberService.createMember(member);
+   }
+
+   @RequestMapping(value = "/{id}", method = DELETE)
+   public void deleteOne(@PathVariable UUID id) {
+      throw new UnsupportedOperationException("todo");
+      // memberService.delete(id);
+>>>>>>> Stashed changes
+   }
+}

@@ -10,33 +10,47 @@ import javax.validation.constraints.NotNull;
 import org.sydwildlife.api.domain.common.HasStatus;
 import org.sydwildlife.api.domain.enumeration.Status;
 import org.sydwildlife.api.persistence.common.UuidEntityBase;
+import org.sydwildlife.defaults.DefaultSettings;
+import org.sydwildlife.enumeration.Branch;
+import org.sydwildlife.enumeration.MemberPosition;
 
 @Entity
 @Cacheable
 public class Member extends UuidEntityBase implements HasStatus {
 
    @NotNull
+   @Column(length = DefaultSettings.DEFAULT_COLUMN_NAME_LENGTH, nullable = false)
    private String firstName;
 
    @NotNull
+   @Column(length = DefaultSettings.DEFAULT_COLUMN_NAME_LENGTH, nullable = false)
    private String lastName;
 
-   private String suburb;
+   private String title;
 
-   private String address; // TODO: need to separate street, postcode, suburb?
+   private Address homeAddress;
 
-   private String postalAddress;
+   // @Embedded
+   // @AttributeOverrides({
+   // @AttributeOverride(name = "postalLine1", column = @Column("LINE1")),
+   // @AttributeOverride(name = "postalLine2", column = @Column("LINE2"))
+   // })
+   // private Address postalAddress;
 
    private String email;
 
-   private String branch; // TODO: use Branch in the future after Branch api built.
+   private Branch branch;
 
    private String phone;
 
    @NotNull
-   @Column(length = 10, nullable = false)
+   @Column(length = DefaultSettings.DEFAULT_COLUMN_ENUM_LENGTH, nullable = false)
    @Enumerated(EnumType.STRING)
    private Status status = Status.ACTIVE;
+
+   @Column(length = DefaultSettings.DEFAULT_COLUMN_ENUM_LENGTH)
+   @Enumerated(EnumType.STRING)
+   private MemberPosition position;
 
    public String getFirstName() {
       return firstName;
@@ -66,35 +80,20 @@ public class Member extends UuidEntityBase implements HasStatus {
       return new Builder();
    }
 
-   public String getSuburb() {
-      return suburb;
-   }
+   // public Address getPostalAddress() {
+   // return postalAddress;
+   // }
+   //
+   // @Embedded
+   // public void setPostalAddress(Address postalAddress) {
+   // this.postalAddress = postalAddress;
+   // }
 
-   public void setSuburb(String suburb) {
-      this.suburb = suburb;
-   }
-
-   public String getAddress() {
-      return address;
-   }
-
-   public void setAddress(String address) {
-      this.address = address;
-   }
-
-   public String getPostalAddress() {
-      return postalAddress;
-   }
-
-   public void setPostalAddress(String postalAddress) {
-      this.postalAddress = postalAddress;
-   }
-
-   public String getBranch() {
+   public Branch getBranch() {
       return branch;
    }
 
-   public void setBranch(String branch) {
+   public void setBranch(Branch branch) {
       this.branch = branch;
    }
 
@@ -106,6 +105,22 @@ public class Member extends UuidEntityBase implements HasStatus {
       this.phone = phone;
    }
 
+   public MemberPosition getPosition() {
+      return position;
+   }
+
+   public void setPosition(MemberPosition position) {
+      this.position = position;
+   }
+
+   public String getTitle() {
+      return title;
+   }
+
+   public void setTitle(String title) {
+      this.title = title;
+   }
+
    @Override
    public Status getStatus() {
       return status;
@@ -114,6 +129,14 @@ public class Member extends UuidEntityBase implements HasStatus {
    @Override
    public void setStatus(Status status) {
       this.status = status;
+   }
+
+   public Address getHomeAddress() {
+      return homeAddress;
+   }
+
+   public void setHomeAddress(Address homeAddress) {
+      this.homeAddress = homeAddress;
    }
 
    public static class Builder extends UuidEntityBase.Builder<Member> {
@@ -133,18 +156,23 @@ public class Member extends UuidEntityBase implements HasStatus {
          return this;
       }
 
-      public Builder withSuburb(String suburb) {
-         getMember().setSuburb(suburb);
+      public Builder withBranch(Branch branch) {
+         getMember().setBranch(branch);
          return this;
       }
 
-      public Builder withBranch(String branch) {
-         getMember().setBranch(branch);
+      public Builder withPosition(MemberPosition position) {
+         getMember().setPosition(position);
          return this;
       }
 
       public Builder withStatus(Status status) {
          getMember().setStatus(status);
+         return this;
+      }
+
+      public Builder withHomeAddress(Address address) {
+         getMember().setHomeAddress(address);
          return this;
       }
 
