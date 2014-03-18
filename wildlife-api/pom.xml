@@ -45,19 +45,31 @@
          <artifactId>spring-data-jpa</artifactId>
          <version>${spring.data.version}</version>
       </dependency>
-<dependency>
-	<groupId>org.springframework</groupId>
-	<artifactId>spring-instrument</artifactId>
-	<version>4.0.2.RELEASE</version>
-</dependency>
+      <dependency>
+         <groupId>org.springframework</groupId>
+         <artifactId>spring-instrument</artifactId>
+         <version>${spring.version}</version>
+         <scope>provided</scope>
+      </dependency>
             
       
-      <!-- Jackson JSON Mapper -->
+      <!-- Jackson JSON -->
       <dependency>
-         <groupId>org.codehaus.jackson</groupId>
-         <artifactId>jackson-mapper-asl</artifactId>
+        <groupId>com.fasterxml.jackson.core</groupId>
+        <artifactId>jackson-databind</artifactId>
+        <version>${jackson.version}</version>
+      </dependency>
+      <dependency>
+         <groupId>com.fasterxml.jackson.core</groupId>
+         <artifactId>jackson-core</artifactId>
          <version>${jackson.version}</version>
       </dependency>
+      <dependency>
+         <groupId>com.fasterxml.jackson.core</groupId>
+         <artifactId>jackson-annotations</artifactId>
+         <version>${jackson.version}</version>
+      </dependency>
+      
       <dependency>
          <groupId>javax.servlet</groupId>
          <artifactId>javax.servlet-api</artifactId>

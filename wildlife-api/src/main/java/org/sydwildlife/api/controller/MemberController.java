@@ -8,6 +8,7 @@ import java.util.UUID;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -23,8 +24,8 @@ public class MemberController {
    private MemberService memberService;
 
    @RequestMapping(method = GET)
-   public Page<Member> findMany() {// TODO Pageable
-      return memberService.findAll(null);
+   public Page<Member> findMany(Pageable pageable) {
+      return memberService.findAll(pageable);
    }
 
    @RequestMapping(value = "/{id}", method = GET)
