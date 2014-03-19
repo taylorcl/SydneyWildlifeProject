@@ -1,6 +1,6 @@
 'use strict';
 
-var sydneyWildlifeApp = angular.module('sydneyWildlifeApp', ['restangular', 'ui.bootstrap'])
+var sydneyWildlifeApp = angular.module('sydneyWildlifeApp', ['ngRoute', 'restangular', 'ui.bootstrap'])
 				.config(function ($routeProvider, RestangularProvider, $locationProvider) {
 					
 					// TODO: we need to derive this
@@ -34,6 +34,6 @@ var sydneyWildlifeApp = angular.module('sydneyWildlifeApp', ['restangular', 'ui.
 				            templateUrl: 'views/Member.html',
 				            controller: 'MemberController'
 				        });						    
-				    $routeProvider.otherwise({redirectTo: '/registerMember'});
+				    $routeProvider.otherwise({redirectTo: '/members'});
 				    //$locationProvider.html5Mode(true);
 });

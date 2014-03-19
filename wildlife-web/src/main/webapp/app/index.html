@@ -3,36 +3,52 @@
 <head>
     <meta charset="utf-8">
     <title>Sydney Wildlife</title>
-    <link rel="stylesheet" href="css/bootstrap-datepicker.css"/>
-    <link rel="stylesheet" href="css/bootstrap.css"/>
+    <link rel="stylesheet" href="lib/bootstrap/css/datepicker.css"/>
+    <link rel="stylesheet" href="lib/bootstrap/css/bootstrap.css"/>
     <link rel="stylesheet" href="css/app.css"/>    
 </head>
 <body>
+<nav class="navbar navbar-inverse navbar-fixed-top">
+  <div class="container">
+     <div class="navbar-header">
+       <a class="navbar-brand" href="#">Sydney Wildlife</a>
+       <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".nav-collapse">
+         <span class="icon-bar"></span>
+         <span class="icon-bar"></span>
+         <span class="icon-bar"></span>
+       </button>
+     </div>
+     <div class="navbar-header navbar-right">
+      <p class="navbar-text">
+      <a href="#" class="navbar-link">John Doe</a>
+      </p>
+     </div>
+     <div class="navbar-collapse collapse">
+       <ul class="nav navbar-nav">
+         <li class="active"><a ng-href="#/members">Members</a></li>
+       </ul>
+     </div>
+  </div>
+</nav>
+
+<div class="page-header"></div>
+
 <div class="container">
-    <div class="navbar" >
-        <div class="navbar-inner">
-            <ul class="nav">
-                <li><a href="#/registerMember">Register Member</a></li>
-                <li><a href="#/members">List Members</a></li>
-            </ul>
-        </div>
-    </div>
-
     <ng-view></ng-view>
-
 </div>
 <!-- Libraries -->
 
 <!-- place jquery BEFORE angular -->
-<script src="lib/jquery/jquery-1.10.2.js"></script>
-<script src="lib/jquery/jquery-ui-1.10.3.js"></script>
+<script src="lib/jquery/jquery.js"></script>
+<script src="lib/jquery/jquery-ui.js"></script>
 
 <script src="lib/angular/angular.js"></script>
+<script src="lib/angular/angular-route.js"></script>
 <script src="lib/angular/restangular.js"></script>
 <script src="lib/angular/angular-resource.js"></script>
 <script src="lib/underscore/underscore-min.js"></script>
-<script src="lib/bootstrap/ui-bootstrap-tpls-0.4.0.js"></script>
-<script src="lib/bootstrap/bootstrap-datepicker.js"></script> 
+<script src="lib/bootstrap/js/ui-bootstrap-tpls.js"></script>
+<script src="lib/bootstrap/js/bootstrap-datepicker.js"></script> 
 <script src="lib/date/xdate.js"></script>
 
 <!-- Routes and config-->

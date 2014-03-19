@@ -11,9 +11,58 @@
       <version>1.0.0-SNAPSHOT</version>
       <relativePath>../</relativePath>
    </parent>
+   
+   <properties>
+     <!-- ************************************* -->
+     <!-- ************* DEV props ************* -->
+     <!-- ************************************* -->
+                    
+     <maven.dependency.plugin.version>2.8</maven.dependency.plugin.version>
+     <maven.resources.plugin.version>2.6</maven.resources.plugin.version>
+     
+     <angularjs.version>1.2.14</angularjs.version>
+     
+     <restangular.version>1.3.1</restangular.version>
+     
+     <bootswatch.theme.name>united</bootswatch.theme.name>
+     <bootswatch.theme.version>3.1.1</bootswatch.theme.version>
+     
+     <bootstrap.datepicker.version>1.3.0</bootstrap.datepicker.version>
 
+     <underscorejs.version>1.6.0</underscorejs.version>
+     <underscorejs.version.full>1.6.0-1</underscorejs.version.full>
+     
+     <jquery.version>1.11.0</jquery.version>
+     <jquery.version.full>1.11.0-1</jquery.version.full>
+     <jquery.ui.version>1.10.3</jquery.ui.version>
+     
+     <!-- The two following libs are staticly imported from src/main/resources, version numbers are only here as reminders -->
+     <ui.bootstrap.tpls.version>0.4.0</ui.bootstrap.tpls.version>
+     <xdate.version>0.4</xdate.version>
+     
+     <!-- ************************************* -->
+     <!-- ************ TEST props ************* -->
+     <!-- ************************************* -->
+
+     <jasmine.maven.plugin.version>1.3.1.4</jasmine.maven.plugin.version>
+     <jasmine.version>1.3.1</jasmine.version>
+     <jasmine.async.version>0.1.0</jasmine.async.version>
+     <jasmine.jquery.version>1.4.2</jasmine.jquery.version>
+     <jasmine.jquery.version.full>1.4.2-1</jasmine.jquery.version.full>
+     <jasmine.reporters.version>0.2.1</jasmine.reporters.version>
+     
+   </properties>
+    
    <build>
       <finalName>wildlife-web</finalName>
+      <resources>
+        <resource>
+          <directory>src/main/resources</directory>
+          <excludes>
+            <exclude>**</exclude>
+          </excludes>
+        </resource>
+      </resources>
       <plugins>
          <plugin>
             <artifactId>maven-war-plugin</artifactId>
@@ -24,13 +73,470 @@
                   <resource>
                      <directory>src/main/webapp</directory>
                   </resource>
+                  <resource>
+                     <directory>${project.build.directory}/client-lib/export</directory>
+                  </resource>
                </webResources>
             </configuration>
          </plugin>
+         
+         <plugin>
+            <groupId>org.apache.maven.plugins</groupId>
+            <artifactId>maven-dependency-plugin</artifactId>
+            <version>${maven.dependency.plugin.version}</version>
+            <executions>
+              <execution>
+                <!-- Unpacking client libs -->
+                <id>unpack-client-libs</id>
+                <phase>validate</phase>
+                <goals>
+                  <goal>unpack</goal>
+                </goals>
+                <configuration>
+                  <artifactItems>
+                    <!-- ************************************* -->
+                    <!-- ************* DEV libs ************** -->
+                    <!-- ************************************* -->
+                
+                    <artifactItem>
+                      <groupId>org.webjars</groupId>
+                      <artifactId>angularjs</artifactId>
+                      <version>${angularjs.version}</version>
+                      <type>jar</type>
+                      <includes>META-INF/resources/webjars/angularjs/${angularjs.version}/**</includes>
+                      <outputDirectory>${project.build.directory}/client-lib/webjars/angularjs</outputDirectory>
+                    </artifactItem>
+                    <artifactItem>
+                      <groupId>org.webjars</groupId>
+                      <artifactId>restangular</artifactId>
+                      <version>${restangular.version}</version>
+                      <type>jar</type>
+                      <includes>META-INF/resources/webjars/restangular/${restangular.version}/**</includes>
+                      <outputDirectory>${project.build.directory}/client-lib/webjars/restangular</outputDirectory>
+                    </artifactItem>
+                    <artifactItem>
+                      <groupId>org.webjars</groupId>
+                      <artifactId>bootswatch-${bootswatch.theme.name}</artifactId>
+                      <version>${bootswatch.theme.version}</version>
+                      <type>jar</type>
+                      <includes>META-INF/resources/webjars/bootswatch-${bootswatch.theme.name}/${bootswatch.theme.version}/**</includes>
+                      <outputDirectory>${project.build.directory}/client-lib/webjars/bootswatch-${bootswatch.theme.name}</outputDirectory>
+                    </artifactItem>
+                    <artifactItem>
+                      <groupId>org.webjars</groupId>
+                      <artifactId>bootstrap-datepicker</artifactId>
+                      <version>${bootstrap.datepicker.version}</version>
+                      <type>jar</type>
+                      <includes>META-INF/resources/webjars/bootstrap-datepicker/${bootstrap.datepicker.version}/**</includes>
+                      <outputDirectory>${project.build.directory}/client-lib/webjars/bootstrap-datepicker</outputDirectory>
+                    </artifactItem>
+                    <artifactItem>
+                      <groupId>org.webjars</groupId>
+                      <artifactId>underscorejs</artifactId>
+                      <version>${underscorejs.version.full}</version>
+                      <type>jar</type>
+                      <includes>META-INF/resources/webjars/underscorejs/${underscorejs.version}/**</includes>
+                      <outputDirectory>${project.build.directory}/client-lib/webjars/underscorejs</outputDirectory>
+                    </artifactItem>
+                    <artifactItem>
+                      <groupId>org.webjars</groupId>
+                      <artifactId>jquery</artifactId>
+                      <version>${jquery.version.full}</version>
+                      <type>jar</type>
+                      <includes>META-INF/resources/webjars/jquery/${jquery.version}/**</includes>
+                      <outputDirectory>${project.build.directory}/client-lib/webjars/jquery</outputDirectory>
+                    </artifactItem>
+                    <artifactItem>
+                      <groupId>org.webjars</groupId>
+                      <artifactId>jquery-ui</artifactId>
+                      <version>${jquery.ui.version}</version>
+                      <type>jar</type>
+                      <includes>META-INF/resources/webjars/jquery-ui/${jquery.ui.version}/ui/jquery-ui.js</includes>
+                      <outputDirectory>${project.build.directory}/client-lib/webjars/jquery-ui</outputDirectory>
+                    </artifactItem>
+                    
+                    <!-- ************************************* -->
+                    <!-- ************* TEST libs ************* -->
+                    <!-- ************************************* -->
+                    
+                    <artifactItem>
+                      <groupId>org.webjars</groupId>
+                      <artifactId>jasmine</artifactId>
+                      <version>${jasmine.version}</version>
+                      <type>jar</type>
+                      <includes>META-INF/resources/webjars/jasmine/${jasmine.version}/**</includes>
+                      <outputDirectory>${project.build.directory}/client-lib/webjars/jasmine</outputDirectory>
+                    </artifactItem>
+                    <artifactItem>
+                      <groupId>org.webjars</groupId>
+                      <artifactId>jasmine-async</artifactId>
+                      <version>${jasmine.async.version}</version>
+                      <type>jar</type>
+                      <includes>META-INF/resources/webjars/jasmine-async/${jasmine.async.version}/**</includes>
+                      <outputDirectory>${project.build.directory}/client-lib/webjars/jasmine-async</outputDirectory>
+                    </artifactItem>
+                    <artifactItem>
+                      <groupId>org.webjars</groupId>
+                      <artifactId>jasmine-jquery</artifactId>
+                      <version>${jasmine.jquery.version.full}</version>
+                      <type>jar</type>
+                      <includes>META-INF/resources/webjars/jasmine-jquery/${jasmine.jquery.version}/jasmine-jquery.js</includes>
+                      <outputDirectory>${project.build.directory}/client-lib/webjars/jasmine-jquery</outputDirectory>
+                    </artifactItem>
+                    <artifactItem>
+                      <groupId>org.webjars</groupId>
+                      <artifactId>jasmine-reporters</artifactId>
+                      <version>${jasmine.reporters.version}</version>
+                      <type>jar</type>
+                      <includes>META-INF/resources/webjars/jasmine-reporters/${jasmine.reporters.version}/**</includes>
+                      <outputDirectory>${project.build.directory}/client-lib/webjars/jasmine-reporters</outputDirectory>
+                    </artifactItem>
+                    
+                  </artifactItems>
+                </configuration>
+              </execution>
+            </executions>
+          </plugin>
+          
+          <plugin>
+              <artifactId>maven-resources-plugin</artifactId>
+              <version>${maven.resources.plugin.version}</version>
+              <!-- Exporting unpacked client libs -->
+              <executions>
+                
+                <!-- Copying static less files into the bootstrap lib folder -->
+                <!-- <execution>
+                  <id>copy-less-files</id>
+                  <phase>validate</phase>
+                  <goals>
+                    <goal>copy-resources</goal>
+                  </goals>
+                  <configuration>
+                    <outputDirectory>${project.build.directory}/client-lib/export/app/lib/bootstrap/less</outputDirectory>
+                    <resources>          
+                      <resource>
+                        <directory>src/main/resources/app/less</directory>
+                      </resource>
+                    </resources>              
+                  </configuration>            
+                </execution> -->
+              
+                <!-- ************************************* -->
+                <!-- ************* DEV libs ************** -->
+                <!-- ************************************* -->
+                
+                <!-- Copying AngularsJs jar into the app lib folder -->
+                <execution>
+                  <id>copy-angularjs-lib</id>
+                  <phase>validate</phase>
+                  <goals>
+                    <goal>copy-resources</goal>
+                  </goals>
+                  <configuration>
+                    <outputDirectory>${project.build.directory}/client-lib/export/app/lib/angular</outputDirectory>
+                    <resources>          
+                      <resource>
+                        <directory>${project.build.directory}/client-lib/webjars/angularjs/META-INF/resources/webjars/angularjs/${angularjs.version}</directory>
+                      </resource>
+                    </resources>              
+                  </configuration>            
+                </execution>
+                
+                <!-- Copying Restangular jar into the app lib folder -->
+                <execution>
+                  <id>copy-restangular-lib</id>
+                  <phase>validate</phase>
+                  <goals>
+                    <goal>copy-resources</goal>
+                  </goals>
+                  <configuration>
+                    <outputDirectory>${project.build.directory}/client-lib/export/app/lib/angular</outputDirectory>
+                    <resources>          
+                      <resource>
+                        <directory>${project.build.directory}/client-lib/webjars/restangular/META-INF/resources/webjars/restangular/${restangular.version}</directory>
+                      </resource>
+                    </resources>              
+                  </configuration>            
+                </execution>
+                
+                <!-- Copying Bootswatch-united jar (made from Bootstrap) into the app lib folder -->
+                <execution>
+                  <id>copy-bootstrap-lib-from-boostwatch-${bootswatch.theme.name}</id>
+                  <phase>validate</phase>
+                  <goals>
+                    <goal>copy-resources</goal>
+                  </goals>
+                  <configuration>
+                    <outputDirectory>${project.build.directory}/client-lib/export/app/lib/bootstrap</outputDirectory>
+                    <resources>          
+                      <resource>
+                        <directory>${project.build.directory}/client-lib/webjars/bootswatch-${bootswatch.theme.name}/META-INF/resources/webjars/bootswatch-${bootswatch.theme.name}/${bootswatch.theme.version}</directory>
+                      </resource>
+                    </resources>              
+                  </configuration>            
+                </execution>
+                
+                <!-- Copying Bootstrap-datepicker.js into the app lib folder -->
+                <execution>
+                  <id>copy-bootstrap-datepicker.js-lib</id>
+                  <phase>validate</phase>
+                  <goals>
+                    <goal>copy-resources</goal>
+                  </goals>
+                  <configuration>
+                    <outputDirectory>${project.build.directory}/client-lib/export/app/lib/bootstrap/js</outputDirectory>
+                    <resources>          
+                      <resource>
+                        <directory>${project.build.directory}/client-lib/webjars/bootstrap-datepicker/META-INF/resources/webjars/bootstrap-datepicker/${bootstrap.datepicker.version}/js</directory>
+                      </resource>
+                    </resources>              
+                  </configuration>            
+                </execution>
+                
+                <!-- Copying static Bootstrap-tpls.js into the app lib folder -->
+                <execution>
+                  <id>copy-bootstrap-tpls-lib</id>
+                  <phase>validate</phase>
+                  <goals>
+                    <goal>copy-resources</goal>
+                  </goals>
+                  <configuration>
+                    <outputDirectory>${project.build.directory}/client-lib/export/app/lib/bootstrap/js</outputDirectory>
+                    <resources>          
+                      <resource>
+                        <directory>src/main/resources/app/lib/bootstrap/js</directory>
+                      </resource>
+                    </resources>              
+                  </configuration>            
+                </execution>
+                
+                <!-- Copying Bootstrap-datepicker.css into the app lib folder -->
+                <execution>
+                  <id>copy-bootstrap-datepicker.css-lib</id>
+                  <phase>validate</phase>
+                  <goals>
+                    <goal>copy-resources</goal>
+                  </goals>
+                  <configuration>
+                    <outputDirectory>${project.build.directory}/client-lib/export/app/lib/bootstrap/css</outputDirectory>
+                    <resources>          
+                      <resource>
+                        <directory>${project.build.directory}/client-lib/webjars/bootstrap-datepicker/META-INF/resources/webjars/bootstrap-datepicker/${bootstrap.datepicker.version}/css</directory>
+                      </resource>
+                    </resources>              
+                  </configuration>            
+                </execution>
+                
+                <!-- Copying UnderscoreJs jar into the app lib folder -->
+                <execution>
+                  <id>copy-underscorejs-lib</id>
+                  <phase>validate</phase>
+                  <goals>
+                    <goal>copy-resources</goal>
+                  </goals>
+                  <configuration>
+                    <outputDirectory>${project.build.directory}/client-lib/export/app/lib/underscore</outputDirectory>
+                    <resources>          
+                      <resource>
+                        <directory>${project.build.directory}/client-lib/webjars/underscorejs/META-INF/resources/webjars/underscorejs/${underscorejs.version}</directory>
+                      </resource>
+                    </resources>              
+                  </configuration>            
+                </execution>
+                
+                <!-- Copying static XDate.js into the app lib folder -->
+                <execution>
+                  <id>copy-xdate-lib</id>
+                  <phase>validate</phase>
+                  <goals>
+                    <goal>copy-resources</goal>
+                  </goals>
+                  <configuration>
+                    <outputDirectory>${project.build.directory}/client-lib/export/app/lib/date</outputDirectory>
+                    <resources>          
+                      <resource>
+                        <directory>src/main/resources/app/lib/date</directory>
+                      </resource>
+                    </resources>              
+                  </configuration>            
+                </execution>
+                
+                <!-- Copying JQuery jar into the app lib folder -->
+                <execution>
+                  <id>copy-jquery-lib</id>
+                  <phase>validate</phase>
+                  <goals>
+                    <goal>copy-resources</goal>
+                  </goals>
+                  <configuration>
+                    <outputDirectory>${project.build.directory}/client-lib/export/app/lib/jquery</outputDirectory>
+                    <resources>          
+                      <resource>
+                        <directory>${project.build.directory}/client-lib/webjars/jquery/META-INF/resources/webjars/jquery/${jquery.version}</directory>
+                      </resource>
+                    </resources>              
+                  </configuration>            
+                </execution>
+                
+                <!-- Copying JQuery-ui jar into the app lib folder -->
+                <execution>
+                  <id>copy-jquery-ui-lib</id>
+                  <phase>validate</phase>
+                  <goals>
+                    <goal>copy-resources</goal>
+                  </goals>
+                  <configuration>
+                    <outputDirectory>${project.build.directory}/client-lib/export/app/lib/jquery</outputDirectory>
+                    <resources>          
+                      <resource>
+                        <directory>${project.build.directory}/client-lib/webjars/jquery-ui/META-INF/resources/webjars/jquery-ui/${jquery.ui.version}/ui</directory>
+                      </resource>
+                    </resources>              
+                  </configuration>            
+                </execution>
+                
+                
+                <!-- ************************************* -->
+                <!-- ************* TEST libs ************* -->
+                <!-- ************************************* -->
+                
+                <!-- Copying static Console.js into the app lib folder -->
+                <execution>
+                  <id>copy-console-lib</id>
+                  <phase>validate</phase>
+                  <goals>
+                    <goal>copy-resources</goal>
+                  </goals>
+                  <configuration>
+                    <outputDirectory>${project.build.directory}/client-lib/export/app/lib/console</outputDirectory>
+                    <resources>          
+                      <resource>
+                        <directory>src/main/resources/app/lib/console</directory>
+                      </resource>
+                    </resources>              
+                  </configuration>            
+                </execution>
+                
+                <!-- Copying Jasmine.js into the app lib folder -->
+                <execution>
+                  <id>copy-jasmine-lib</id>
+                  <phase>validate</phase>
+                  <goals>
+                    <goal>copy-resources</goal>
+                  </goals>
+                  <configuration>
+                    <outputDirectory>${project.build.directory}/client-lib/export/app/lib/jasmine</outputDirectory>
+                    <resources>          
+                      <resource>
+                        <directory>${project.build.directory}/client-lib/webjars/jasmine/META-INF/resources/webjars/jasmine/${jasmine.version}</directory>
+                      </resource>
+                    </resources>              
+                  </configuration>            
+                </execution>
+                
+                <!-- Copying Jasmine-async.js into the app lib folder -->
+                <execution>
+                  <id>copy-jasmine-async-lib</id>
+                  <phase>validate</phase>
+                  <goals>
+                    <goal>copy-resources</goal>
+                  </goals>
+                  <configuration>
+                    <outputDirectory>${project.build.directory}/client-lib/export/app/lib/jasmine</outputDirectory>
+                    <resources>          
+                      <resource>
+                        <directory>${project.build.directory}/client-lib/webjars/jasmine-async/META-INF/resources/webjars/jasmine-async/${jasmine.async.version}</directory>
+                      </resource>
+                    </resources>              
+                  </configuration>            
+                </execution>
+                
+                <!-- Copying Jasmine-jquery.js into the app lib folder -->
+                <execution>
+                  <id>copy-jasmine-jquery-lib</id>
+                  <phase>validate</phase>
+                  <goals>
+                    <goal>copy-resources</goal>
+                  </goals>
+                  <configuration>
+                    <outputDirectory>${project.build.directory}/client-lib/export/app/lib/jasmine</outputDirectory>
+                    <resources>          
+                      <resource>
+                        <directory>${project.build.directory}/client-lib/webjars/jasmine-jquery/META-INF/resources/webjars/jasmine-jquery/${jasmine.jquery.version}</directory>
+                      </resource>
+                    </resources>              
+                  </configuration>            
+                </execution>
+                
+                <!-- Copying Jasmine-reporters.js into the app lib folder -->
+                <execution>
+                  <id>copy-jasmine-reporters-lib</id>
+                  <phase>validate</phase>
+                  <goals>
+                    <goal>copy-resources</goal>
+                  </goals>
+                  <configuration>
+                    <outputDirectory>${project.build.directory}/client-lib/export/app/lib/jasmine</outputDirectory>
+                    <resources>          
+                      <resource>
+                        <directory>${project.build.directory}/client-lib/webjars/jasmine-reporters/META-INF/resources/webjars/jasmine-reporters/${jasmine.reporters.version}</directory>
+                      </resource>
+                    </resources>              
+                  </configuration>            
+                </execution>
+                
+                <!-- Copying static jasmine_spec_runner_fixtures_path.js into the app lib folder -->
+                <execution>
+                  <id>copy-jasmine-spec-runner-fixtures-path-lib</id>
+                  <phase>validate</phase>
+                  <goals>
+                    <goal>copy-resources</goal>
+                  </goals>
+                  <configuration>
+                    <outputDirectory>${project.build.directory}/client-lib/export/app/lib/jasmine/jasmine-jquery-settings</outputDirectory>
+                    <resources>          
+                      <resource>
+                        <directory>src/main/resources/app/lib/jasmine/jasmine-jquery-settings</directory>
+                      </resource>
+                    </resources>              
+                  </configuration>            
+                </execution>
+                
+              </executions>
+            </plugin>
+         
+         <!-- <plugin>
+            <groupId>org.lesscss</groupId>
+            <artifactId>lesscss-maven-plugin</artifactId>
+            <version>1.3.3</version>
+            <configuration>
+                <sourceDirectory>${project.build.directory}/client-lib/export/app/lib/bootstrap/less</sourceDirectory>
+                <outputDirectory>${project.build.directory}/${project.build.finalName}/testcss</outputDirectory>
+                <compress>false</compress>
+                <includes>
+                    <include>bootstrap-sydwild.less</include>
+                </includes>
+            </configuration>
+            <executions>
+                <execution>
+                    <goals>
+                        <goal>compile</goal>
+                    </goals>
+                </execution>
+            </executions>
+            <dependencies>
+              <dependency>
+                <groupId>org.lesscss</groupId>
+                <artifactId>lesscss</artifactId>
+                <version>1.4.1</version>
+              </dependency>
+             </dependencies>
+        </plugin> -->
+        
          <plugin>
             <groupId>com.github.searls</groupId>
             <artifactId>jasmine-maven-plugin</artifactId>
-            <version>1.3.1.4</version>
+            <version>${jasmine.maven.plugin.version}</version>
             <extensions>true</extensions>
             <executions>
                <execution>
@@ -45,22 +551,20 @@
                <preloadSources combine.children="append">
                   <!-- This order is important -->
                   <!-- If not followed then bad things can happen like: -->
-                  <!-- Exception invoking Node.removeEventListener() etc. -->
-                  <!-- which are thrown deep from the bowels of httpUnit 
-                     code -->
+                  <!-- Exception invoking Node.removeEventListener() etc. which are thrown deep from the bowels of httpUnit code -->
                   <!-- and are a pain to debug -->
-                  <source>${project.basedir}/src/test/lib/console.js</source>
-                  <source>${project.basedir}/src/main/webapp/app/lib/jquery/jquery-1.10.2.js</source>
-                  <source>${project.basedir}/src/main/webapp/app/lib/jquery/jquery-ui-1.10.3.js</source>
-                  <source>${project.basedir}/src/test/lib/jasmine-jquery-1.4.2.js</source>
-                  <source>${project.basedir}/src/test/lib/jasmine.console_reporter.js</source>
-                  <source>${project.basedir}/src/main/webapp/app/lib/angular/angular.js</source>
-                  <source>${project.basedir}/src/main/webapp/app/lib/bootstrap/ui-bootstrap-tpls-0.4.0.js</source>
-
-                  <source>${project.basedir}/src/test/lib/angular-mocks.js</source>
-                  <source>${project.basedir}/src/main/webapp/app/lib/angular/restangular.js</source>
-                  <source>${project.basedir}/src/main/webapp/app/lib/underscore/underscore.js</source>
-                  <source>${project.basedir}/src/main/webapp/app/lib/date/xdate.js</source>
+                  <source>${project.build.directory}/client-lib/export/app/lib/console/console.js</source>
+                  <source>${project.build.directory}/client-lib/export/app/lib/jquery/jquery.js</source>
+                  <source>${project.build.directory}/client-lib/export/app/lib/jquery/jquery-ui.js</source>
+                  <source>${project.build.directory}/client-lib/export/app/lib/jasmine/jasmine-jquery.js</source>
+                  <source>${project.build.directory}/client-lib/export/app/lib/jasmine/jasmine.console_reporter.js</source>
+                  <source>${project.build.directory}/client-lib/export/app/lib/angular/angular.js</source>
+                  <source>${project.build.directory}/client-lib/export/app/lib/angular/angular-route.js</source>
+                  <source>${project.build.directory}/client-lib/export/app/lib/bootstrap/js/ui-bootstrap-tpls.js</source>
+                  <source>${project.build.directory}/client-lib/export/app/lib/angular/angular-mocks.js</source>
+                  <source>${project.build.directory}/client-lib/export/app/lib/angular/restangular.js</source>
+                  <source>${project.build.directory}/client-lib/export/app/lib/underscore/underscore.js</source>
+                  <source>${project.build.directory}/client-lib/export/app/lib/date/xdate.js</source>
                </preloadSources>
             </configuration>
          </plugin>

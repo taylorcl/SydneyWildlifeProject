@@ -1,9 +1,10 @@
 <div style="padding-left:20px; padding-right:20px">
-    <div class="container" >
-        <h4>List Members</h4>
-        <hr/>
-	    <alert ng-show=$member.showFeedback close="closeAlert()" type=alertType>{{status}}</alert>
-		<table ng-init="listMembers()" class="table">  
+    <div class="bs-docs-section">
+     <h3>List of all the Members</h3>
+     <a class="btn btn-primary" ng-href="#/registerMember">Add</a>
+      <br/><br/>
+	   <alert ng-show=$member.showFeedback close="closeAlert()" type=alertType>{{status}}</alert>
+		<table ng-init="listMembers()" class="table table-striped table-hover">  
 	        <thead>  
 	          <tr>
 	            <th>First Name</th>  
