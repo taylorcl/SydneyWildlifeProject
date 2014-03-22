@@ -51,6 +51,7 @@ public abstract class EntityBase<T extends Serializable> implements Identifiable
       }
 
       public E build() {
+         getMember();
          try {
             return target;
          } finally {

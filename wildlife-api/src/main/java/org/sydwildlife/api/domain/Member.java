@@ -22,11 +22,11 @@ import org.sydwildlife.enumeration.MemberPosition;
 public class Member extends UuidEntityBase implements HasStatus {
 
    @NotNull
-   @Column(length = DefaultSettings.DEFAULT_COLUMN_NAME_LENGTH, nullable = false)
+   @Column(length = DefaultSettings.DEFAULT_COLUMN_SIZE_MEDIUM, nullable = false)
    private String firstName;
 
    @NotNull
-   @Column(length = DefaultSettings.DEFAULT_COLUMN_NAME_LENGTH, nullable = false)
+   @Column(length = DefaultSettings.DEFAULT_COLUMN_SIZE_MEDIUM, nullable = false)
    private String lastName;
 
    private String title;
@@ -58,11 +58,11 @@ public class Member extends UuidEntityBase implements HasStatus {
    private String phone;
 
    @NotNull
-   @Column(length = DefaultSettings.DEFAULT_COLUMN_ENUM_LENGTH, nullable = false)
+   @Column(length = DefaultSettings.DEFAULT_COLUMN_SIZE_SMALL, nullable = false)
    @Enumerated(EnumType.STRING)
    private Status status = Status.ACTIVE;
 
-   @Column(length = DefaultSettings.DEFAULT_COLUMN_ENUM_LENGTH)
+   @Column(length = DefaultSettings.DEFAULT_COLUMN_SIZE_SMALL)
    @Enumerated(EnumType.STRING)
    private MemberPosition position;
 
@@ -98,7 +98,6 @@ public class Member extends UuidEntityBase implements HasStatus {
       return postalAddress;
    }
 
-   @Embedded
    public void setPostalAddress(Address postalAddress) {
       this.postalAddress = postalAddress;
    }
@@ -197,9 +196,12 @@ public class Member extends UuidEntityBase implements HasStatus {
 
       @Override
       protected Member getNewInstance() {
-         return new Member();
+         Member m = new Member();
+         m.setFirstName("testFirstName");
+         m.setLastName("testLastName");
+         m.setStatus(Status.ACTIVE);
+         return m;
       }
-
    }
 
 }

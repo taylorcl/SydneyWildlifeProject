@@ -2,20 +2,22 @@ package org.sydwildlife.api.domain;
 
 import javax.persistence.Embeddable;
 
+import org.sydwildlife.api.domain.enumeration.AuState;
+
 @Embeddable
 public class Address {
 
    private String line1;
    private String line2;
    private String suburb;
-   private String state;
+   private AuState state = AuState.NSW;
    private String postcode;
 
    public Address() {
 
    }
 
-   public Address(String line1, String line2, String suburb, String state, String postcode) {
+   public Address(String line1, String line2, String suburb, AuState state, String postcode) {
       this.setLine1(line1);
       this.setLine2(line2);
       this.setSuburb(suburb);
@@ -31,11 +33,11 @@ public class Address {
       this.suburb = suburb;
    }
 
-   public String getState() {
+   public AuState getState() {
       return state;
    }
 
-   public void setState(String state) {
+   public void setState(AuState state) {
       this.state = state;
    }
 

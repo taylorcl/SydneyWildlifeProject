@@ -6,6 +6,6 @@ public class DefaultSettings {
 
    }
 
-   public static final int DEFAULT_COLUMN_NAME_LENGTH = 255;
-   public static final int DEFAULT_COLUMN_ENUM_LENGTH = 30;
+   public static final int DEFAULT_COLUMN_SIZE_MEDIUM = 255;
+   public static final int DEFAULT_COLUMN_SIZE_SMALL = 30;
 }
