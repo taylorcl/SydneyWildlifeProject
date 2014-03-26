@@ -1,9 +1,74 @@
-// Sydney Wildlife Customization for Bootstrap
+// Bootsrap Theme for Sydney Wildlife
+// From Bootswatch - United 3.1.0
 // Variables
-// --------------------------------------------------
+// -----------------------------------------------------------------------------------------------
 
 
+// -----------------------------------------------------------------------------------------------
+//== Typography
+//
+
+@import url("//fonts.googleapis.com/css?family=Ubuntu&.css");
+@font-family-sans-serif:                  Ubuntu, "Helvetica Neue", Helvetica, Arial, sans-serif;
+
+
+// -----------------------------------------------------------------------------------------------
 //== Colors
 //
 
-@brand-primary:         #aeaeae; //to be changed to real color
+@brand-primary:                           rgb(174,177,120); // kind of light greenish yellow
+@brand-secondary:                         darken(rgb(89,89,104), 20%); // kind of dark blue
+
+@gray-darker:                             lighten(@brand-secondary, 13.5%);
+@gray-dark:                               lighten(@brand-secondary, 20%);
+@gray:                                    lighten(@brand-secondary, 33.5%);
+@gray-light:                              lighten(@brand-secondary, 60%);
+@gray-lighter:                            lighten(@brand-secondary, 93.5%);
+
+
+// -----------------------------------------------------------------------------------------------
+//== Scaffolding
+//
+
+//** Background color for `<body>`.
+@body-bg:                                 #fff;
+//** Global text color on `<body>`.
+@text-color:                              @gray-dark;
+
+
+// -----------------------------------------------------------------------------------------------
+//== Buttons
+//
+
+@btn-default-color:                       @text-color;
+@btn-default-bg:                          @body-bg;
+@btn-default-border:                      #ccc;
+
+
+// -----------------------------------------------------------------------------------------------
+//== Navbar
+//
+
+@navbar-default-color:                    @gray-lighter;
+@navbar-default-bg:                       @brand-primary;
+@navbar-default-border:                   darken(@navbar-default-bg, 6.5%);
+
+// Navbar links
+@navbar-default-link-color:               @gray-lighter;
+@navbar-default-link-hover-color:         @gray-lighter;
+@navbar-default-link-hover-bg:            transparent;
+@navbar-default-link-active-color:        @gray-lighter;
+@navbar-default-link-active-bg:           darken(@navbar-default-bg, 6.5%);
+@navbar-default-link-disabled-color:      #ccc;
+@navbar-default-link-disabled-bg:         transparent;
+
+// Navbar brand label
+@navbar-default-brand-color:              @navbar-default-link-color;
+@navbar-default-brand-hover-color:        @body-bg;
+@navbar-default-brand-hover-bg:           transparent;
+
+// Navbar toggle
+@navbar-default-toggle-hover-bg:          darken(@navbar-default-bg, 10%);
+@navbar-default-toggle-icon-bar-bg:       @body-bg;
+@navbar-default-toggle-border-color:      @gray-lighter;
+
