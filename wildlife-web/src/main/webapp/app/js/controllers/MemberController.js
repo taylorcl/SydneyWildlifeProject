@@ -57,11 +57,11 @@ sydneyWildlifeApp.controller('MemberController',
         /**
          * Delete one member
          */
-        $scope.deleteMember = function () {
-        	if ($routeParams != undefined && $routeParams.memberId != undefined){
-        		MemberService.deleteMember($routeParams.memberId).get().then(function(object) {
+        $scope.deleteMember = function (member) {
+        	if (member != undefined && member.id != undefined){
+        		MemberService.deleteMember(member.id).then(function(object) {
         			$scope.member = {};
-        			showAlert("info", "Deleted member with Id: "+ $routeParams.memberId );
+        			showAlert("info", "Deleted member with Id: "+ member.id );
         			$scope.$root.$broadcast('goToEvent', {route: "/members"});
 	        	}, function(e){
 	        		showAlert("error", "Error deleting member. "+ e);
@@ -70,6 +70,10 @@ sydneyWildlifeApp.controller('MemberController',
         	}
         };
 
+        $scope.isNew = function (member) {
+           return member === undefined || member.id === undefined;
+        };
+        
         /**
          * Clear the member object
          */

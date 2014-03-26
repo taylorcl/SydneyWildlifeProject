@@ -7,8 +7,8 @@
            <div ng-init="animalDetail()" />
            <form name="animalForm" class="form-horizontal">
              <fieldset>
-               <legend ng-show="animal.id == undefined"><i class="fa fa-twitter"></i>&nbsp;&nbsp;Add a new animal</legend>
-               <legend ng-show="animal.id != undefined"><i class="fa fa-twitter"></i>&nbsp;&nbsp;Update an animal's details</legend>
+               <legend ng-show="isNew(animal)"><i class="fa fa-twitter"></i>&nbsp;&nbsp;Add a new animal</legend>
+               <legend ng-show="!isNew(animal)"><i class="fa fa-twitter"></i>&nbsp;&nbsp;Update an animal's details</legend>
                <input id="id" type="hidden" ng-model="animal.id" />
                <div class="form-group">
                  <label for="callerAddress-line1" class="col-lg-2 control-label">Caller Details</label>
@@ -24,6 +24,7 @@
                  <label for="callerAddress-state" class="col-lg-2 control-label"></label>
                  <div class="col-lg-3">
                    <select class="form-control" id="callerAddress-state" placeholder="State" ng-model="animal.callerAddress.state">
+                     <option></option>
                      <option>NSW</option>
                      <option>ACT</option>
                      <option>VIC</option>
@@ -57,12 +58,12 @@
              <br />
              <div class="form-group">
               <div class="col-lg-2 col-lg-offset-2">
-                  <button id="delete-animal-button" type="submit" class="btn btn-danger" ng-show="animal.id != undefined" ng-click="deleteAnimal(animal)">Delete</button>
+                  <button id="delete-animal-button" type="submit" class="btn btn-danger" ng-show="!isNew(animal)" ng-click="deleteAnimal(animal)">Delete</button>
               </div>
               <div class="col-lg-4 pull-right">
                 <a class="btn btn-default" ng-href="#/animals">Cancel</a>
-                <button id="submit-animal-button" type="submit" class="btn btn-primary" ng-show="animal.id == undefined" ng-click="saveAnimal(animal, animalForm)">Add</button>
-                <button id="update-animal-button" type="submit" class="btn btn-primary" ng-show="animal.id != undefined" ng-click="saveAnimal(animal, animalForm)">Update</button>
+                <button id="submit-animal-button" type="submit" class="btn btn-primary" ng-show="isNew(animal)" ng-click="saveAnimal(animal, animalForm)">Add</button>
+                <button id="update-animal-button" type="submit" class="btn btn-primary" ng-show="!isNew(animal)" ng-click="saveAnimal(animal, animalForm)">Update</button>
               </div>
             </div>
            </form>

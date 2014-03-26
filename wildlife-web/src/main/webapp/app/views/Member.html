@@ -7,8 +7,8 @@
            <div ng-init="memberDetail()" />
            <form name="memberForm" class="form-horizontal">
              <fieldset>
-               <legend ng-show="member.id == undefined"><i class="fa fa-user"></i>&nbsp;&nbsp;Create a new member</legend>
-               <legend ng-show="member.id != undefined"><i class="fa fa-user"></i>&nbsp;&nbsp;Update {{member.firstName}} {{member.lastName}}'s details</legend>
+               <legend ng-show="isNew(member)"><i class="fa fa-user"></i>&nbsp;&nbsp;Create a new member</legend>
+               <legend ng-show="!isNew(member)"><i class="fa fa-user"></i>&nbsp;&nbsp;Update {{member.firstName}} {{member.lastName}}'s details</legend>
                <input id="id" type="hidden" ng-model="member.id" />
                <div class="form-group">
                  <label for="firstName" class="col-lg-2 control-label">Name</label>
@@ -39,6 +39,7 @@
                  <label for="homeAddress-state" class="col-lg-2 control-label"></label>
                  <div class="col-lg-3">
                    <select class="form-control" id="homeAddress-state" placeholder="State" ng-model="member.homeAddress.state">
+                     <option></option>
                      <option>NSW</option>
                      <option>ACT</option>
                      <option>VIC</option>
@@ -69,7 +70,8 @@
                <div class="form-group">
                  <label for="postalAddress-state" class="col-lg-2 control-label"></label>
                  <div class="col-lg-3">
-                   <select class="form-control" id="postalAddress-state" placeholder="State" ng-model="member.postalAddress.state">
+                   <select class="form-control" id="postalAddress-state" placeholder="State" ng-model="member.postalAddress.state" ng-selected="member.postalAddress.state">
+                     <option></option>
                      <option>NSW</option>
                      <option>ACT</option>
                      <option>VIC</option>
@@ -91,12 +93,12 @@
              <br />
              <div class="form-group">
               <div class="col-lg-2 col-lg-offset-2">
-                  <button id="delete-member-button" type="submit" class="btn btn-danger" ng-show="member.id != undefined" ng-click="deleteMember(member)">Delete</button>
+                  <button id="delete-member-button" type="submit" class="btn btn-danger" ng-show="!isNew(member)" ng-click="deleteMember(member)">Delete</button>
               </div>
               <div class="col-lg-4 pull-right">
                 <a class="btn btn-default" ng-href="#/members">Cancel</a>
-                <button id="submit-member-button" type="submit" class="btn btn-primary" ng-show="member.id == undefined" ng-click="saveMember(member, memberForm)">Create</button>
-                <button id="update-member-button" type="submit" class="btn btn-primary" ng-show="member.id != undefined" ng-click="saveMember(member, memberForm)">Update</button>
+                <button id="submit-member-button" type="submit" class="btn btn-primary" ng-show="isNew(member)" ng-click="saveMember(member, memberForm)">Create</button>
+                <button id="update-member-button" type="submit" class="btn btn-primary" ng-show="!isNew(member)" ng-click="saveMember(member, memberForm)">Update</button>
               </div>
             </div>
            </form>

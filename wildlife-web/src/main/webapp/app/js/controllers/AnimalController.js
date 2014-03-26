@@ -57,11 +57,11 @@ sydneyWildlifeApp.controller('AnimalController',
         /**
          * Delete one animal
          */
-        $scope.deleteAnimal = function () {
-        	if ($routeParams != undefined && $routeParams.animalId != undefined){
-        	 AnimalService.deleteAnimal($routeParams.animalId).get().then(function(object) {
+        $scope.deleteAnimal = function (animal) {
+        	if (animal != undefined && animal.id != undefined){
+        	 AnimalService.deleteAnimal(animal.id).then(function(object) {
         			$scope.animal = {};
-        			showAlert("info", "Deleted animal with Id: "+ $routeParams.animalId );
+        			showAlert("info", "Deleted animal with Id: "+ animal.id );
         			$scope.$root.$broadcast('goToEvent', {route: "/animals"});
 	        	}, function(e){
 	        		showAlert("error", "Error deleting animals. "+ e);
@@ -69,7 +69,11 @@ sydneyWildlifeApp.controller('AnimalController',
 	        	});
         	}
         };
-
+        
+        $scope.isNew = function (animal) {
+           return animal === undefined || animal.id === undefined;
+        };
+        
         /**
          * Clear the animal object
          */
