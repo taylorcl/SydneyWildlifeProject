@@ -59,14 +59,14 @@
    </properties>
    
    <!--    TEMPORARY REPO FOR THE SNAPSHOT VERSION -->
-   <repositories>
-    <repository>
-      <id>snapshots-repo</id>
-      <url>https://oss.sonatype.org/content/repositories/snapshots</url>
-      <releases><enabled>false</enabled></releases>
-      <snapshots><enabled>true</enabled></snapshots>
-    </repository>
-   </repositories>
+<!--    <repositories> -->
+<!--     <repository> -->
+<!--       <id>snapshots-repo</id> -->
+<!--       <url>https://oss.sonatype.org/content/repositories/snapshots</url> -->
+<!--       <releases><enabled>false</enabled></releases> -->
+<!--       <snapshots><enabled>true</enabled></snapshots> -->
+<!--     </repository> -->
+<!--    </repositories> -->
     
    <build>
       <finalName>wildlife-web</finalName>
@@ -545,50 +545,50 @@
               </executions>
             </plugin>
          
-         <plugin>
-            <groupId>org.lesscss</groupId>
-            <artifactId>lesscss-maven-plugin</artifactId>
-            <version>${lesscss.maven.plugin.version}</version>
-            <configuration>
-                <sourceDirectory>${project.build.directory}/client-lib/export/app/lib/bootstrap/less</sourceDirectory>
-                <outputDirectory>${project.build.directory}/client-lib/export/app/lib/bootstrap/css</outputDirectory>
-            </configuration>
-            <executions>
-                <execution>
-                   <id>generate-css-sydwild</id>
-                   <phase>process-resources</phase>
-                   <goals>
-                       <goal>compile</goal>
-                    </goals>
-                    <configuration>
-                       <includes>
-                           <include>bootstrap-sydwild.less</include>
-                       </includes>
-                       <compress>false</compress>
-                    </configuration>
-                </execution>
-                <execution>
-                   <id>generate-css-sydwild-min</id>
-                   <phase>process-resources</phase>
-                   <goals>
-                       <goal>compile</goal>
-                    </goals>
-                    <configuration>
-                       <includes>
-                           <include>bootstrap-sydwild.min.less</include>
-                       </includes>
-                       <compress>true</compress>
-                    </configuration>
-                </execution>
-            </executions>
-            <dependencies>
-              <dependency>
-                <groupId>org.lesscss</groupId>
-                <artifactId>lesscss</artifactId>
-                <version>${lesscss.version}</version>
-              </dependency>
-             </dependencies>
-        </plugin>
+<!--          <plugin> -->
+<!--             <groupId>org.lesscss</groupId> -->
+<!--             <artifactId>lesscss-maven-plugin</artifactId> -->
+<!--             <version>${lesscss.maven.plugin.version}</version> -->
+<!--             <configuration> -->
+<!--                 <sourceDirectory>${project.build.directory}/client-lib/export/app/lib/bootstrap/less</sourceDirectory> -->
+<!--                 <outputDirectory>${project.build.directory}/client-lib/export/app/lib/bootstrap/css</outputDirectory> -->
+<!--             </configuration> -->
+<!--             <executions> -->
+<!--                 <execution> -->
+<!--                    <id>generate-css-sydwild</id> -->
+<!--                    <phase>process-resources</phase> -->
+<!--                    <goals> -->
+<!--                        <goal>compile</goal> -->
+<!--                     </goals> -->
+<!--                     <configuration> -->
+<!--                        <includes> -->
+<!--                            <include>bootstrap-sydwild.less</include> -->
+<!--                        </includes> -->
+<!--                        <compress>false</compress> -->
+<!--                     </configuration> -->
+<!--                 </execution> -->
+<!--                 <execution> -->
+<!--                    <id>generate-css-sydwild-min</id> -->
+<!--                    <phase>process-resources</phase> -->
+<!--                    <goals> -->
+<!--                        <goal>compile</goal> -->
+<!--                     </goals> -->
+<!--                     <configuration> -->
+<!--                        <includes> -->
+<!--                            <include>bootstrap-sydwild.min.less</include> -->
+<!--                        </includes> -->
+<!--                        <compress>true</compress> -->
+<!--                     </configuration> -->
+<!--                 </execution> -->
+<!--             </executions> -->
+<!--             <dependencies> -->
+<!--               <dependency> -->
+<!--                 <groupId>org.lesscss</groupId> -->
+<!--                 <artifactId>lesscss</artifactId> -->
+<!--                 <version>${lesscss.version}</version> -->
+<!--               </dependency> -->
+<!--              </dependencies> -->
+<!--         </plugin> -->
         
          <plugin>
             <groupId>com.github.searls</groupId>

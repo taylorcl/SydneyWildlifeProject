@@ -91,12 +91,12 @@
              <br />
              <div class="form-group">
               <div class="col-lg-2 col-lg-offset-2">
-                  <button id="save-member-button" type="submit" class="btn btn-danger" ng-show="member.id != undefined" ng-click="deleteMember(member)">Delete</button>
+                  <button id="delete-member-button" type="submit" class="btn btn-danger" ng-show="member.id != undefined" ng-click="deleteMember(member)">Delete</button>
               </div>
               <div class="col-lg-4 pull-right">
                 <a class="btn btn-default" ng-href="#/members">Cancel</a>
-                <button id="save-member-button" type="submit" class="btn btn-primary" ng-show="member.id == undefined" ng-click="saveMember(member, memberForm)">Submit</button>
-                <button id="save-member-button" type="submit" class="btn btn-primary" ng-show="member.id != undefined" ng-click="saveMember(member, memberForm)">Update</button>
+                <button id="submit-member-button" type="submit" class="btn btn-primary" ng-show="member.id == undefined" ng-click="saveMember(member, memberForm)">Create</button>
+                <button id="update-member-button" type="submit" class="btn btn-primary" ng-show="member.id != undefined" ng-click="saveMember(member, memberForm)">Update</button>
               </div>
             </div>
            </form>

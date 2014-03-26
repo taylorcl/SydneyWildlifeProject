@@ -47,7 +47,24 @@ var sydneyWildlifeApp = angular.module('sydneyWildlifeApp', ['ngRoute', 'restang
 				            templateUrl: 'views/Member.html',
 				            controller: 'MemberController',
 				            activePage: 'members'
-				        });						    
-				    $routeProvider.otherwise({redirectTo: '/members'});
-				    //$locationProvider.html5Mode(true);
+				        });
+				    $routeProvider.when('/animals',
+                      {
+                          templateUrl: 'views/AnimalList.html',
+                          controller: 'AnimalController',
+                          activePage: 'animals'
+                      });
+              $routeProvider.when('/animals/new',
+                   {
+                       templateUrl:'views/Animal.html',
+                       controller: 'AnimalController',
+                       activePage: 'animals'
+                   });
+               $routeProvider.when('/animals/:animalId',
+                   {
+                       templateUrl: 'views/Animal.html',
+                       controller: 'AnimalController',
+                       activePage: 'animals'
+                   }); 
+				    $routeProvider.otherwise({redirectTo: '/animals'});
 });

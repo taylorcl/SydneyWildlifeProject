@@ -4,7 +4,8 @@
     <meta charset="utf-8">
     <title>Sydney Wildlife</title>
     <link rel="stylesheet" href="lib/bootstrap/css/datepicker.css"/>
-    <link rel="stylesheet" href="lib/bootstrap/css/bootstrap-sydwild.css"/>
+    <link rel="stylesheet" href="lib/bootstrap/css/bootstrap.css"/>
+    <!-- Uncomment when lesscss compiler released <link rel="stylesheet" href="lib/bootstrap/css/bootstrap-sydwild.css"/> -->
     <link rel="stylesheet" href="lib/font-awesome/css/font-awesome.css"/>
     <!-- Uncomment for PRODUCTION MODE <link rel="stylesheet" href="lib/bootstrap/css/bootstrap-sydwild.min.css"/> -->
     <!-- Uncomment for PRODUCTION MODE <link rel="stylesheet" href="lib/font-awesome/css/font-awesome.min.css"/> -->
@@ -23,6 +24,7 @@
      </div>
      <div class="navbar-collapse collapse" id="navbar-main">
        <ul class="nav navbar-nav">
+         <li ng-class="{'active': $route.current.activePage == 'animals'}"><a ng-href="#/animals"><i class="fa fa-bug"></i>&nbsp;&nbsp;Animals</a></li>
          <li ng-class="{'active': $route.current.activePage == 'members'}"><a ng-href="#/members"><i class="fa fa-users"></i>&nbsp;&nbsp;Members</a></li>
        </ul>
      </div>
@@ -32,10 +34,10 @@
 <div class="page-header"></div>
 
 <div class="container">
-   <!-- <alert ng-show=$member.showFeedback close="closeAlert()" type=alertType>{{status}}</alert> -->
    <alert ng-show=$parent.showFeedback close="closeAlert()" type=alertType>{{status}}</alert>
    <ng-view></ng-view>
 </div>
+
 <!-- Libraries -->
 
 <!-- Place jquery BEFORE angular -->
@@ -74,9 +76,11 @@
 <!-- Controllers -->
 <script src="js/controllers/NavigationController.js"></script>
 <script src="js/controllers/CommonController.js"></script>
+<script src="js/controllers/AnimalController.js"></script>
 <script src="js/controllers/MemberController.js"></script>
 
 <!-- Services -->
+<script src="js/services/AnimalService.js"></script>
 <script src="js/services/MemberService.js"></script>
 <script src="js/services/DateService.js"></script>
 <script src="js/services/ReportingService.js"></script>
