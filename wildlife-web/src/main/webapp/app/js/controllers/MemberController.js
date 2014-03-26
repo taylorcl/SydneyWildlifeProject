@@ -13,9 +13,12 @@ sydneyWildlifeApp.controller('MemberController',
             if(form.$valid) {
             	var aPromise = MemberService.save(member);
             	aPromise.then(function(object){
+            	   member.id = object.id;
             		showAlert("success", "Member registered successfully! Just went over to sydwildlife-api webapp using Restangular and saved this member!");
+            		$scope.$root.$broadcast('goToEvent', {route: "/members"});
             	}, function errorCallback(error) {
             		showAlert("error", error);
+            		$scope.$root.$broadcast('goToEvent', {route: "/members"});
             	});
             } else {
             	showAlert("error", "Invalid form: " + form);
@@ -44,7 +47,7 @@ sydneyWildlifeApp.controller('MemberController',
         $scope.memberDetail = function(){
         	if ($routeParams != undefined && $routeParams.memberId != undefined){
         		MemberService.memberDetail($routeParams.memberId).get().then(function(object) {
-        			$scope.member  = object.originalElement;        		
+        			$scope.member = object.originalData;        		
 	        	}, function(e){
 	        		showAlert("error", "Error retrieving member " + e);
 	        	});
@@ -57,10 +60,12 @@ sydneyWildlifeApp.controller('MemberController',
         $scope.deleteMember = function () {
         	if ($routeParams != undefined && $routeParams.memberId != undefined){
         		MemberService.deleteMember($routeParams.memberId).get().then(function(object) {
-        			$scope.member  = {};
+        			$scope.member = {};
         			showAlert("info", "Deleted member with Id: "+ $routeParams.memberId );
+        			$scope.$root.$broadcast('goToEvent', {route: "/members"});
 	        	}, function(e){
 	        		showAlert("error", "Error deleting member. "+ e);
+	        		$scope.$root.$broadcast('goToEvent', {route: "/members"});
 	        	});
         	}
         };

@@ -14,25 +14,39 @@ var sydneyWildlifeApp = angular.module('sydneyWildlifeApp', ['ngRoute', 'restang
 				                "next": response.next,
 				                "previous": response.previous
 				            };
+				            angular.forEach(newResponse, function(value, key) {
+		                       if (newResponse[key] != undefined){
+		                          newResponse[key].originalData = angular.copy(value);
+		                       }
+		                     });
 				            return newResponse;
 						}
-						return response;
+						
+						var newResponse = response.data;
+                  if (newResponse != undefined) {
+                     newResponse.originalData = angular.copy(newResponse);
+                  }
+                
+						return newResponse;
 					});
 					
-					$routeProvider.when('/registerMember',
+					$routeProvider.when('/members',
+	                    {
+	                        templateUrl: 'views/MemberList.html',
+	                        controller: 'MemberController',
+	                        activePage: 'members'
+	                    });
+					$routeProvider.when('/members/new',
 				        {
 				            templateUrl:'views/Member.html',
-				            controller: 'MemberController'
+				            controller: 'MemberController',
+				            activePage: 'members'
 				        });
-				    $routeProvider.when('/members',
-				        {
-				            templateUrl: 'views/MemberList.html',
-				            controller: 'MemberController'
-				        });
-				    $routeProvider.when('/memberDetail/:memberId',
+				    $routeProvider.when('/members/:memberId',
 				        {
 				            templateUrl: 'views/Member.html',
-				            controller: 'MemberController'
+				            controller: 'MemberController',
+				            activePage: 'members'
 				        });						    
 				    $routeProvider.otherwise({redirectTo: '/members'});
 				    //$locationProvider.html5Mode(true);

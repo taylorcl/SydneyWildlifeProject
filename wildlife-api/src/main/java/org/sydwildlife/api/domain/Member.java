@@ -47,7 +47,7 @@ public class Member extends UuidEntityBase implements HasStatus {
          @AttributeOverride(name = "line2", column = @Column(name = "POSTALLINE2")),
          @AttributeOverride(name = "suburb", column = @Column(name = "POSTALSUBURB")),
          @AttributeOverride(name = "postcode", column = @Column(name = "POSTALPOSTCODE")),
-         @AttributeOverride(name = "State", column = @Column(name = "POSTALSTATE"))
+         @AttributeOverride(name = "state", column = @Column(name = "POSTALSTATE"))
    })
    private Address postalAddress;
 

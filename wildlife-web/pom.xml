@@ -27,6 +27,8 @@
      <bootswatch.theme.name>united</bootswatch.theme.name>
      <bootswatch.theme.version>3.1.1</bootswatch.theme.version>
      
+     <fontawesome.version>4.0.3</fontawesome.version>
+     
      <bootstrap.datepicker.version>1.3.0</bootstrap.datepicker.version>
 
      <underscorejs.version>1.6.0</underscorejs.version>
@@ -35,6 +37,9 @@
      <jquery.version>1.11.0</jquery.version>
      <jquery.version.full>1.11.0-1</jquery.version.full>
      <jquery.ui.version>1.10.3</jquery.ui.version>
+     
+     <lesscss.maven.plugin.version>1.3.3</lesscss.maven.plugin.version>
+     <lesscss.version>1.5.1-SNAPSHOT</lesscss.version>
      
      <!-- The two following libs are staticly imported from src/main/resources, version numbers are only here as reminders -->
      <ui.bootstrap.tpls.version>0.4.0</ui.bootstrap.tpls.version>
@@ -131,6 +136,14 @@
                       <type>jar</type>
                       <includes>META-INF/resources/webjars/bootswatch-${bootswatch.theme.name}/${bootswatch.theme.version}/**</includes>
                       <outputDirectory>${project.build.directory}/client-lib/webjars/bootswatch-${bootswatch.theme.name}</outputDirectory>
+                    </artifactItem>
+                    <artifactItem>
+                      <groupId>org.webjars</groupId>
+                      <artifactId>font-awesome</artifactId>
+                      <version>${fontawesome.version}</version>
+                      <type>jar</type>
+                      <includes>META-INF/resources/webjars/font-awesome/${fontawesome.version}/**</includes>
+                      <outputDirectory>${project.build.directory}/client-lib/webjars/font-awesome</outputDirectory>
                     </artifactItem>
                     <artifactItem>
                       <groupId>org.webjars</groupId>
@@ -264,6 +277,23 @@
                     <resources>          
                       <resource>
                         <directory>${project.build.directory}/client-lib/webjars/bootswatch-${bootswatch.theme.name}/META-INF/resources/webjars/bootswatch-${bootswatch.theme.name}/${bootswatch.theme.version}</directory>
+                      </resource>
+                    </resources>              
+                  </configuration>            
+                </execution>
+                
+                <!-- Copying Fontawesome jar into the app lib folder -->
+                <execution>
+                  <id>copy-fontawesome-lib</id>
+                  <phase>validate</phase>
+                  <goals>
+                    <goal>copy-resources</goal>
+                  </goals>
+                  <configuration>
+                    <outputDirectory>${project.build.directory}/client-lib/export/app/lib/font-awesome</outputDirectory>
+                    <resources>          
+                      <resource>
+                        <directory>${project.build.directory}/client-lib/webjars/font-awesome/META-INF/resources/webjars/font-awesome/${fontawesome.version}</directory>
                       </resource>
                     </resources>              
                   </configuration>            
@@ -518,7 +548,7 @@
          <plugin>
             <groupId>org.lesscss</groupId>
             <artifactId>lesscss-maven-plugin</artifactId>
-            <version>1.3.3</version>
+            <version>${lesscss.maven.plugin.version}</version>
             <configuration>
                 <sourceDirectory>${project.build.directory}/client-lib/export/app/lib/bootstrap/less</sourceDirectory>
                 <outputDirectory>${project.build.directory}/client-lib/export/app/lib/bootstrap/css</outputDirectory>
@@ -555,7 +585,7 @@
               <dependency>
                 <groupId>org.lesscss</groupId>
                 <artifactId>lesscss</artifactId>
-                <version>1.5.1-SNAPSHOT</version>
+                <version>${lesscss.version}</version>
               </dependency>
              </dependencies>
         </plugin>
