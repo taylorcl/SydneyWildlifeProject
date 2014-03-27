@@ -1,7 +1,7 @@
 'use strict';
 
 var sydneyWildlifeApp = angular.module('sydneyWildlifeApp', ['ngRoute', 'restangular', 'ui.bootstrap'])
-				.config(function ($routeProvider, RestangularProvider, $locationProvider) {
+         .config(function ($routeProvider, RestangularProvider, $locationProvider) {
 					
 					// TODO: we need to derive this
 					RestangularProvider.setBaseUrl('http://localhost:8080/wildlife-api/api');
@@ -67,4 +67,4 @@ var sydneyWildlifeApp = angular.module('sydneyWildlifeApp', ['ngRoute', 'restang
                        activePage: 'animals'
                    }); 
 				    $routeProvider.otherwise({redirectTo: '/animals'});
-});
+         });

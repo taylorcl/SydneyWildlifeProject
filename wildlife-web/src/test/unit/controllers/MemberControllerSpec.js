@@ -97,7 +97,7 @@ describe('MemberController Tests', function() {
 		}));
 		
 		it('should show member details', inject(function($rootScope, $compile) {			
-		    deferred.resolve({"originalElement":member});
+		    deferred.resolve({"originalData":member});
 		    var aTempObject = {get: function(){return deferred.promise}};
 		    spyOn(localMemberService, "memberDetail").andReturn(aTempObject);
 			localScope.memberDetail();
@@ -118,17 +118,17 @@ describe('MemberController Tests', function() {
     
     describe('MememberController member deletion tests', function() {    
 		beforeEach(inject(function($rootScope, $controller, MemberService, $routeParams) {
-			    localRouteParams = {"memberId":"1"};
+		   localRouteParams = {};
 			    localMemberController = $controller('MemberController', 
-			    		{ $scope: localScope, MemberService: localMemberService, $routeParams: localRouteParams } );
+			    		{ $scope: localScope, MemberService: localMemberService, $routeParams: localRouteParams} );
 			    
 		}));
 		
-		it('should delete members', inject(function($rootScope, $compile) {			
-		    deferred.resolve({"originalElement":member});
+		it('should delete members', inject(function($rootScope, $compile) {
+		   deferred.resolve({"id":"1"});
 		    var aTempObject = {get: function(){return deferred.promise}};
 		    spyOn(localMemberService, "deleteMember").andReturn(aTempObject);
-			localScope.deleteMember();
+			localScope.deleteMember(member);
 			$rootScope.$digest();
 			expect(localScope.alertType).toBe("info");
 		}));
@@ -137,7 +137,7 @@ describe('MemberController Tests', function() {
 		    deferred.reject({});
 		    var aTempObject = {get: function(){return deferred.promise}};
 		    spyOn(localMemberService, "deleteMember").andReturn(aTempObject);
-			localScope.deleteMember();
+			localScope.deleteMember(member);
 			$rootScope.$digest();
 			expect(localScope.alertType).toBe("error");
 		}));		

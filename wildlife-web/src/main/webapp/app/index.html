@@ -34,7 +34,9 @@
 <div class="page-header"></div>
 
 <div class="container">
-   <alert ng-show=$parent.showFeedback close="closeAlert()" type=alertType>{{status}}</alert>
+   <div ng-controller="AlertController">
+     <alert ng-repeat="alert in alerts" type="alert.type" close="close($index)">{{alert.msg}}</alert>
+   </div>
    <ng-view></ng-view>
 </div>
 
@@ -45,14 +47,17 @@
 <script src="lib/jquery/jquery.js"></script>
 <script src="lib/jquery/jquery-ui.js"></script>
 
+
 <script src="lib/angular/angular.js"></script>
 <script src="lib/angular/angular-route.js"></script>
-<script src="lib/angular/restangular.js"></script>
+<script src="lib/angular/angular-ui.js"></script>
 <script src="lib/angular/angular-resource.js"></script>
-<script src="lib/underscore/underscore.js"></script>
+<script src="lib/angular/restangular.js"></script>
 <script src="lib/bootstrap/js/bootstrap.js"></script>
+<script src="lib/bootstrap/js/ui-bootstrap.js"></script>
 <script src="lib/bootstrap/js/ui-bootstrap-tpls.js"></script>
-<script src="lib/bootstrap/js/bootstrap-datepicker.js"></script> 
+<script src="lib/bootstrap/js/bootstrap-datepicker.js"></script>
+<script src="lib/underscore/underscore.js"></script>
 <script src="lib/date/xdate.js"></script>
 
 <!-- **** PRODUCTION MODE **** -->
@@ -61,12 +66,14 @@
 
 <!-- <script src="lib/angular/angular.min.js"></script> -->
 <!-- <script src="lib/angular/angular-route.min.js"></script> -->
-<!-- <script src="lib/angular/restangular.min.js"></script> -->
+<!-- <script src="lib/angular/angular-ui.min.js"></script> -->
 <!-- <script src="lib/angular/angular-resource.min.js"></script> -->
-<!-- <script src="lib/underscore/underscore-min.js"></script> -->
+<!-- <script src="lib/angular/restangular.min.js"></script> -->
 <!-- <script src="lib/bootstrap/js/bootstrap.min.js"></script> -->
-<!-- <script src="lib/bootstrap/js/ui-bootstrap-tpls.js"></script> -->
+<!-- <script src="lib/bootstrap/js/ui-bootstrap.min.js"></script> -->
+<!-- <script src="lib/bootstrap/js/ui-bootstrap-tpls.min.js"></script> -->
 <!-- <script src="lib/bootstrap/js/bootstrap-datepicker.js"></script>  -->
+<!-- <script src="lib/underscore/underscore-min.js"></script> -->
 <!-- <script src="lib/date/xdate.js"></script> -->
 
 
@@ -75,15 +82,16 @@
 
 <!-- Controllers -->
 <script src="js/controllers/NavigationController.js"></script>
-<script src="js/controllers/CommonController.js"></script>
+<script src="js/controllers/AlertController.js"></script>
 <script src="js/controllers/AnimalController.js"></script>
 <script src="js/controllers/MemberController.js"></script>
 
 <!-- Services -->
+<script src="js/services/NavigationService.js"></script>
+<script src="js/services/AlertService.js"></script>
 <script src="js/services/AnimalService.js"></script>
 <script src="js/services/MemberService.js"></script>
 <script src="js/services/DateService.js"></script>
-<script src="js/services/ReportingService.js"></script>
 
 <!-- Directives -->
 <script src="js/directives/DatePicker.js"></script>

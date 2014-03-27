@@ -1,7 +1,7 @@
 'use strict';
 
 sydneyWildlifeApp.controller('MemberController',
-    function MemberController($scope, MemberService, $routeParams) {
+    function MemberController($scope, MemberService, NavService, AlertService, $routeParams) {
 	    $scope.showFeedback = false;
 	    	    
 	    /**
@@ -14,14 +14,13 @@ sydneyWildlifeApp.controller('MemberController',
             	var aPromise = MemberService.save(member);
             	aPromise.then(function(object){
             	   member.id = object.id;
-            		showAlert("success", "Member registered successfully! Just went over to sydwildlife-api webapp using Restangular and saved this member!");
-            		$scope.$root.$broadcast('goToEvent', {route: "/members"});
+            	   AlertService.show("success", "Successfully registered/updated member " + member.firstName + " " + member.lastName + ".");
+            		NavService.goTo("/members");
             	}, function errorCallback(error) {
-            		showAlert("error", error);
-            		$scope.$root.$broadcast('goToEvent', {route: "/members"});
+            	   AlertService.show("error", "Error saving member. " + error);
             	});
             } else {
-            	showAlert("error", "Invalid form: " + form);
+               AlertService.show("error", "Please resolve the following errors: " + form);
             }
         };
         
@@ -31,13 +30,8 @@ sydneyWildlifeApp.controller('MemberController',
         $scope.listMembers = function(){
         	MemberService.list().then(function(o){
         		$scope.memberList = o;
-        		if (o.length == 0){
-        			showAlert("warning", "No members registered! Checked for members by making a call to sydwildlife-api webapp using Restangular!");
-        		} else {
-        			showAlert("info", "Found " + o.length + " members! Checked for members by making a call to sydwildlife-api webapp using Restangular!");
-        		}
-        	}, function(e){
-        		showAlert("error", e);
+        	}, function(error){
+        	   AlertService.show("error", "Error retrieving members. " + error);
         	});
         };
         
@@ -48,8 +42,8 @@ sydneyWildlifeApp.controller('MemberController',
         	if ($routeParams != undefined && $routeParams.memberId != undefined){
         		MemberService.memberDetail($routeParams.memberId).get().then(function(object) {
         			$scope.member = object.originalData;        		
-	        	}, function(e){
-	        		showAlert("error", "Error retrieving member " + e);
+	        	}, function(error){
+	          	 AlertService.show("error", "Error retrieving member with Id " + memberId + ". "+ error);
 	        	});
         	}
         };
@@ -61,11 +55,11 @@ sydneyWildlifeApp.controller('MemberController',
         	if (member != undefined && member.id != undefined){
         		MemberService.deleteMember(member.id).then(function(object) {
         			$scope.member = {};
-        			showAlert("info", "Deleted member with Id: "+ member.id );
-        			$scope.$root.$broadcast('goToEvent', {route: "/members"});
-	        	}, function(e){
-	        		showAlert("error", "Error deleting member. "+ e);
-	        		$scope.$root.$broadcast('goToEvent', {route: "/members"});
+        			AlertService.show("info", "Successfully deleted member with Id "+ member.id + "." );
+        			NavService.goTo("/members");
+	        	}, function(error){
+	        	   AlertService.show("error", "Error deleting member with Id " + member.id + ". "+ error);
+	        		NavService.goTo("/members");
 	        	});
         	}
         };
@@ -73,23 +67,5 @@ sydneyWildlifeApp.controller('MemberController',
         $scope.isNew = function (member) {
            return member === undefined || member.id === undefined;
         };
-        
-        /**
-         * Clear the member object
-         */
-        $scope.createMember = function (member) {
-        	$scope.member = {};
-        	this.closeAlert();
-        };
-        
-        $scope.closeAlert = function(){
-        	$scope.showFeedback = false;
-        };
-        
-        function showAlert(type, message) {
-    		$scope.status  = message;
-    		$scope.showFeedback = "true";
-    		$scope.alertType = type;
-        }
     }
 );
