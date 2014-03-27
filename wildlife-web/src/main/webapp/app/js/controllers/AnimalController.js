@@ -17,10 +17,10 @@ sydneyWildlifeApp.controller('AnimalController',
             	   AlertService.show("success", "Successfully registered/updated animal with Id " + animal.id + ".");
             		NavService.goTo("/animals");
             	}, function errorCallback(error) {
-            	   AlertService.show("error", "Error saving animal. " + error);
+            	   AlertService.show("danger", "Error saving animal. " + error);
             	});
             } else {
-               AlertService.show("error", "Please resolve the following errors: " + form);
+               AlertService.show("danger", "Please resolve the highlighted errors.");
             }
         };
         
@@ -31,7 +31,7 @@ sydneyWildlifeApp.controller('AnimalController',
         	AnimalService.list().then(function(o){
         		$scope.animalList = o;
         	}, function(eerror){
-        	   AlertService.show("error", "Error retrieving animals. " + error);
+        	   AlertService.show("danger", "Error retrieving animals. " + error);
         	});
         };
         
@@ -43,7 +43,7 @@ sydneyWildlifeApp.controller('AnimalController',
         		AnimalService.animalDetail($routeParams.animalId).get().then(function(object) {
         			$scope.animal = object.originalData;        		
 	        	}, function(error){
-	        	    AlertService.show("error", "Error retrieving animal with Id " + animalId + ". "+ error);
+	        	    AlertService.show("danger", "Error retrieving animal with Id " + animalId + ". "+ error);
 	        	});
         	}
         };
@@ -58,7 +58,7 @@ sydneyWildlifeApp.controller('AnimalController',
         			AlertService.show("info", "Successfully deleted animal with Id "+ animal.id + "." );
         			NavService.goTo("/animals");
 	        	}, function(error){
-	        	   AlertService.show("error", "Error deleting animal with Id " + animal.id + ". "+ error);
+	        	   AlertService.show("danger", "Error deleting animal with Id " + animal.id + ". "+ error);
 	        		NavService.goTo("/animals");
 	        	});
         	}

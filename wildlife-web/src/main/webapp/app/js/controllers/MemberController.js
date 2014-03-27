@@ -17,10 +17,10 @@ sydneyWildlifeApp.controller('MemberController',
             	   AlertService.show("success", "Successfully registered/updated member " + member.firstName + " " + member.lastName + ".");
             		NavService.goTo("/members");
             	}, function errorCallback(error) {
-            	   AlertService.show("error", "Error saving member. " + error);
+            	   AlertService.show("danger", "Error saving member. " + error);
             	});
             } else {
-               AlertService.show("error", "Please resolve the following errors: " + form);
+               AlertService.show("danger", "Please resolve the highlighted errors.");
             }
         };
         
@@ -31,7 +31,7 @@ sydneyWildlifeApp.controller('MemberController',
         	MemberService.list().then(function(o){
         		$scope.memberList = o;
         	}, function(error){
-        	   AlertService.show("error", "Error retrieving members. " + error);
+        	   AlertService.show("danger", "Error retrieving members. " + error);
         	});
         };
         
@@ -43,7 +43,7 @@ sydneyWildlifeApp.controller('MemberController',
         		MemberService.memberDetail($routeParams.memberId).get().then(function(object) {
         			$scope.member = object.originalData;        		
 	        	}, function(error){
-	          	 AlertService.show("error", "Error retrieving member with Id " + memberId + ". "+ error);
+	          	 AlertService.show("danger", "Error retrieving member with Id " + memberId + ". "+ error);
 	        	});
         	}
         };
@@ -58,7 +58,7 @@ sydneyWildlifeApp.controller('MemberController',
         			AlertService.show("info", "Successfully deleted member with Id "+ member.id + "." );
         			NavService.goTo("/members");
 	        	}, function(error){
-	        	   AlertService.show("error", "Error deleting member with Id " + member.id + ". "+ error);
+	        	   AlertService.show("danger", "Error deleting member with Id " + member.id + ". "+ error);
 	        		NavService.goTo("/members");
 	        	});
         	}

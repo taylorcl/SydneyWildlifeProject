@@ -13,32 +13,32 @@
                <div class="form-group">
                  <label for="firstName" class="col-lg-2 control-label">Name</label>
                  <div class="col-lg-5">
-                   <input type="text" class="form-control" id="firstName" required placeholder="First Name" ng-model="member.firstName" />
+                   <input type="text" class="form-control" id="firstName" name="firstName" required placeholder="First Name" ng-model="member.firstName" />
                  </div>
                  <div class="col-lg-5">
-                   <input type="text" class="form-control" id="lastName" required placeholder="Last Name"  ng-model="member.lastName" />
+                   <input type="text" class="form-control" id="lastName" name="lastName" required placeholder="Last Name"  ng-model="member.lastName" />
                  </div>
                </div>
                <div class="form-group">
                  <label for="email" class="col-lg-2 control-label">Email</label>
                  <div class="col-lg-10">
-                   <input type="email" class="form-control" id="email" required placeholder="Email"  ng-model="member.email" />
+                   <input type="email" class="form-control" id="email" name="email" required placeholder="Email"  ng-model="member.email" />
                  </div>
                </div>
                <div class="form-group">
                  <label for="homeAddress-line1" class="col-lg-2 control-label">Home Address</label>
                  <div class="col-lg-10">
-                   <input type="text" class="form-control" id="homeAddress-line1" placeholder="Home Address" ng-model="member.homeAddress.line1" />
+                   <input type="text" class="form-control" id="homeAddress-line1" name="homeAddress-line1" placeholder="Home Address" ng-model="member.homeAddress.line1" />
                  </div>
                  <br /><br />
                  <div class="col-lg-10">
-                   <input type="text" class="form-control" id="homeAddress-line2" placeholder="" ng-model="member.homeAddress.line2" />
+                   <input type="text" class="form-control" id="homeAddress-line2" name="homeAddress-line2" placeholder="" ng-model="member.homeAddress.line2" />
                  </div>
                </div>
                <div class="form-group">
                  <label for="homeAddress-state" class="col-lg-2 control-label"></label>
                  <div class="col-lg-3">
-                   <select class="form-control" id="homeAddress-state" placeholder="State" ng-model="member.homeAddress.state">
+                   <select class="form-control" id="homeAddress-state" name="homeAddress-state" placeholder="State" ng-model="member.homeAddress.state">
                      <option></option>
                      <option>NSW</option>
                      <option>ACT</option>
@@ -51,26 +51,26 @@
                    </select>
                  </div>
                  <div class="col-lg-2">
-                   <input type="text" class="form-control" id="homeAddress-postcode" placeholder="Post Code" ng-model="member.homeAddress.postcode" />
+                   <input type="text" class="form-control" id="homeAddress-postcode" name="homeAddress-postcode" placeholder="Post Code" ng-model="member.homeAddress.postcode" />
                  </div>
                  <div class="col-lg-5">
-                   <input type="text" class="form-control" id="homeAddress-suburb" placeholder="Suburb"  ng-model="member.homeAddress.suburb" />
+                   <input type="text" class="form-control" id="homeAddress-suburb" name="homeAddress-suburb" placeholder="Suburb"  ng-model="member.homeAddress.suburb" />
                  </div>
                </div>
                <div class="form-group">
                  <label for="postalAddress-line1" class="col-lg-2 control-label">Postal Address</label>
                  <div class="col-lg-10">
-                   <input type="text" class="form-control" id="postalAddress-line1" placeholder="Postal Address" ng-model="member.postalAddress.line1" />
+                   <input type="text" class="form-control" id="postalAddress-line1" name="postalAddress-line1" placeholder="Postal Address" ng-model="member.postalAddress.line1" />
                  </div>
                  <br /><br />
                  <div class="col-lg-10">
-                   <input type="text" class="form-control" id="postalAddress-line2" placeholder="" ng-model="member.postalAddress.line2" />
+                   <input type="text" class="form-control" id="postalAddress-line2" name="postalAddress-line2" placeholder="" ng-model="member.postalAddress.line2" />
                  </div>
                </div>
                <div class="form-group">
                  <label for="postalAddress-state" class="col-lg-2 control-label"></label>
                  <div class="col-lg-3">
-                   <select class="form-control" id="postalAddress-state" placeholder="State" ng-model="member.postalAddress.state" ng-selected="member.postalAddress.state">
+                   <select class="form-control" id="postalAddress-state" name="postalAddress-state" placeholder="State" ng-model="member.postalAddress.state" ng-selected="member.postalAddress.state">
                      <option></option>
                      <option>NSW</option>
                      <option>ACT</option>
@@ -83,10 +83,10 @@
                    </select>
                  </div>
                  <div class="col-lg-2">
-                   <input type="text" class="form-control" id="postalAddress-postcode" placeholder="Post Code" ng-model="member.postalAddress.postcode" />
+                   <input type="text" class="form-control" id="postalAddress-postcode" name="postalAddress-postcode" placeholder="Post Code" ng-model="member.postalAddress.postcode" />
                  </div>
                  <div class="col-lg-5">
-                   <input type="text" class="form-control" id="postalAddress-suburb" placeholder="Suburb"  ng-model="member.postalAddress.suburb" />
+                   <input type="text" class="form-control" id="postalAddress-suburb" name="postalAddress-suburb" placeholder="Suburb"  ng-model="member.postalAddress.suburb" />
                  </div>
                </div>
              </fieldset>
