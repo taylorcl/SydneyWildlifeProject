@@ -44,7 +44,7 @@
      <jquery.ui.version>1.10.3</jquery.ui.version>
      
      <lesscss.maven.plugin.version>1.3.3</lesscss.maven.plugin.version>
-     <lesscss.version>1.5.1-SNAPSHOT</lesscss.version>
+     <less.js.version>1.5.1</less.js.version>
      
      <!-- The two following libs are staticly imported from src/main/resources, version numbers are only here as reminders -->
      <ui.bootstrap.tpls.version>0.4.0</ui.bootstrap.tpls.version>
@@ -62,16 +62,6 @@
      <jasmine.reporters.version>0.2.1</jasmine.reporters.version>
      
    </properties>
-   
-   <!--    TEMPORARY REPO FOR THE SNAPSHOT VERSION -->
-<!--    <repositories> -->
-<!--     <repository> -->
-<!--       <id>snapshots-repo</id> -->
-<!--       <url>https://oss.sonatype.org/content/repositories/snapshots</url> -->
-<!--       <releases><enabled>false</enabled></releases> -->
-<!--       <snapshots><enabled>true</enabled></snapshots> -->
-<!--     </repository> -->
-<!--    </repositories> -->
     
    <build>
       <finalName>wildlife-web</finalName>
@@ -197,6 +187,14 @@
                       <type>jar</type>
                       <includes>META-INF/resources/webjars/jquery-ui/${jquery.ui.version}/ui/jquery-ui.js</includes>
                       <outputDirectory>${project.build.directory}/client-lib/webjars/jquery-ui</outputDirectory>
+                    </artifactItem>
+                    <artifactItem>
+                      <groupId>org.webjars</groupId>
+                      <artifactId>less</artifactId>
+                      <version>${less.js.version}</version>
+                      <type>jar</type>
+                      <includes>META-INF/resources/webjars/less/${less.js.version}/**</includes>
+                      <outputDirectory>${project.build.directory}/client-lib/webjars/less</outputDirectory>
                     </artifactItem>
                     
                     <!-- ************************************* -->
@@ -456,6 +454,23 @@
                   </configuration>            
                 </execution>
                 
+                <!-- Copying Less.js jar into the app lib folder -->
+                <execution>
+                  <id>copy-less-js-lib</id>
+                  <phase>validate</phase>
+                  <goals>
+                    <goal>copy-resources</goal>
+                  </goals>
+                  <configuration>
+                    <outputDirectory>${project.build.directory}/client-lib/export/app/lib/less</outputDirectory>
+                    <resources>          
+                      <resource>
+                        <directory>${project.build.directory}/client-lib/webjars/less/META-INF/resources/webjars/less/${less.js.version}</directory>
+                      </resource>
+                    </resources>              
+                  </configuration>            
+                </execution>
+                
                 
                 <!-- ************************************* -->
                 <!-- ************* TEST libs ************* -->
@@ -583,50 +598,44 @@
               </executions>
             </plugin>
          
-<!--          <plugin> -->
-<!--             <groupId>org.lesscss</groupId> -->
-<!--             <artifactId>lesscss-maven-plugin</artifactId> -->
-<!--             <version>${lesscss.maven.plugin.version}</version> -->
-<!--             <configuration> -->
-<!--                 <sourceDirectory>${project.build.directory}/client-lib/export/app/lib/bootstrap/less</sourceDirectory> -->
-<!--                 <outputDirectory>${project.build.directory}/client-lib/export/app/lib/bootstrap/css</outputDirectory> -->
-<!--             </configuration> -->
-<!--             <executions> -->
-<!--                 <execution> -->
-<!--                    <id>generate-css-sydwild</id> -->
-<!--                    <phase>process-resources</phase> -->
-<!--                    <goals> -->
-<!--                        <goal>compile</goal> -->
-<!--                     </goals> -->
-<!--                     <configuration> -->
-<!--                        <includes> -->
-<!--                            <include>bootstrap-sydwild.less</include> -->
-<!--                        </includes> -->
-<!--                        <compress>false</compress> -->
-<!--                     </configuration> -->
-<!--                 </execution> -->
-<!--                 <execution> -->
-<!--                    <id>generate-css-sydwild-min</id> -->
-<!--                    <phase>process-resources</phase> -->
-<!--                    <goals> -->
-<!--                        <goal>compile</goal> -->
-<!--                     </goals> -->
-<!--                     <configuration> -->
-<!--                        <includes> -->
-<!--                            <include>bootstrap-sydwild.min.less</include> -->
-<!--                        </includes> -->
-<!--                        <compress>true</compress> -->
-<!--                     </configuration> -->
-<!--                 </execution> -->
-<!--             </executions> -->
-<!--             <dependencies> -->
-<!--               <dependency> -->
-<!--                 <groupId>org.lesscss</groupId> -->
-<!--                 <artifactId>lesscss</artifactId> -->
-<!--                 <version>${lesscss.version}</version> -->
-<!--               </dependency> -->
-<!--              </dependencies> -->
-<!--         </plugin> -->
+         <plugin>
+            <groupId>org.lesscss</groupId>
+            <artifactId>lesscss-maven-plugin</artifactId>
+            <version>${lesscss.maven.plugin.version}</version>
+            <configuration>
+                <sourceDirectory>${project.build.directory}/client-lib/export/app/lib/bootstrap/less</sourceDirectory>
+                <outputDirectory>${project.build.directory}/client-lib/export/app/lib/bootstrap/css</outputDirectory>
+                <lessJs>${project.build.directory}/client-lib/export/app/lib/less/less.min.js</lessJs>
+            </configuration>
+            <executions>
+                <execution>
+                   <id>generate-css-sydwild</id>
+                   <phase>process-resources</phase>
+                   <goals>
+                       <goal>compile</goal>
+                    </goals>
+                    <configuration>
+                       <includes>
+                           <include>bootstrap-sydwild.less</include>
+                       </includes>
+                       <compress>false</compress>
+                    </configuration>
+                </execution>
+                <execution>
+                   <id>generate-css-sydwild-min</id>
+                   <phase>process-resources</phase>
+                   <goals>
+                       <goal>compile</goal>
+                    </goals>
+                    <configuration>
+                       <includes>
+                           <include>bootstrap-sydwild.min.less</include>
+                       </includes>
+                       <compress>true</compress>
+                    </configuration>
+                </execution>
+            </executions>
+        </plugin>
         
          <plugin>
             <groupId>com.github.searls</groupId>

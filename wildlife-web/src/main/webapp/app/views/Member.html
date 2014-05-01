@@ -10,7 +10,7 @@
                <legend ng-show="isNew(member)"><i class="fa fa-user"></i>&nbsp;&nbsp;Create a new member</legend>
                <legend ng-show="!isNew(member)"><i class="fa fa-user"></i>&nbsp;&nbsp;Update {{member.firstName}} {{member.lastName}}'s details</legend>
                <input id="id" type="hidden" ng-model="member.id" />
-               <div class="form-group">
+               <div class="form-group" ng-class="{ 'has-error' : (memberForm.firstName.$invalid && !memberForm.firstName.$pristine) || (memberForm.lastName.$invalid && !memberForm.lastName.$pristine)}">
                  <label for="firstName" class="col-lg-2 control-label">Name</label>
                  <div class="col-lg-5">
                    <input type="text" class="form-control" id="firstName" name="firstName" required placeholder="First Name" ng-model="member.firstName" />
@@ -19,10 +19,10 @@
                    <input type="text" class="form-control" id="lastName" name="lastName" required placeholder="Last Name"  ng-model="member.lastName" />
                  </div>
                </div>
-               <div class="form-group">
+               <div class="form-group" ng-class="{ 'has-error' : memberForm.email.$invalid && !memberForm.email.$pristine}">
                  <label for="email" class="col-lg-2 control-label">Email</label>
                  <div class="col-lg-10">
-                   <input type="email" class="form-control" id="email" name="email" required placeholder="Email"  ng-model="member.email" />
+                   <input type="email" class="form-control" id="email" name="email" required placeholder="Email"  ng-required="true" ng-model="member.email" />
                  </div>
                </div>
                <div class="form-group">
