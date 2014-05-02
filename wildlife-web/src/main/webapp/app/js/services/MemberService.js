@@ -22,12 +22,14 @@ sydneyWildlifeApp.factory('MemberService',['Restangular', 'DateService', functio
         	var aPromise = baseMembers.getList();
         	return aPromise;
         },
-        memberDetail: function(id){
+        memberDetail: function(id) {
         	return Restangular.one("members", id);
-        	
         },
-        deleteMember: function(id){
-        	return Restangular.one("members", id).remove();
+        deleteMember: function(id) {
+        	var member = Restangular.one("members", id);
+        	
+        	var aPromise = member.remove();
+        	return aPromise;
         }
     };
 }]);
