@@ -44,7 +44,7 @@
 
 <div class="container">
   <div class="absolutecenterh z100" ng-controller="AlertController">
-      <div class="modal-dialog" ng-repeat="alert in alerts">
+      <div class="alertbox modal-dialog" ng-repeat="alert in alerts">
         <div class="modal-content">
             <alert class="nomargin" type="alert.type" close="close($index)">{{alert.msg}}</alert>
         </div>
@@ -64,6 +64,7 @@
 <script src="lib/angular/angular-route.js"></script>
 <script src="lib/angular/angular-ui.js"></script>
 <script src="lib/angular/angular-resource.js"></script>
+<script src="lib/angular/angular-animate.js"></script>
 <script src="lib/angular/restangular.js"></script>
 <script src="lib/bootstrap/js/bootstrap.js"></script>
 <script src="lib/bootstrap/js/ui-bootstrap.js"></script>
@@ -80,6 +81,7 @@
 <!-- <script src="lib/angular/angular-route.min.js"></script> -->
 <!-- <script src="lib/angular/angular-ui.min.js"></script> -->
 <!-- <script src="lib/angular/angular-resource.min.js"></script> -->
+<!-- <script src="lib/angular/angular-animate.min.js"></script> -->
 <!-- <script src="lib/angular/restangular.min.js"></script> -->
 <!-- <script src="lib/bootstrap/js/bootstrap.min.js"></script> -->
 <!-- <script src="lib/bootstrap/js/ui-bootstrap.min.js"></script> -->

@@ -1,6 +1,6 @@
 'use strict';
 
-var sydneyWildlifeApp = angular.module('sydneyWildlifeApp', ['ngRoute', 'restangular', 'ui.bootstrap'])
+var sydneyWildlifeApp = angular.module('sydneyWildlifeApp', ['ngRoute', 'ngAnimate', 'restangular', 'ui.bootstrap'])
          .config(function ($routeProvider, RestangularProvider, $locationProvider) {
 					
 					// TODO: we need to derive this
