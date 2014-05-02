@@ -1,7 +1,7 @@
 'use strict';
 
 sydneyWildlifeApp.controller('MemberController',
-    function MemberController($scope, MemberService, NavService, AlertService, $routeParams) {
+    function MemberController($scope, MemberService, NavService, AlertService, $routeParams, ALERT_CODES) {
 	    $scope.showFeedback = false;
 	    	    
 	    /**
@@ -14,13 +14,13 @@ sydneyWildlifeApp.controller('MemberController',
             	var aPromise = MemberService.save(member);
             	aPromise.then(function(object) {
             	   member.id = object.id;
-            	   AlertService.show("success", "Successfully registered/updated member " + member.firstName + " " + member.lastName + ".");
+            	   AlertService.show(ALERT_CODES.success, "Successfully registered/updated member " + member.firstName + " " + member.lastName + ".");
             	   NavService.goTo("/members");
             	}, function errorCallback(error) {
-            	   AlertService.show("danger", "Error saving member with Id " + member.id + ". " + error);
+            	   AlertService.show(ALERT_CODES.error, "Error saving member with Id " + member.id + ".");
             	});
             } else {
-               AlertService.show("danger", "Please resolve the highlighted errors.");
+               AlertService.show(ALERT_CODES.warning, "Please resolve the highlighted errors.");
             }
         };
         
@@ -31,7 +31,7 @@ sydneyWildlifeApp.controller('MemberController',
         	MemberService.list().then(function(object) {
         		$scope.memberList = object;
         	}, function(error) {
-        	   AlertService.show("danger", "Error retrieving members. " + error);
+        	   AlertService.show(ALERT_CODES.error, "Error retrieving members.");
         	});
         };
         
@@ -43,7 +43,7 @@ sydneyWildlifeApp.controller('MemberController',
         		MemberService.memberDetail($routeParams.memberId).get().then(function(object) {
         			$scope.member = object.originalData;        		
 	        	}, function(error) {
-	        		AlertService.show("danger", "Error retrieving member with Id " + $routeParams.memberId + ". "+ error);
+	        		AlertService.show(ALERT_CODES.error, "Error retrieving member with Id " + $routeParams.memberId + ".");
 	        	});
         	}
         };
@@ -57,10 +57,10 @@ sydneyWildlifeApp.controller('MemberController',
         	if (member != undefined && member.id != undefined){
         		MemberService.deleteMember(member.id).then(function(object) {
         			$scope.member = {};
-        			AlertService.show("info", "Successfully deleted member with Id "+ member.id + "." );
+        			AlertService.show(ALERT_CODES.info, "Successfully deleted member with Id "+ member.id + "." );
         			NavService.goTo("/members");
 	        	}, function(error) {
-	        		AlertService.show("danger", "Error deleting member with Id " + member.id + ". "+ error);
+	        		AlertService.show(ALERT_CODES.error, "Error deleting member with Id " + member.id + ".");
 	        		NavService.goTo("/members");
 	        	});
         	}
