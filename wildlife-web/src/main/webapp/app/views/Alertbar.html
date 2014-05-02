@@ -1,0 +1,7 @@
+<div class="absolutecenterh z100" ng-controller="AlertController">
+    <div class="alertbox modal-dialog" ng-repeat="alert in alerts">
+      <div class="modal-content">
+          <alert class="nomargin" type="alert.type" close="close($index)">{{alert.msg}}</alert>
+      </div>
+    </div>
+</div>

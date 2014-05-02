@@ -69,7 +69,7 @@ describe('MemberController Tests', function() {
 		    spyOn(localAlertService, "show");
 			localScope.saveMember(member, form);
 			expect(localMemberService.save).not.toHaveBeenCalled();
-			expect(localAlertService.show).toHaveBeenCalledWith('danger', jasmine.any(String));
+			expect(localAlertService.show).toHaveBeenCalledWith('warning', jasmine.any(String));
 		}));
     });
 

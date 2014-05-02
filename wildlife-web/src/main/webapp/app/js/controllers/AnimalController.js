@@ -1,5 +1,8 @@
 'use strict';
 
+/*
+ * Animals functionalities for the controller layer
+ */
 sydneyWildlifeApp.controller('AnimalController',
     function AnimalController($scope, AnimalService, NavService, AlertService, $routeParams, ALERT_CODES) {
 	    $scope.showFeedback = false;

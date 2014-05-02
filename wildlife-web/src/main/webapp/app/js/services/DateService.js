@@ -3,7 +3,6 @@
 /**
  * This class contains utils that deal with dates.
  */
-
 sydneyWildlifeApp.factory('DateService', function () {
     return {
     		convertMMDDYYYYToJSONDate: function(originalDate) {

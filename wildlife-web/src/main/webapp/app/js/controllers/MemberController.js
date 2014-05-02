@@ -1,5 +1,8 @@
 'use strict';
 
+/*
+ * Members functionalities for the controller layer
+ */
 sydneyWildlifeApp.controller('MemberController',
     function MemberController($scope, MemberService, NavService, AlertService, $routeParams, ALERT_CODES) {
 	    $scope.showFeedback = false;

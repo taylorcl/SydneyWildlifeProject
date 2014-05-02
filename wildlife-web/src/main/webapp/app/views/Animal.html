@@ -1,73 +1,69 @@
-<div style="padding-left:20px; padding-right:20px">
-  <div class="container" >
-    <br/><br/>
-        
-     <div class="col-lg-6">
-         <div class="well bs-component">
-           <div ng-init="animalDetail()" />
-           <form name="animalForm" class="form-horizontal">
-             <fieldset>
-               <legend ng-show="isNew(animal)"><i class="fa fa-twitter"></i>&nbsp;&nbsp;Add a new animal</legend>
-               <legend ng-show="!isNew(animal)"><i class="fa fa-twitter"></i>&nbsp;&nbsp;Update an animal's details</legend>
-               <input id="id" type="hidden" ng-model="animal.id" />
-               <div class="form-group">
-                 <label for="callerAddress-line1" class="col-lg-2 control-label">Caller Details</label>
-                 <div class="col-lg-10">
-                   <input type="text" class="form-control" id="callerAddress-line1" placeholder="Address" ng-model="animal.callerAddress.line1" />
-                 </div>
-                 <br /><br />
-                 <div class="col-lg-10">
-                   <input type="text" class="form-control" id="callerAddress-line2" placeholder="" ng-model="animal.callerAddress.line2" />
-                 </div>
-               </div>
-               <div class="form-group">
-                 <label for="callerAddress-state" class="col-lg-2 control-label"></label>
-                 <div class="col-lg-3">
-                   <select class="form-control" id="callerAddress-state" placeholder="State" ng-model="animal.callerAddress.state">
-                     <option></option>
-                     <option>NSW</option>
-                     <option>ACT</option>
-                     <option>VIC</option>
-                     <option>QLD</option>
-                     <option>SA</option>
-                     <option>TAS</option>
-                     <option>NT</option>
-                     <option>WA</option>
-                   </select>
-                 </div>
-                 <div class="col-lg-2">
-                   <input type="text" class="form-control" id="callerAddress-postcode" placeholder="Post Code" ng-model="animal.callerAddress.postcode" />
-                 </div>
-                 <div class="col-lg-5">
-                   <input type="text" class="form-control" id="callerAddress-suburb" placeholder="Suburb"  ng-model="animal.callerAddress.suburb" />
-                 </div>
-               </div>
-               <div class="form-group">
-                 <label for="callerPhone" class="col-lg-2 control-label"></label>
-                 <div class="col-lg-5">
-                   <input type="text" class="form-control" id="callerPhone" required placeholder="Phone"  ng-model="animal.callerPhone" />
-                 </div>
-               </div>
-               <div class="form-group">
-                 <label for="description" class="col-lg-2 control-label">Animal Description</label>
-                 <div class="col-lg-10">
-                   <textarea class="form-control" id="description" required placeholder="Description"  ng-model="animal.description"></textarea>
-                 </div>
-               </div>
-             </fieldset>
-             <br />
-             <div class="form-group">
-              <div class="col-lg-2 col-lg-offset-2">
-                  <button id="delete-animal-button" type="submit" class="btn btn-danger" ng-show="!isNew(animal)" ng-click="deleteAnimal(animal)">Delete</button>
-              </div>
-              <div class="col-lg-4 pull-right">
-                <a class="btn btn-default" ng-href="#/animals">Cancel</a>
-                <button id="submit-animal-button" type="submit" class="btn btn-primary" ng-show="isNew(animal)" ng-click="saveAnimal(animal, animalForm)">Add</button>
-                <button id="update-animal-button" type="submit" class="btn btn-primary" ng-show="!isNew(animal)" ng-click="saveAnimal(animal, animalForm)">Update</button>
-              </div>
-            </div>
-           </form>
+<br/><br/>
+  
+<div class="col-lg-6">
+   <div class="well bs-component">
+     <div ng-init="animalDetail()" />
+     <form name="animalForm" class="form-horizontal">
+       <fieldset>
+         <legend ng-show="isNew(animal)"><i class="fa fa-twitter"></i>&nbsp;&nbsp;Add a new animal</legend>
+         <legend ng-show="!isNew(animal)"><i class="fa fa-twitter"></i>&nbsp;&nbsp;Update an animal's details</legend>
+         <input id="id" type="hidden" ng-model="animal.id" />
+         <div class="form-group">
+           <label for="callerAddress-line1" class="col-lg-2 control-label">Caller Details</label>
+           <div class="col-lg-10">
+             <input type="text" class="form-control" id="callerAddress-line1" placeholder="Address" ng-model="animal.callerAddress.line1" />
+           </div>
+           <br /><br />
+           <div class="col-lg-10">
+             <input type="text" class="form-control" id="callerAddress-line2" placeholder="" ng-model="animal.callerAddress.line2" />
+           </div>
          </div>
-       </div>
-    </div>   
-</div>
+         <div class="form-group">
+           <label for="callerAddress-state" class="col-lg-2 control-label"></label>
+           <div class="col-lg-3">
+             <select class="form-control" id="callerAddress-state" placeholder="State" ng-model="animal.callerAddress.state">
+               <option></option>
+               <option>NSW</option>
+               <option>ACT</option>
+               <option>VIC</option>
+               <option>QLD</option>
+               <option>SA</option>
+               <option>TAS</option>
+               <option>NT</option>
+               <option>WA</option>
+             </select>
+           </div>
+           <div class="col-lg-2">
+             <input type="text" class="form-control" id="callerAddress-postcode" placeholder="Post Code" ng-model="animal.callerAddress.postcode" />
+           </div>
+           <div class="col-lg-5">
+             <input type="text" class="form-control" id="callerAddress-suburb" placeholder="Suburb"  ng-model="animal.callerAddress.suburb" />
+           </div>
+         </div>
+         <div class="form-group">
+           <label for="callerPhone" class="col-lg-2 control-label"></label>
+           <div class="col-lg-5">
+             <input type="text" class="form-control" id="callerPhone" required placeholder="Phone"  ng-model="animal.callerPhone" />
+           </div>
+         </div>
+         <div class="form-group">
+           <label for="description" class="col-lg-2 control-label">Animal Description</label>
+           <div class="col-lg-10">
+             <textarea class="form-control" id="description" required placeholder="Description"  ng-model="animal.description"></textarea>
+           </div>
+         </div>
+       </fieldset>
+       <br />
+       <div class="form-group">
+        <div class="col-lg-2 col-lg-offset-2">
+            <button id="delete-animal-button" type="submit" class="btn btn-danger" ng-show="!isNew(animal)" ng-click="deleteAnimal(animal)">Delete</button>
+        </div>
+        <div class="col-lg-4 pull-right">
+          <a class="btn btn-default" ng-href="#/animals">Cancel</a>
+          <button id="submit-animal-button" type="submit" class="btn btn-primary" ng-show="isNew(animal)" ng-click="saveAnimal(animal, animalForm)">Add</button>
+          <button id="update-animal-button" type="submit" class="btn btn-primary" ng-show="!isNew(animal)" ng-click="saveAnimal(animal, animalForm)">Update</button>
+        </div>
+      </div>
+     </form>
+   </div>
+ </div>

@@ -1,108 +1,104 @@
-<div style="padding-left:20px; padding-right:20px">
-  <div class="container" >
-    <br/><br/>
-        
-     <div class="col-lg-6">
-         <div class="well bs-component">
-           <div ng-init="memberDetail()" />
-           <form name="memberForm" class="form-horizontal">
-             <fieldset>
-               <legend ng-show="isNew(member)"><i class="fa fa-user"></i>&nbsp;&nbsp;Create a new member</legend>
-               <legend ng-show="!isNew(member)"><i class="fa fa-user"></i>&nbsp;&nbsp;Update {{member.firstName}} {{member.lastName}}'s details</legend>
-               <input id="id" type="hidden" ng-model="member.id" />
-               <div class="form-group" ng-class="{ 'has-error' : (memberForm.firstName.$invalid && !memberForm.firstName.$pristine) || (memberForm.lastName.$invalid && !memberForm.lastName.$pristine)}">
-                 <label for="firstName" class="col-lg-2 control-label">Name</label>
-                 <div class="col-lg-5">
-                   <input type="text" class="form-control" id="firstName" name="firstName" required placeholder="First Name" ng-model="member.firstName" />
-                 </div>
-                 <div class="col-lg-5">
-                   <input type="text" class="form-control" id="lastName" name="lastName" required placeholder="Last Name"  ng-model="member.lastName" />
-                 </div>
-               </div>
-               <div class="form-group" ng-class="{ 'has-error' : memberForm.email.$invalid && !memberForm.email.$pristine}">
-                 <label for="email" class="col-lg-2 control-label">Email</label>
-                 <div class="col-lg-10">
-                   <input type="email" class="form-control" id="email" name="email" required placeholder="Email"  ng-required="true" ng-model="member.email" />
-                 </div>
-               </div>
-               <div class="form-group">
-                 <label for="homeAddress-line1" class="col-lg-2 control-label">Home Address</label>
-                 <div class="col-lg-10">
-                   <input type="text" class="form-control" id="homeAddress-line1" name="homeAddress-line1" placeholder="Home Address" ng-model="member.homeAddress.line1" />
-                 </div>
-                 <br /><br />
-                 <div class="col-lg-10">
-                   <input type="text" class="form-control" id="homeAddress-line2" name="homeAddress-line2" placeholder="" ng-model="member.homeAddress.line2" />
-                 </div>
-               </div>
-               <div class="form-group">
-                 <label for="homeAddress-state" class="col-lg-2 control-label"></label>
-                 <div class="col-lg-3">
-                   <select class="form-control" id="homeAddress-state" name="homeAddress-state" placeholder="State" ng-model="member.homeAddress.state">
-                     <option></option>
-                     <option>NSW</option>
-                     <option>ACT</option>
-                     <option>VIC</option>
-                     <option>QLD</option>
-                     <option>SA</option>
-                     <option>TAS</option>
-                     <option>NT</option>
-                     <option>WA</option>
-                   </select>
-                 </div>
-                 <div class="col-lg-2">
-                   <input type="text" class="form-control" id="homeAddress-postcode" name="homeAddress-postcode" placeholder="Post Code" ng-model="member.homeAddress.postcode" />
-                 </div>
-                 <div class="col-lg-5">
-                   <input type="text" class="form-control" id="homeAddress-suburb" name="homeAddress-suburb" placeholder="Suburb"  ng-model="member.homeAddress.suburb" />
-                 </div>
-               </div>
-               <div class="form-group">
-                 <label for="postalAddress-line1" class="col-lg-2 control-label">Postal Address</label>
-                 <div class="col-lg-10">
-                   <input type="text" class="form-control" id="postalAddress-line1" name="postalAddress-line1" placeholder="Postal Address" ng-model="member.postalAddress.line1" />
-                 </div>
-                 <br /><br />
-                 <div class="col-lg-10">
-                   <input type="text" class="form-control" id="postalAddress-line2" name="postalAddress-line2" placeholder="" ng-model="member.postalAddress.line2" />
-                 </div>
-               </div>
-               <div class="form-group">
-                 <label for="postalAddress-state" class="col-lg-2 control-label"></label>
-                 <div class="col-lg-3">
-                   <select class="form-control" id="postalAddress-state" name="postalAddress-state" placeholder="State" ng-model="member.postalAddress.state" ng-selected="member.postalAddress.state">
-                     <option></option>
-                     <option>NSW</option>
-                     <option>ACT</option>
-                     <option>VIC</option>
-                     <option>QLD</option>
-                     <option>SA</option>
-                     <option>TAS</option>
-                     <option>NT</option>
-                     <option>WA</option>
-                   </select>
-                 </div>
-                 <div class="col-lg-2">
-                   <input type="text" class="form-control" id="postalAddress-postcode" name="postalAddress-postcode" placeholder="Post Code" ng-model="member.postalAddress.postcode" />
-                 </div>
-                 <div class="col-lg-5">
-                   <input type="text" class="form-control" id="postalAddress-suburb" name="postalAddress-suburb" placeholder="Suburb"  ng-model="member.postalAddress.suburb" />
-                 </div>
-               </div>
-             </fieldset>
-             <br />
-             <div class="form-group">
-              <div class="col-lg-2 col-lg-offset-2">
-                  <button id="delete-member-button" type="submit" class="btn btn-danger" ng-show="!isNew(member)" ng-click="deleteMember(member)">Delete</button>
-              </div>
-              <div class="col-lg-4 pull-right">
-                <a class="btn btn-default" ng-href="#/members">Cancel</a>
-                <button id="submit-member-button" type="submit" class="btn btn-primary" ng-show="isNew(member)" ng-click="saveMember(member, memberForm)">Create</button>
-                <button id="update-member-button" type="submit" class="btn btn-primary" ng-show="!isNew(member)" ng-click="saveMember(member, memberForm)">Update</button>
-              </div>
-            </div>
-           </form>
+<br/><br/>
+  
+<div class="col-lg-6">
+   <div class="well bs-component">
+     <div ng-init="memberDetail()" />
+     <form name="memberForm" class="form-horizontal">
+       <fieldset>
+         <legend ng-show="isNew(member)"><i class="fa fa-user"></i>&nbsp;&nbsp;Create a new member</legend>
+         <legend ng-show="!isNew(member)"><i class="fa fa-user"></i>&nbsp;&nbsp;Update {{member.firstName}} {{member.lastName}}'s details</legend>
+         <input id="id" type="hidden" ng-model="member.id" />
+         <div class="form-group" ng-class="{ 'has-error' : (memberForm.firstName.$invalid && !memberForm.firstName.$pristine) || (memberForm.lastName.$invalid && !memberForm.lastName.$pristine)}">
+           <label for="firstName" class="col-lg-2 control-label">Name</label>
+           <div class="col-lg-5">
+             <input type="text" class="form-control" id="firstName" name="firstName" required placeholder="First Name" ng-model="member.firstName" />
+           </div>
+           <div class="col-lg-5">
+             <input type="text" class="form-control" id="lastName" name="lastName" required placeholder="Last Name"  ng-model="member.lastName" />
+           </div>
          </div>
-       </div>
-    </div>   
-</div>
+         <div class="form-group" ng-class="{ 'has-error' : memberForm.email.$invalid && !memberForm.email.$pristine}">
+           <label for="email" class="col-lg-2 control-label">Email</label>
+           <div class="col-lg-10">
+             <input type="email" class="form-control" id="email" name="email" required placeholder="Email"  ng-required="true" ng-model="member.email" />
+           </div>
+         </div>
+         <div class="form-group">
+           <label for="homeAddress-line1" class="col-lg-2 control-label">Home Address</label>
+           <div class="col-lg-10">
+             <input type="text" class="form-control" id="homeAddress-line1" name="homeAddress-line1" placeholder="Home Address" ng-model="member.homeAddress.line1" />
+           </div>
+           <br /><br />
+           <div class="col-lg-10">
+             <input type="text" class="form-control" id="homeAddress-line2" name="homeAddress-line2" placeholder="" ng-model="member.homeAddress.line2" />
+           </div>
+         </div>
+         <div class="form-group">
+           <label for="homeAddress-state" class="col-lg-2 control-label"></label>
+           <div class="col-lg-3">
+             <select class="form-control" id="homeAddress-state" name="homeAddress-state" placeholder="State" ng-model="member.homeAddress.state">
+               <option></option>
+               <option>NSW</option>
+               <option>ACT</option>
+               <option>VIC</option>
+               <option>QLD</option>
+               <option>SA</option>
+               <option>TAS</option>
+               <option>NT</option>
+               <option>WA</option>
+             </select>
+           </div>
+           <div class="col-lg-2">
+             <input type="text" class="form-control" id="homeAddress-postcode" name="homeAddress-postcode" placeholder="Post Code" ng-model="member.homeAddress.postcode" />
+           </div>
+           <div class="col-lg-5">
+             <input type="text" class="form-control" id="homeAddress-suburb" name="homeAddress-suburb" placeholder="Suburb"  ng-model="member.homeAddress.suburb" />
+           </div>
+         </div>
+         <div class="form-group">
+           <label for="postalAddress-line1" class="col-lg-2 control-label">Postal Address</label>
+           <div class="col-lg-10">
+             <input type="text" class="form-control" id="postalAddress-line1" name="postalAddress-line1" placeholder="Postal Address" ng-model="member.postalAddress.line1" />
+           </div>
+           <br /><br />
+           <div class="col-lg-10">
+             <input type="text" class="form-control" id="postalAddress-line2" name="postalAddress-line2" placeholder="" ng-model="member.postalAddress.line2" />
+           </div>
+         </div>
+         <div class="form-group">
+           <label for="postalAddress-state" class="col-lg-2 control-label"></label>
+           <div class="col-lg-3">
+             <select class="form-control" id="postalAddress-state" name="postalAddress-state" placeholder="State" ng-model="member.postalAddress.state" ng-selected="member.postalAddress.state">
+               <option></option>
+               <option>NSW</option>
+               <option>ACT</option>
+               <option>VIC</option>
+               <option>QLD</option>
+               <option>SA</option>
+               <option>TAS</option>
+               <option>NT</option>
+               <option>WA</option>
+             </select>
+           </div>
+           <div class="col-lg-2">
+             <input type="text" class="form-control" id="postalAddress-postcode" name="postalAddress-postcode" placeholder="Post Code" ng-model="member.postalAddress.postcode" />
+           </div>
+           <div class="col-lg-5">
+             <input type="text" class="form-control" id="postalAddress-suburb" name="postalAddress-suburb" placeholder="Suburb"  ng-model="member.postalAddress.suburb" />
+           </div>
+         </div>
+       </fieldset>
+       <br />
+       <div class="form-group">
+        <div class="col-lg-2 col-lg-offset-2">
+            <button id="delete-member-button" type="submit" class="btn btn-danger" ng-show="!isNew(member)" ng-click="deleteMember(member)">Delete</button>
+        </div>
+        <div class="col-lg-4 pull-right">
+          <a class="btn btn-default" ng-href="#/members">Cancel</a>
+          <button id="submit-member-button" type="submit" class="btn btn-primary" ng-show="isNew(member)" ng-click="saveMember(member, memberForm)">Create</button>
+          <button id="update-member-button" type="submit" class="btn btn-primary" ng-show="!isNew(member)" ng-click="saveMember(member, memberForm)">Update</button>
+        </div>
+      </div>
+     </form>
+   </div>
+ </div>

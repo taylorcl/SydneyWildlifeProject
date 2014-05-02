@@ -1,0 +1,31 @@
+<nav class="navbar navbar-default navbar-fixed-top" ng-controller="NavController">
+  <div class="container">
+     <div class="navbar-header">
+       <a class="navbar-brand" href="#">Sydney Wildlife</a>
+       <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar-main">
+         <span class="icon-bar"></span>
+         <span class="icon-bar"></span>
+         <span class="icon-bar"></span>
+       </button>
+     </div>
+     
+     <div class="navbar-collapse collapse" id="navbar-main" ng-if="isAuthorized([userRoles.admin,userRoles.editor])">
+       <ul class="nav navbar-nav">
+         <li ng-class="{'active': isActive('animals')}"><a ng-href="#/animals"><i class="fa fa-twitter"></i>&nbsp;&nbsp;Animals</a></li>
+         <li ng-class="{'active': isActive('members')}"><a ng-href="#/members"><i class="fa fa-users"></i>&nbsp;&nbsp;Members</a></li>
+       </ul>
+       <ul class="nav navbar-nav navbar-right">
+          <li class="dropdown" ng-if="isAuthorized([userRoles.admin,userRoles.editor])">
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-user"></i>&nbsp;&nbsp;{{currentUser.userId}}&nbsp;<b class="caret"></b></a>
+            <ul class="dropdown-menu">
+              <li><a ng-href="#/members/{{currentUser.userId}}">View my details</a></li>
+              <li class="divider"></li>
+              <li><a href="" ng-click="logout()">Logout</a></li>
+            </ul>
+          </li>
+        </ul>
+     </div>
+  </div>
+</nav>
+
+<div class="page-header"></div>

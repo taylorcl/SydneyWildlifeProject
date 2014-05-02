@@ -5,8 +5,16 @@
  */
 sydneyWildlifeApp.controller('NavController',
     function NavController($scope, $route) {
-       //we set $route to  we have access to it in the HTML
-       $scope.$route = $route;
+   
+       $scope.isActive = function(routeId) {
+          var activePage = {};
+          
+          if($route.current != undefined) {
+             activePage = $route.current.activePage;
+          }
+          
+          return activePage === routeId;
+       };
     }
 
 );

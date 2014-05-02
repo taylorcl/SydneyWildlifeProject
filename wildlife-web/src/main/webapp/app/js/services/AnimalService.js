@@ -1,5 +1,8 @@
 'use strict';
 
+/*
+ * Animals functionalities for the service layer
+ */
 sydneyWildlifeApp.factory('AnimalService',['Restangular', 'DateService', function (Restangular, DateService) {
 	
 	/**

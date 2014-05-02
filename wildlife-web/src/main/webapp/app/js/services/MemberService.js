@@ -1,5 +1,8 @@
 'use strict';
 
+/*
+ * Members functionalities for the service layer
+ */
 sydneyWildlifeApp.factory('MemberService',['Restangular', 'DateService', function (Restangular, DateService) {
 	
 	/**
