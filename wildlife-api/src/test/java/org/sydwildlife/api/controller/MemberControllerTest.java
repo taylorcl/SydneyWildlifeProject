@@ -4,13 +4,13 @@ import static org.springframework.http.MediaType.APPLICATION_JSON;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 import java.util.UUID;
 
 import org.junit.Assert;
 import org.junit.Test;
-import org.springframework.test.web.servlet.MvcResult;
 import org.sydwildlife.api.domain.Address;
 import org.sydwildlife.api.domain.Member;
 import org.sydwildlife.api.domain.enumeration.AuState;
@@ -58,6 +58,31 @@ public class MemberControllerTest extends AbstractControllerTest {
    }
 
    @Test
+   public void testSimplePageableParameterShouldWork() throws Exception {
+      Member m = Member.builder()
+            .withFirstName("mathieu")
+            .withLastName("carrot")
+            .build();
+      memberRepository.save(m);
+
+      Member m1 = Member.builder()
+            .withFirstName("another")
+            .withLastName("carrot")
+            .build();
+      memberRepository.save(m1);
+
+      mockMvc
+            .perform(get(API_URL + "?page=0&size=1", "")
+                  .accept(APPLICATION_JSON))
+            .andDo(print())
+            .andExpect(status().isOk())
+            .andExpect(jsonPath("$.totalPages").value(2))
+            .andExpect(jsonPath("$.firstPage").value(true))
+            .andReturn();
+
+   }
+
+   @Test
    public void testGetAllNoFound() throws Exception {
       mockMvc
             .perform(get(API_URL, "")
@@ -90,18 +115,15 @@ public class MemberControllerTest extends AbstractControllerTest {
             .withPostalAddress(postalAdd)
             .build();
 
-      MvcResult result = mockMvc
+      mockMvc
             .perform(post(API_URL, "")
                   .contentType(APPLICATION_JSON)
                   .content(JsonHelper.getJson(m)))
             .andDo(print())
             .andExpect(status().isOk())
+            .andExpect(jsonPath("$.homeAddress.line1").value("line1"))
+            .andExpect(jsonPath("$.postalAddress.line1").value("pline1"))
             .andReturn();
-
-      Object output = JsonHelper.readJsonFromString(result.getResponse().getContentAsString(),
-            Member.class);
-      Assert.assertEquals("line1", ((Member) output).getHomeAddress().getLine1());
-      Assert.assertEquals("pline1", ((Member) output).getPostalAddress().getLine1());
    }
 
    @Test
