@@ -21,6 +21,16 @@
          <span class="icon-bar"></span>
        </button>
      </div>
+     <ul class="nav navbar-nav navbar-right">
+      <li class="dropdown">
+        <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-user"></i>&nbsp;&nbsp;Marty McFly&nbsp;<b class="caret"></b></a>
+        <ul class="dropdown-menu">
+          <li><a ng-href="#/members">View my details</a></li>
+          <li class="divider"></li>
+          <li><a ng-href="#">Logout</a></li>
+        </ul>
+      </li>
+    </ul>
      <div class="navbar-collapse collapse" id="navbar-main">
        <ul class="nav navbar-nav">
          <li ng-class="{'active': $route.current.activePage == 'animals'}"><a ng-href="#/animals"><i class="fa fa-twitter"></i>&nbsp;&nbsp;Animals</a></li>
@@ -33,10 +43,14 @@
 <div class="page-header"></div>
 
 <div class="container">
-   <div ng-controller="AlertController">
-     <alert ng-repeat="alert in alerts" type="alert.type" close="close($index)">{{alert.msg}}</alert>
-   </div>
-   <ng-view></ng-view>
+  <div class="absolutecenterh z100" ng-controller="AlertController">
+      <div class="modal-dialog" ng-repeat="alert in alerts">
+        <div class="modal-content">
+            <alert class="nomargin" type="alert.type" close="close($index)">{{alert.msg}}</alert>
+        </div>
+      </div>
+  </div>
+  <ng-view></ng-view>
 </div>
 
 <!-- Libraries -->
@@ -45,7 +59,6 @@
 <!-- **** DEV MODE **** -->
 <script src="lib/jquery/jquery.js"></script>
 <script src="lib/jquery/jquery-ui.js"></script>
-
 
 <script src="lib/angular/angular.js"></script>
 <script src="lib/angular/angular-route.js"></script>
