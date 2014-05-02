@@ -664,6 +664,7 @@
                   <source>${project.build.directory}/client-lib/export/app/lib/jasmine/jasmine.console_reporter.js</source>
                   <source>${project.build.directory}/client-lib/export/app/lib/angular/angular.js</source>
                   <source>${project.build.directory}/client-lib/export/app/lib/angular/angular-route.js</source>
+                  <source>${project.build.directory}/client-lib/export/app/lib/angular/angular-animate.js</source>
                   <source>${project.build.directory}/client-lib/export/app/lib/bootstrap/js/ui-bootstrap-tpls.js</source>
                   <source>${project.build.directory}/client-lib/export/app/lib/angular/angular-mocks.js</source>
                   <source>${project.build.directory}/client-lib/export/app/lib/angular/restangular.js</source>
