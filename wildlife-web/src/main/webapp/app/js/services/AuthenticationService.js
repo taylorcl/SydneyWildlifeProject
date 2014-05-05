@@ -12,7 +12,15 @@ sydneyWildlifeApp.factory('AuthService', function ($http, Session, USER_ROLES) {
 //          .then(function (res) {
 //            Session.create(res.id, res.userid, res.role);
 //          });
-         return Session.create("000001", "123456", "editor");
+         if(credentials.username === "admin") {
+            return Session.create("000001", "123456", "admin");
+         } else if(credentials.username === "editor") {
+            return Session.create("000001", "123456", "editor");
+         } else if(credentials.username === "guest") {
+            return Session.create("000001", "123456", "guest");
+         } else {
+            return null;
+         }
       },
       logout: function() {
          return Session.destroy();

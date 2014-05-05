@@ -28,6 +28,7 @@ sydneyWildlifeApp.controller('AppController', function ($scope, USER_ROLES, AUTH
   
   $scope.$on(AUTH_EVENTS.notAuthorized, function(event, args) {
      AlertService.show(ALERT_CODES.warning, args.msg);
+     NavService.goTo((args.prevPath != undefined) ? args.prevPath : "/login");
   });
   
   $scope.$on(AUTH_EVENTS.loginSuccess, function(event, args) {

@@ -16,9 +16,15 @@ sydneyWildlifeApp.controller('LoginController', function ($scope, $rootScope, AU
 //        $rootScope.$broadcast(AUTH_EVENTS.loginFailed);
 //     });
       var user = AuthService.login(credentials);
-      $rootScope.$broadcast(AUTH_EVENTS.loginSuccess, {
-               user: user,
-               msg: "Logged in successfully."
+      if(user == null) {
+         $rootScope.$broadcast(AUTH_EVENTS.loginFailed, {
+               msg: "Unable to log in."
             });
+      } else {
+         $rootScope.$broadcast(AUTH_EVENTS.loginSuccess, {
+            user: user,
+            msg: "Logged in successfully."
+         });
+      }
    };
 });

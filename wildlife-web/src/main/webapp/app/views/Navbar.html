@@ -9,17 +9,17 @@
        </button>
      </div>
      
-     <div class="navbar-collapse collapse" id="navbar-main" ng-if="isAuthorized([userRoles.admin,userRoles.editor])">
+     <div class="navbar-collapse collapse" id="navbar-main" ng-if="isAuthorized([userRoles.admin,userRoles.editor,userRoles.guest])">
        <ul class="nav navbar-nav">
          <li ng-class="{'active': isActive('animals')}"><a ng-href="#/animals"><i class="fa fa-twitter"></i>&nbsp;&nbsp;Animals</a></li>
          <li ng-class="{'active': isActive('members')}"><a ng-href="#/members"><i class="fa fa-users"></i>&nbsp;&nbsp;Members</a></li>
        </ul>
        <ul class="nav navbar-nav navbar-right">
-          <li class="dropdown" ng-if="isAuthorized([userRoles.admin,userRoles.editor])">
+          <li class="dropdown" ng-if="isAuthorized([userRoles.admin,userRoles.editor,userRoles.guest])">
             <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-user"></i>&nbsp;&nbsp;{{currentUser.userId}}&nbsp;<b class="caret"></b></a>
             <ul class="dropdown-menu">
-              <li><a ng-href="#/members/{{currentUser.userId}}">View my details</a></li>
-              <li class="divider"></li>
+              <li ng-if="isAuthorized([userRoles.admin,userRoles.editor])"><a ng-href="#/members/{{currentUser.userId}}">View my details</a></li>
+              <li ng-if="isAuthorized([userRoles.admin,userRoles.editor])" class="divider"></li>
               <li><a href="" ng-click="logout()">Logout</a></li>
             </ul>
           </li>

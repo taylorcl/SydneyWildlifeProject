@@ -92,6 +92,7 @@ sydneyWildlifeApp.run(function ($rootScope, AUTH_EVENTS, AuthService) {
 //                   AuthService.fireEvent(AUTH_EVENTS.notAuthorized, "");
                   $rootScope.$broadcast(AUTH_EVENTS.notAuthorized, {
                         msg: "Sorry, you're not authorized to access the page you're trying to reach.",
+                        prevPath: (prev!= undefined) ? prev.originalPath : undefined,
                         nextPath: next.originalPath
                      });
                 } else {
@@ -99,6 +100,7 @@ sydneyWildlifeApp.run(function ($rootScope, AUTH_EVENTS, AuthService) {
 //                   AuthService.fireEvent(AUTH_EVENTS.notAuthenticated, "");
                   $rootScope.$broadcast(AUTH_EVENTS.notAuthenticated, {
                      msg: "Please login first.",
+                     prevPath: (prev!= undefined) ? prev.originalPath : undefined,
                      nextPath: next.originalPath
                   });
                 }
