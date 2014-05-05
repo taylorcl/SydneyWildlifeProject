@@ -16,7 +16,7 @@
        </ul>
        <ul class="nav navbar-nav navbar-right">
           <li class="dropdown" ng-if="isAuthorized([userRoles.admin,userRoles.editor,userRoles.guest])">
-            <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-user"></i>&nbsp;&nbsp;{{currentUser.userId}}&nbsp;<b class="caret"></b></a>
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-user"></i>&nbsp;&nbsp;{{currentUser.userName}}&nbsp;<b class="caret"></b></a>
             <ul class="dropdown-menu">
               <li ng-if="isAuthorized([userRoles.admin,userRoles.editor])"><a ng-href="#/members/{{currentUser.userId}}">View my details</a></li>
               <li ng-if="isAuthorized([userRoles.admin,userRoles.editor])" class="divider"></li>

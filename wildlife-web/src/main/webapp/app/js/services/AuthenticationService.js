@@ -12,12 +12,12 @@ sydneyWildlifeApp.factory('AuthService', function ($http, Session, USER_ROLES) {
 //          .then(function (res) {
 //            Session.create(res.id, res.userid, res.role);
 //          });
-         if(credentials.username === "admin") {
-            return Session.create("000001", "123456", "admin");
-         } else if(credentials.username === "editor") {
-            return Session.create("000001", "123456", "editor");
+         if(credentials.username === "claire") {
+            return Session.create("000001", "123456", "admin", "Claire Taylor");
+         } else if(credentials.username === "sherry") {
+            return Session.create("000001", "123456", "editor", "Sherry Wang");
          } else if(credentials.username === "guest") {
-            return Session.create("000001", "123456", "guest");
+            return Session.create("000001", "123456", "guest", "Guest");
          } else {
             return null;
          }
@@ -40,10 +40,11 @@ sydneyWildlifeApp.factory('AuthService', function ($http, Session, USER_ROLES) {
 });
 
 sydneyWildlifeApp.service('Session', function () {
-   this.create = function (sessionId, userId, userRole) {
+   this.create = function (sessionId, userId, userRole, userName) {
      this.id = sessionId;
      this.userId = userId;
      this.userRole = userRole;
+     this.userName = userName;
      
      return this;
    };
@@ -51,6 +52,7 @@ sydneyWildlifeApp.service('Session', function () {
      this.id = null;
      this.userId = null;
      this.userRole = null;
+     this.userName = null;
      
      return this;
    };
