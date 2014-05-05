@@ -1,6 +1,10 @@
 <div class="bs-docs-section" ng-if="isAuthorized([userRoles.admin,userRoles.editor,userRoles.guest])">
    <h3><i class="fa fa-users"></i>&nbsp;&nbsp;Members' List</h3>
-   <h5>Browse all the members, Edit them by clicking on their first name.</h5>
+   <div ng-switch on="isAuthorized([userRoles.admin,userRoles.editor])">
+     <h5 ng-switch-when=true>Browse all the members, Edit them by clicking on their first name.</h5>
+     <h5 ng-switch-when=false>Browse all the members.</h5>
+     <h5 ng-switch-default=true>Browse all the members.</h5>
+   </div>
    <a class="btn btn-primary" ng-href="#/members/new" ng-if="isAuthorized([userRoles.admin,userRoles.editor])"><i class="fa fa-user"></i><sup><i class="fa fa-plus"></i></sup>&nbsp;&nbsp;Create a new member</a>
    <br/><br/>
  <table ng-init="listMembers()" class="table table-striped table-hover">  
