@@ -2,13 +2,14 @@
   
 <div class="col-sm-12 col-lg-6" ng-if="isAuthorized([userRoles.admin,userRoles.member])">
   <div class="well bs-component" ng-init="memberDetail()" ng-switch="getMode()">
+  
     <form ng-switch-when="read" name="memberForm" class="form-horizontal">
       <fieldset>
         <legend>
           <i class="fa fa-user"></i>&nbsp;&nbsp;View {{originalMember.firstName}} {{originalMember.lastName}}'s details
           <div class="pull-right paddingB5">
-            <button id="delete-member-button" class="btn btn-danger btn-sm" ng-if="isAuthorized([userRoles.admin])" ng-click="deleteMember(member)"><i class="fa fa-trash-o"></i></button>
-            <button id="edit-member-button" class="btn btn-success btn-sm" ng-click="startEdit()"><i class="fa fa-pencil"></i></button>
+            <button id="delete-member-button" class="btn btn-danger btn-sm" ng-if="isAuthorized([userRoles.admin])" ng-click="deleteMember(member)" tooltip-placement="bottom" tooltip="Delete member"><i class="fa fa-trash-o"></i></button>
+            <button id="edit-member-button" class="btn btn-success btn-sm" ng-click="startEdit()" tooltip-placement="bottom" tooltip="Edit member"><i class="fa fa-pencil"></i></button>
           </div>
         </legend>
         <input id="id" type="hidden" ng-model="member.id" />
@@ -27,10 +28,10 @@
         <div class="form-group form-multiline">
           <label for="homeAddress-line1" class="col-sm-2 control-label">Home</label>
           <div class="col-sm-10">
-            <p class="form-control-static" id="homeAddress-line1">{{originalMember.homeAddress.line1}}</p>
+            <p class="form-control-static" id="homeAddress-line1">{{originalMember.homeAddress.line1}}&nbsp;</p>
           </div>
-          <label for="homeAddress-line2" class="col-sm-2 control-label">&nbsp;</label>
-          <div class="col-sm-10">
+          <label for="homeAddress-line2" class="col-sm-2 control-label" ng-show="originalMember.homeAddress.line2">&nbsp;</label>
+          <div class="col-sm-10" ng-show="originalMember.homeAddress.line2">
             <p class="form-control-static" id="homeAddress-line2">{{originalMember.homeAddress.line2}}</p>
           </div>
           <label for="homeAddress-suburb" class="col-sm-2 control-label">&nbsp;</label>
@@ -39,17 +40,17 @@
           </div>
         </div>
         <div class="form-group form-multiline">
-          <label for="postalAddress-line1" class="col-sm-2 control-label">Postal</label>
-          <div class="col-sm-10">
-            <p class="form-control-static" id="postalAddress-line1">{{originalMember.postalAddress.line1}}</p>
+          <label for="postalAddress-line1" class="col-sm-2 control-label" ng-show="originalMember.postalAddress.line1">Postal</label>
+          <div class="col-sm-10"  ng-show="originalMember.postalAddress.line1">
+            <p class="form-control-static" id="postalAddress-line1">{{originalMember.postalAddress.line1}}&nbsp;</p>
           </div>
-          <label for="postalAddress-line2" class="col-sm-2 control-label">&nbsp;</label>
-          <div class="col-sm-10">
+          <label for="postalAddress-line2" class="col-sm-2 control-label" ng-show="originalMember.postalAddress.line2">&nbsp;</label>
+          <div class="col-sm-10" ng-show="originalMember.postalAddress.line2">
             <p class="form-control-static" id="postalAddress-line2">{{originalMember.postalAddress.line2}}</p>
           </div>
-          <label for="postalAddress-suburb" class="col-sm-2 control-label">&nbsp;</label>
+          <label for="postalAddress-suburb" class="col-sm-2 control-label" ng-show="originalMember.postalAddress.suburb || originalMember.postalAddress.state || originalMember.postalAddress.postcode">&nbsp;</label>
           <div class="col-sm-10">
-            <p class="form-control-static" id="postalAddress-suburb">{{originalMember.postalAddress.suburb}}&nbsp;{{originalMember.postalAddress.state}}&nbsp;{{originalMember.postalAddress.postcode}}</p>
+            <p class="form-control-static" id="postalAddress-suburb" ng-show="originalMember.postalAddress.suburb || originalMember.postalAddress.state || originalMember.postalAddress.postcode">{{originalMember.postalAddress.suburb}},&nbsp;{{originalMember.postalAddress.state}}&nbsp;{{originalMember.postalAddress.postcode}}</p>
           </div>
         </div>
       </fieldset>
@@ -135,8 +136,8 @@
         <legend>
           <i class="fa fa-user"></i>&nbsp;&nbsp;Update {{member.firstName}} {{member.lastName}}'s details
           <div class="pull-right paddingB5">
-            <button id="delete-member-button" class="btn btn-danger btn-sm" ng-if="isAuthorized([userRoles.admin])" ng-click="deleteMember(member)"><i class="fa fa-trash-o"></i></button>
-            <button id="edit-member-button" class="btn btn-success btn-sm" ng-disabled=true ><i class="fa fa-pencil"></i></button>
+            <button id="delete-member-button" class="btn btn-danger btn-sm" ng-if="isAuthorized([userRoles.admin])" ng-click="deleteMember(member)" tooltip-placement="bottom" tooltip="Delete member"><i class="fa fa-trash-o"></i></button>
+            <div class="inlineblock" tooltip-placement="bottom" tooltip="Editing member..."><button id="edit-member-button" class="btn btn-success btn-sm" ng-disabled=true><i class="fa fa-pencil"></i></button></div>
           </div>
         </legend>
         <input id="id" type="hidden" ng-model="member.id" />
@@ -204,8 +205,10 @@
         </div>
       </div>
     </form>
+    
     <form ng-switch-default name="memberForm" class="form-horizontal">
       <p>Sorry, an error occurred.</p>
     </form>
+    
   </div>
 </div>

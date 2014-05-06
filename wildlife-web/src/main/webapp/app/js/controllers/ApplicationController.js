@@ -23,6 +23,8 @@ sydneyWildlifeApp.controller('AppController', function ($scope, USER_ROLES, AUTH
      });
   };
   
+  // ---------------------------- Catching AUTHENTICATION EVENTS -----------------------------
+  
   $scope.$on(AUTH_EVENTS.notAuthenticated, function(event, args) {
      AlertService.show(ALERT_CODES.warning, args.msg);
      NavService.goTo(NAV_PATHS.login);
@@ -47,7 +49,7 @@ sydneyWildlifeApp.controller('AppController', function ($scope, USER_ROLES, AUTH
   
   $scope.$on(AUTH_EVENTS.loginSuccess, function(event, args) {
      $scope.currentUser = args.user;
-     AlertService.show(ALERT_CODES.success, args.msg);
+     // AlertService.show(ALERT_CODES.success, args.msg);
      NavService.goTo($scope.nextPath);
   });
   
@@ -57,7 +59,7 @@ sydneyWildlifeApp.controller('AppController', function ($scope, USER_ROLES, AUTH
   });
   
   $scope.$on(AUTH_EVENTS.logoutSuccess, function(event, args) {
-     AlertService.show(ALERT_CODES.success, args.msg);
+     // AlertService.show(ALERT_CODES.success, args.msg);
      NavService.goTo(NAV_PATHS.login);
   });
   
