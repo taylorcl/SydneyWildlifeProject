@@ -13,7 +13,7 @@ sydneyWildlifeApp.factory('AlertService', ['$rootScope', '$timeout', function ($
    alertService.show = function(type, msg) {
       $rootScope.alerts.push({'type': type, 'msg': msg});
       // automatically clear alert message after 3secs
-      $timeout(function() {alertService.close($rootScope.alerts.length-1);}, 2000);
+      $timeout(function() {alertService.close(0);}, 2000);
    };
 
    alertService.close = function(index) {

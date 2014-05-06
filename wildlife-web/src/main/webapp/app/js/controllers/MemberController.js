@@ -4,15 +4,16 @@
  * Members functionalities for the controller layer
  */
 sydneyWildlifeApp.controller('MemberController',
-    function MemberController($scope, MemberService, NavService, AlertService, $routeParams, NAV_PATHS, USER_ROLES, ALERT_CODES, POSTAL_STATES) {
+    function MemberController($scope, $window, MemberService, NavService, AlertService, $routeParams, NAV_PATHS, USER_ROLES, ALERT_CODES, POSTAL_STATES) {
 	    $scope.postalStates = POSTAL_STATES;
+	    $scope.originalMember = null;
+	    $scope.memberDetailLoading = false;
+//	    $scope.editMode = false;
 	    	    
 	    /**
 	     * Save member
 	     */
 	    $scope.saveMember = function(member, form) {
-        	console.log(member);
-        	
             if(form.$valid) {
             	var aPromise = MemberService.save(member);
             	aPromise.then(function(object) {
@@ -41,11 +42,16 @@ sydneyWildlifeApp.controller('MemberController',
         /**
          * Retrieve one member
          */
-        $scope.memberDetail = function(){
+        $scope.memberDetail = function() {
         	if ($routeParams != undefined && $routeParams.memberId != undefined) {
+        	   $scope.memberDetailLoading = true;
         		MemberService.memberDetail($routeParams.memberId).get().then(function(object) {
-        			$scope.member = object.originalData;        		
+        		   $scope.memberDetailLoading = false;
+        			$scope.member = object.originalData;
+        			//do a clone of the original object
+        			$scope.originalMember = JSON.parse(JSON.stringify(object.originalData));
 	        	}, function(error) {
+	        	 $scope.memberDetailLoading = false;
 	        		AlertService.show(ALERT_CODES.error, "Error retrieving member with Id " + $routeParams.memberId + ".");
 	        	});
         	}
@@ -55,17 +61,18 @@ sydneyWildlifeApp.controller('MemberController',
          * Delete one member
          */
         $scope.deleteMember = function(member) {
-        	console.log(member);
-        	
         	if (member != undefined && member.id != undefined){
-        		MemberService.deleteMember(member.id).then(function(object) {
-        			$scope.member = {};
-        			AlertService.show(ALERT_CODES.info, "Successfully deleted member with Id "+ member.id + "." );
-        			NavService.goTo(NAV_PATHS.memberList);
-	        	}, function(error) {
-	        		AlertService.show(ALERT_CODES.error, "Error deleting member with Id " + member.id + ".");
-	        		NavService.goTo(NAV_PATHS.memberList);
-	        	});
+        	   var deleteConfirmed = $window.confirm("Are you sure you want to permanently delete member " + member.firstName + " " + member.lastName + "?");
+        	   if(deleteConfirmed) {
+           		MemberService.deleteMember(member.id).then(function(object) {
+           			$scope.member = {};
+           			AlertService.show(ALERT_CODES.info, "Successfully deleted member with Id "+ member.id + "." );
+           			NavService.goTo(NAV_PATHS.memberList);
+   	        	}, function(error) {
+   	        		AlertService.show(ALERT_CODES.error, "Error deleting member with Id " + member.id + ".");
+   	        		NavService.goTo(NAV_PATHS.memberList);
+   	        	});
+        	   }
         	}
         };
         
@@ -77,8 +84,28 @@ sydneyWildlifeApp.controller('MemberController',
            }
         };
 
-        $scope.isNew = function (member) {
-           return member == undefined || member.id == undefined;
+        $scope.isNew = function() {
+           return !$scope.memberDetailLoading && ($scope.member == undefined || $scope.member.id == undefined);
+        };
+        
+        $scope.getMode = function() {
+           if($scope.isNew()) {
+              return "create";
+           } else {
+              if ($scope.editMode) {
+                 return "update";
+              } else {
+                 return "read";
+              }
+           }
+        };
+        
+        $scope.startEdit = function () {
+           $scope.editMode = true;
+        };
+        
+        $scope.cancelEdit = function () {
+           $scope.editMode = false;
         };
     }
 );

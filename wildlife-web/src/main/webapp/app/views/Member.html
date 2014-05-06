@@ -1,11 +1,84 @@
 <br/><br/>
   
 <div class="col-sm-12 col-lg-6" ng-if="isAuthorized([userRoles.admin,userRoles.member])">
-  <div class="well bs-component" ng-init="memberDetail()">
-    <form name="memberForm" class="form-horizontal">
+  <div class="well bs-component" ng-init="memberDetail()" ng-switch="getMode()">
+    <form ng-switch-when="read" name="memberForm" class="form-horizontal">
       <fieldset>
-        <legend ng-show="isNew(member)"><i class="fa fa-user"></i>&nbsp;&nbsp;Create a new member</legend>
-        <legend ng-show="!isNew(member)"><i class="fa fa-user"></i>&nbsp;&nbsp;Update {{member.firstName}} {{member.lastName}}'s details</legend>
+        <legend>
+          <i class="fa fa-user"></i>&nbsp;&nbsp;View {{originalMember.firstName}} {{originalMember.lastName}}'s details
+          <div class="pull-right">
+            <button id="delete-member-button" class="btn btn-danger btn-sm" ng-if="isAuthorized([userRoles.admin])" ng-click="deleteMember(member)"><i class="fa fa-trash-o"></i></button>
+            <button id="edit-member-button" class="btn btn-success btn-sm" ng-click="startEdit()"><i class="fa fa-pencil"></i></button>
+          </div>
+        </legend>
+        <input id="id" type="hidden" ng-model="member.id" />
+        <div class="form-group">
+          <label for="firstName" class="col-sm-2 control-label">Name</label>
+          <div class="col-sm-5">
+            <p class="form-control-static" id="firstName">{{originalMember.firstName}}</p>
+          </div>
+          <div class="col-sm-5">
+            <p class="form-control-static" id="lastName">{{originalMember.lastName}}</p>
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="email" class="col-sm-2 control-label">Email</label>
+          <div class="col-sm-10">
+            <p class="form-control-static" id="email">{{originalMember.email}}</p>
+          </div>
+        </div>
+        <div class="form-group form-multiline">
+          <label for="homeAddress-line1" class="col-sm-2 control-label">Home</label>
+          <div class="col-sm-10">
+            <p class="form-control-static" id="homeAddress-line1">{{originalMember.homeAddress.line1}}</p>
+          </div>
+          <label for="homeAddress-line2" class="col-sm-2 control-label">&nbsp;</label>
+          <div class="col-sm-10">
+            <p class="form-control-static" id="homeAddress-line2">{{originalMember.homeAddress.line2}}</p>
+          </div>
+          <label for="homeAddress-suburb" class="col-sm-2 control-label">&nbsp;</label>
+          <div class="col-sm-5">
+            <p class="form-control-static" id="homeAddress-suburb">{{originalMember.homeAddress.suburb}}</p>
+          </div>
+          <div class="col-sm-2">
+            <p class="form-control-static" id="homeAddress-postcode">{{originalMember.homeAddress.postcode}}</p>
+          </div>
+          <div class="col-sm-3">
+            <p class="form-control-static" id="homeAddress-state">{{originalMember.homeAddress.state}}</p>
+          </div>
+        </div>
+        <div class="form-group form-multiline">
+          <label for="postalAddress-line1" class="col-sm-2 control-label">Postal</label>
+          <div class="col-sm-10">
+            <p class="form-control-static" id="postalAddress-line1">{{originalMember.postalAddress.line1}}</p>
+          </div>
+          <label for="postalAddress-line2" class="col-sm-2 control-label">&nbsp;</label>
+          <div class="col-sm-10">
+            <p class="form-control-static" id="postalAddress-line2">{{originalMember.postalAddress.line2}}</p>
+          </div>
+          <label for="postalAddress-suburb" class="col-sm-2 control-label">&nbsp;</label>
+          <div class="col-sm-5">
+            <p class="form-control-static" id="postalAddress-suburb">{{originalMember.postalAddress.suburb}}</p>
+          </div>
+          <div class="col-sm-2">
+            <p class="form-control-static" id="postalAddress-postcode">{{originalMember.postalAddress.postcode}}</p>
+          </div>
+          <div class="col-sm-3">
+            <p class="form-control-static" id="postalAddress-state">{{originalMember.postalAddress.state}}</p>
+          </div>
+        </div>
+      </fieldset>
+      <br />
+      <div class="form-group">
+        <div class="col-sm-2 pull-right">
+          <button id="cancel-member-button" class="btn btn-default" ng-click="cancel()">Close</button>
+        </div>
+      </div>
+    </form>
+    
+    <form ng-switch-when="create" name="memberForm" class="form-horizontal">
+      <fieldset>
+        <legend><i class="fa fa-user"></i>&nbsp;&nbsp;Create a new member</legend>
         <input id="id" type="hidden" ng-model="member.id" />
         <div class="form-group" ng-class="{ 'has-error' : (memberForm.firstName.$invalid && !memberForm.firstName.$pristine) || (memberForm.lastName.$invalid && !memberForm.lastName.$pristine)}">
           <label for="firstName" class="col-sm-2 control-label"><sup><small><i class='fa fa-asterisk'></i></small></sup>&nbsp;Name</label>
@@ -65,15 +138,89 @@
       </fieldset>
       <br />
       <div class="form-group">
-        <div class="col-sm-2 col-sm-offset-2">
-          <button id="delete-member-button" type="submit" class="btn btn-danger" ng-show="!isNew(member)" ng-click="deleteMember(member)">Delete</button>
-        </div>
         <div class="col-sm-4 pull-right">
           <button id="cancel-member-button" class="btn btn-default" ng-click="cancel()">Cancel</button>
-          <button id="submit-member-button" type="submit" class="btn btn-primary" ng-show="isNew(member)" ng-click="saveMember(member, memberForm)">Create</button>
-          <button id="update-member-button" type="submit" class="btn btn-primary" ng-show="!isNew(member)" ng-click="saveMember(member, memberForm)">Update</button>
+          <button id="submit-member-button" type="submit" class="btn btn-primary" ng-click="saveMember(member, memberForm)">Create</button>
         </div>
       </div>
+    </form>
+    
+    <form ng-switch-when="update" name="memberForm" class="form-horizontal">
+      <fieldset>
+        <legend>
+          <i class="fa fa-user"></i>&nbsp;&nbsp;Update {{member.firstName}} {{member.lastName}}'s details
+          <div class="pull-right">
+            <button id="delete-member-button" class="btn btn-danger btn-sm" ng-if="isAuthorized([userRoles.admin])" ng-click="deleteMember(member)"><i class="fa fa-trash-o"></i></button>
+            <button id="edit-member-button" class="btn btn-success btn-sm" ng-disabled=true ><i class="fa fa-pencil"></i></button>
+          </div>
+        </legend>
+        <input id="id" type="hidden" ng-model="member.id" />
+        <div class="form-group" ng-class="{ 'has-error' : (memberForm.firstName.$invalid && !memberForm.firstName.$pristine) || (memberForm.lastName.$invalid && !memberForm.lastName.$pristine)}">
+          <label for="firstName" class="col-sm-2 control-label"><sup><small><i class='fa fa-asterisk'></i></small></sup>&nbsp;Name</label>
+          <div class="col-sm-5">
+            <input type="text" class="form-control" id="firstName" name="firstName" ng-required="true" placeholder="First Name" ng-model="member.firstName" />
+          </div>
+          <div class="col-sm-5">
+            <input type="text" class="form-control" id="lastName" name="lastName" ng-required="true" placeholder="Last Name"  ng-model="member.lastName" />
+          </div>
+        </div>
+        <div class="form-group" ng-class="{ 'has-error' : memberForm.email.$invalid && !memberForm.email.$pristine}">
+          <label for="email" class="col-sm-2 control-label">Email</label>
+          <div class="col-sm-10">
+            <input type="email" class="form-control" id="email" name="email" placeholder="Email"  ng-model="member.email" />
+          </div>
+        </div>
+        <div class="form-group form-multiline">
+          <label for="homeAddress-line1" class="col-sm-2 control-label"><sup><small><i class='fa fa-asterisk'></i></small></sup>&nbsp;Home</label>
+          <div class="col-sm-10">
+            <input type="text" class="form-control" id="homeAddress-line1" name="homeAddress-line1" ng-required="true" placeholder="Address" ng-model="member.homeAddress.line1" />
+          </div>
+          <label for="homeAddress-line2" class="col-sm-2 control-label">&nbsp;</label>
+          <div class="col-sm-10">
+            <input type="text" class="form-control" id="homeAddress-line2" name="homeAddress-line2" placeholder="" ng-model="member.homeAddress.line2" />
+          </div>
+          <label for="homeAddress-suburb" class="col-sm-2 control-label">&nbsp;</label>
+          <div class="col-sm-5">
+            <input type="text" class="form-control" id="homeAddress-suburb" name="homeAddress-suburb" ng-required="true" placeholder="Suburb"  ng-model="member.homeAddress.suburb" />
+          </div>
+          <div class="col-sm-2">
+            <input type="text" class="form-control" id="homeAddress-postcode" name="homeAddress-postcode" ng-required="true" placeholder="Post Code" ng-model="member.homeAddress.postcode" />
+          </div>
+          <div class="col-sm-3">
+            <select class="form-control" id="homeAddress-state" name="homeAddress-state" placeholder="State" ng-required="true" ng-model="member.homeAddress.state" ng-options="state.id as state.label for state in postalStates"></select>
+          </div>
+        </div>
+        <div class="form-group form-multiline">
+          <label for="postalAddress-line1" class="col-sm-2 control-label">Postal</label>
+          <div class="col-sm-10">
+            <input type="text" class="form-control" id="postalAddress-line1" name="postalAddress-line1" placeholder="Address" ng-model="member.postalAddress.line1" />
+          </div>
+          <label for="postalAddress-line2" class="col-sm-2 control-label">&nbsp;</label>
+          <div class="col-sm-10">
+            <input type="text" class="form-control" id="postalAddress-line2" name="postalAddress-line2" placeholder="" ng-model="member.postalAddress.line2" />
+          </div>
+          <label for="postalAddress-suburb" class="col-sm-2 control-label">&nbsp;</label>
+          <div class="col-sm-5">
+            <input type="text" class="form-control" id="postalAddress-suburb" name="postalAddress-suburb" placeholder="Suburb"  ng-model="member.postalAddress.suburb" />
+          </div>
+          <div class="col-sm-2">
+            <input type="text" class="form-control" id="postalAddress-postcode" name="postalAddress-postcode" placeholder="Post Code" ng-model="member.postalAddress.postcode" />
+          </div>
+          <div class="col-sm-3">
+            <select class="form-control" id="postalAddress-state" name="postalAddress-state" placeholder="State" ng-model="member.postalAddress.state" ng-selected="member.postalAddress.state" ng-options="state.id as state.label for state in postalStates"></select>
+          </div>
+        </div>
+      </fieldset>
+      <br />
+      <div class="form-group">
+        <div class="col-sm-4 pull-right">
+          <button id="cancel-member-button" class="btn btn-default" ng-click="cancelEdit()">Cancel</button>
+          <button id="update-member-button" type="submit" class="btn btn-primary" ng-click="saveMember(member, memberForm)">Update</button>
+        </div>
+      </div>
+    </form>
+    <form ng-switch-default name="memberForm" class="form-horizontal">
+      <p>Sorry, an error occurred.</p>
     </form>
   </div>
 </div>
