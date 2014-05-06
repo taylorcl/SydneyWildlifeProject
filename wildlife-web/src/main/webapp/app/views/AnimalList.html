@@ -1,26 +1,30 @@
 <div class="bs-docs-section" ng-if="isAuthorized([userRoles.admin,userRoles.editor,userRoles.guest])">
-   <h3><i class="fa fa-twitter"></i>&nbsp;&nbsp;Animals' List</h3>
-   <div ng-switch on="isAuthorized([userRoles.admin,userRoles.editor])">
-     <h5 ng-switch-when=true>Browse all the animals, Edit them by clicking on their description.</h5>
-     <h5 ng-switch-when=false>Browse all the animals.</h5>
-     <h5 ng-switch-default=true>Browse all the animals.</h5>
-   </div>
-   <a class="btn btn-primary" ng-href="#/animals/new" ng-if="isAuthorized([userRoles.admin,userRoles.editor])"><i class="fa fa-twitter"></i><sup><i class="fa fa-plus"></i></sup>&nbsp;&nbsp;Add a new animal</a>
-   <br/><br/>
- <table ng-init="listAnimals()" class="table table-striped table-hover">  
-      <thead>  
-        <tr>
-          <th>Description</th>  
-          <th>Caller Suburb</th> 
-           <th>Caller Phone</th>
-        </tr>  
-      </thead>  
-      <tbody ng-repeat="animal in animalList">  
-        <tr>  
-          <td><a ng-href="#/animals/{{animal.id}}">{{animal.description}}</a></td>
-          <td>{{animal.callerAddress.suburb}}</td>
-          <td>{{animal.callerPhone}}</td>
-        </tr>  
-      </tbody>  
-    </table>  
+  <h3><i class="fa fa-twitter"></i>&nbsp;&nbsp;Animals' List</h3>
+  <div ng-switch on="getCurrentUserRole()">
+    <h5 ng-switch-when="admin">Browse all the animals, View details by clicking on their description, and then Edit them if wanted.</h5>
+    <h5 ng-switch-when="editor">Browse all the animals and View details by clicking on their description.</h5>
+    <h5 ng-switch-when="guest">Browse all the animals and View details by clicking on their description.</h5>
+    <h5 ng-switch-default>Browse all the members.</h5>
+  </div>
+  <div ng-if="isAuthorized([userRoles.admin])">
+    <a class="btn btn-primary" ng-href="#/animals/new" ng-if="isAuthorized([userRoles.admin,userRoles.editor])"><i class="fa fa-twitter"></i><sup><i class="fa fa-plus"></i></sup>&nbsp;&nbsp;Add a new animal</a>
+    <br/>
+  </div>
+  <br/>
+  <table ng-init="listAnimals()" class="table table-striped table-hover">  
+  <thead>
+  <tr>
+  <th>Description</th>
+  <th>Caller Suburb</th>
+  <th>Caller Phone</th>
+  </tr>
+  </thead>
+    <tbody ng-repeat="animal in animalList">
+      <tr>
+        <td><a ng-href="#/animals/{{animal.id}}">{{animal.description}}</a></td>
+        <td>{{animal.callerAddress.suburb}}</td>
+        <td>{{animal.callerPhone}}</td>
+      </tr>
+    </tbody>
+  </table>
 </div>

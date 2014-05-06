@@ -13,6 +13,10 @@ sydneyWildlifeApp.controller('AppController', function ($scope, USER_ROLES, AUTH
      return AuthService.isAuthorized(roles);
   };
   
+  $scope.getCurrentUserRole = function () {
+     return ($scope.currentUser != null) ? $scope.currentUser.userRole : undefined;
+  };
+  
   $scope.logout = function () {
      $scope.currentUser = AuthService.logout();
      $scope.$broadcast(AUTH_EVENTS.logoutSuccess, {

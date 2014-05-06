@@ -5,8 +5,6 @@
  */
 sydneyWildlifeApp.controller('AnimalController',
     function AnimalController($scope, AnimalService, NavService, AlertService, $routeParams, ALERT_CODES) {
-	    $scope.showFeedback = false;
-	    	    
 	    /**
 	     * Save animal
 	     */
