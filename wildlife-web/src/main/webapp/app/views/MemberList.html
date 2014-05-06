@@ -1,9 +1,7 @@
-<div class="bs-docs-section" ng-if="isAuthorized([userRoles.admin,userRoles.editor,userRoles.guest])">
+<div class="bs-docs-section" ng-if="isAuthorized([userRoles.admin])">
   <h3><i class="fa fa-users"></i>&nbsp;&nbsp;Members' List</h3>
   <div ng-switch on="getCurrentUserRole()">
-    <h5 ng-switch-when="admin">Browse all the members, View details by clicking on their first name, and then Edit them if wanted.</h5>
-    <h5 ng-switch-when="editor">Browse all the members and View details by clicking on their first name.</h5>
-    <h5 ng-switch-when="guest">Browse all the members and View details by clicking on their first name.</h5>
+    <h5 ng-switch-when="admin">Browse all the members, View details by clicking on their first name, and Edit them if wanted.</h5>
     <h5 ng-switch-default>Browse all the members.</h5>
   </div>
   <div ng-if="isAuthorized([userRoles.admin])">

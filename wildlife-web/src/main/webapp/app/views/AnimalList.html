@@ -1,13 +1,16 @@
-<div class="bs-docs-section" ng-if="isAuthorized([userRoles.admin,userRoles.editor,userRoles.guest])">
-  <h3><i class="fa fa-twitter"></i>&nbsp;&nbsp;Animals' List</h3>
+<div class="bs-docs-section" ng-if="isAuthorized([userRoles.admin,userRoles.member])">
   <div ng-switch on="getCurrentUserRole()">
-    <h5 ng-switch-when="admin">Browse all the animals, View details by clicking on their description, and then Edit them if wanted.</h5>
-    <h5 ng-switch-when="editor">Browse all the animals and View details by clicking on their description.</h5>
-    <h5 ng-switch-when="guest">Browse all the animals and View details by clicking on their description.</h5>
-    <h5 ng-switch-default>Browse all the members.</h5>
+    <h3 ng-switch-when="admin"><i class="fa fa-twitter"></i>&nbsp;&nbsp;Animals' List</h3>
+    <h3 ng-switch-when="member"><i class="fa fa-twitter"></i>&nbsp;&nbsp;My Animals</h3>
+    <h3 ng-switch-default><i class="fa fa-twitter"></i>&nbsp;&nbsp;Animals' List</h3>
+  </div>
+  <div ng-switch on="getCurrentUserRole()">
+    <h5 ng-switch-when="admin">Browse all the animals, View details by clicking on their description, and Edit them if wanted.</h5>
+    <h5 ng-switch-when="member">Browse your animals, View details by clicking on their description, and Edit them if wanted.</h5>
+    <h5 ng-switch-default>Browse all the animals.</h5>
   </div>
   <div ng-if="isAuthorized([userRoles.admin])">
-    <a class="btn btn-primary" ng-href="#/animals/new" ng-if="isAuthorized([userRoles.admin,userRoles.editor])"><i class="fa fa-twitter"></i><sup><i class="fa fa-plus"></i></sup>&nbsp;&nbsp;Add a new animal</a>
+    <a class="btn btn-primary" ng-href="#/animals/new" ng-if="isAuthorized([userRoles.admin,userRoles.member])"><i class="fa fa-twitter"></i><sup><i class="fa fa-plus"></i></sup>&nbsp;&nbsp;Add a new animal</a>
     <br/>
   </div>
   <br/>

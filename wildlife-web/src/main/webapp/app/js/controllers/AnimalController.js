@@ -4,7 +4,9 @@
  * Animals functionalities for the controller layer
  */
 sydneyWildlifeApp.controller('AnimalController',
-    function AnimalController($scope, AnimalService, NavService, AlertService, $routeParams, ALERT_CODES) {
+    function AnimalController($scope, AnimalService, NavService, AlertService, $routeParams, NAV_PATHS, ALERT_CODES, POSTAL_STATES) {
+       $scope.postalStates = POSTAL_STATES;
+       
 	    /**
 	     * Save animal
 	     */
@@ -16,7 +18,7 @@ sydneyWildlifeApp.controller('AnimalController',
             	aPromise.then(function(object){
             	   animal.id = object.id;
             	   AlertService.show(ALERT_CODES.success, "Successfully registered/updated animal with Id " + animal.id + ".");
-            		NavService.goTo("/animals");
+            		NavService.goTo(NAV_PATHS.animalList);
             	}, function errorCallback(error) {
             	   AlertService.show(ALERT_CODES.error, "Error saving animal.");
             	});
@@ -57,16 +59,16 @@ sydneyWildlifeApp.controller('AnimalController',
         	 AnimalService.deleteAnimal(animal.id).then(function(object) {
         			$scope.animal = {};
         			AlertService.show(ALERT_CODES.info, "Successfully deleted animal with Id "+ animal.id + "." );
-        			NavService.goTo("/animals");
+        			NavService.goTo(NAV_PATHS.animalList);
 	        	}, function(error){
 	        	   AlertService.show(ALERT_CODES.error, "Error deleting animal with Id " + animal.id + ".");
-	        		NavService.goTo("/animals");
+	        		NavService.goTo(NAV_PATHS.animalList);
 	        	});
         	}
         };
         
         $scope.isNew = function (animal) {
-           return animal === undefined || animal.id === undefined;
+           return animal == undefined || animal.id == undefined;
         };
     }
 );
