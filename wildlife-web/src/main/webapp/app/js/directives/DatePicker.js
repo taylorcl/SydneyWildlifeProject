@@ -11,6 +11,6 @@ sydneyWildlifeApp.directive('datePicker',[  function () {
     			scope.memberForm.$valid = true;
     		});
 
-    	}
+    	};
 }]);
  

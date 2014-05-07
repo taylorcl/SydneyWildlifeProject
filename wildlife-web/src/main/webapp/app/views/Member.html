@@ -81,46 +81,8 @@
             <input type="email" class="form-control" id="email" name="email" placeholder="Email"  ng-model="member.email" />
           </div>
         </div>
-        <div class="form-group form-multiline">
-          <label for="homeAddress-line1" class="col-sm-2 control-label"><sup><small><i class='fa fa-asterisk'></i></small></sup>&nbsp;Home</label>
-          <div class="col-sm-10">
-            <input type="text" class="form-control" id="homeAddress-line1" name="homeAddress-line1" ng-required="true" placeholder="Address" ng-model="member.homeAddress.line1" />
-          </div>
-          <label for="homeAddress-line2" class="col-sm-2 control-label">&nbsp;</label>
-          <div class="col-sm-10">
-            <input type="text" class="form-control" id="homeAddress-line2" name="homeAddress-line2" placeholder="" ng-model="member.homeAddress.line2" />
-          </div>
-          <label for="homeAddress-suburb" class="col-sm-2 control-label">&nbsp;</label>
-          <div class="col-sm-5">
-            <input type="text" class="form-control" id="homeAddress-suburb" name="homeAddress-suburb" ng-required="true" placeholder="Suburb"  ng-model="member.homeAddress.suburb" />
-          </div>
-          <div class="col-sm-3">
-            <select class="form-control" id="homeAddress-state" name="homeAddress-state" placeholder="State" ng-required="true" ng-model="member.homeAddress.state" ng-options="state.id as state.label for state in postalStates"></select>
-          </div>
-          <div class="col-sm-2">
-            <input type="text" class="form-control" id="homeAddress-postcode" name="homeAddress-postcode" ng-required="true" placeholder="Post Code" ng-model="member.homeAddress.postcode" />
-          </div>
-        </div>
-        <div class="form-group form-multiline">
-          <label for="postalAddress-line1" class="col-sm-2 control-label">Postal</label>
-          <div class="col-sm-10">
-            <input type="text" class="form-control" id="postalAddress-line1" name="postalAddress-line1" placeholder="Address" ng-model="member.postalAddress.line1" />
-          </div>
-          <label for="postalAddress-line2" class="col-sm-2 control-label">&nbsp;</label>
-          <div class="col-sm-10">
-            <input type="text" class="form-control" id="postalAddress-line2" name="postalAddress-line2" placeholder="" ng-model="member.postalAddress.line2" />
-          </div>
-          <label for="postalAddress-suburb" class="col-sm-2 control-label">&nbsp;</label>
-          <div class="col-sm-5">
-            <input type="text" class="form-control" id="postalAddress-suburb" name="postalAddress-suburb" placeholder="Suburb"  ng-model="member.postalAddress.suburb" />
-          </div>
-          <div class="col-sm-3">
-            <select class="form-control" id="postalAddress-state" name="postalAddress-state" placeholder="State" ng-model="member.postalAddress.state" ng-selected="member.postalAddress.state" ng-options="state.id as state.label for state in postalStates"></select>
-          </div>
-          <div class="col-sm-2">
-            <input type="text" class="form-control" id="postalAddress-postcode" name="postalAddress-postcode" placeholder="Post Code" ng-model="member.postalAddress.postcode" />
-          </div>
-        </div>
+        <sw-address addr-id="homeAddress" addr-label="Home" addr-required="true" addr-model="member.homeAddress"></sw-address>
+        <sw-address addr-id="postalAddress" addr-label="Postal" addr-required="false" addr-model="member.postalAddress"></sw-address>
       </fieldset>
       <br />
       <div class="form-group">

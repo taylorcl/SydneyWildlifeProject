@@ -51,7 +51,7 @@ sydneyWildlifeApp.controller('MemberController',
         			//do a clone of the original object
         			$scope.originalMember = JSON.parse(JSON.stringify(object.originalData));
 	        	}, function(error) {
-	        	 $scope.memberDetailLoading = false;
+	        	   $scope.memberDetailLoading = false;
 	        		AlertService.show(ALERT_CODES.error, "Error retrieving member with Id " + $routeParams.memberId + ".");
 	        	});
         	}
@@ -85,6 +85,7 @@ sydneyWildlifeApp.controller('MemberController',
         };
 
         $scope.isNew = function() {
+           //shouldn't retrun true when an error occurred for retrieving a member
            return !$scope.memberDetailLoading && ($scope.member == undefined || $scope.member.id == undefined);
         };
         

@@ -1,0 +1,24 @@
+<fieldset>
+  <div class="form-group form-multiline">
+    <label for="{{id}}-line1" class="col-sm-2 control-label">
+      <span ng-show="{{required}}"><sup><small><i class='fa fa-asterisk'></i></small></sup></span>&nbsp;{{label}}
+    </label>
+    <div class="col-sm-10">
+      <input type="text" class="form-control" id="{{id}}-line1" name="{{id}}-line1" ng-required="{{required}}" placeholder="Address" ng-model="model.line1" />
+    </div>
+    <label for="{{id}}-line2" class="col-sm-2 control-label">&nbsp;</label>
+    <div class="col-sm-10">
+      <input type="text" class="form-control" id="{{id}}-line2" name="{{id}}-line2" placeholder="" ng-model="model.line2" />
+    </div>
+    <label for="{{id}}-suburb" class="col-sm-2 control-label">&nbsp;</label>
+    <div class="col-sm-5">
+      <input type="text" class="form-control" id="{{id}}-suburb" name="{{id}}-suburb" ng-required="{{required}}" placeholder="Suburb"  ng-model="model.suburb" />
+    </div>
+    <div class="col-sm-3">
+      <select class="form-control" id="{{id}}-state" name="{{id}}-state" placeholder="State" ng-required="{{required}}" ng-model="model.state" ng-options="state.id as state.label for state in postalStates"></select>
+    </div>
+    <div class="col-sm-2">
+      <input type="text" class="form-control" id="{{id}}-postcode" name="{{id}}-postcode" ng-required="{{required}}" placeholder="Post Code" ng-model="model.postcode" />
+    </div>
+  </div>
+</fieldset>
