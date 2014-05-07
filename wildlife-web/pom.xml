@@ -46,6 +46,8 @@
      <lesscss.maven.plugin.version>1.3.3</lesscss.maven.plugin.version>
      <less.js.version>1.5.1</less.js.version>
      
+     <ng.table.version>0.3.1</ng.table.version>
+     
      <!-- The two following libs are staticly imported from src/main/resources, version numbers are only here as reminders -->
      <ui.bootstrap.tpls.version>0.4.0</ui.bootstrap.tpls.version>
      <xdate.version>0.4</xdate.version>
@@ -195,6 +197,14 @@
                       <type>jar</type>
                       <includes>META-INF/resources/webjars/less/${less.js.version}/**</includes>
                       <outputDirectory>${project.build.directory}/client-lib/webjars/less</outputDirectory>
+                    </artifactItem>
+                    <artifactItem>
+                      <groupId>org.webjars</groupId>
+                      <artifactId>ng-table</artifactId>
+                      <version>${ng.table.version}</version>
+                      <type>jar</type>
+                      <includes>META-INF/resources/webjars/ng-table/${ng.table.version}/**</includes>
+                      <outputDirectory>${project.build.directory}/client-lib/webjars/ng-table</outputDirectory>
                     </artifactItem>
                     
                     <!-- ************************************* -->
@@ -471,6 +481,23 @@
                   </configuration>            
                 </execution>
                 
+                <!-- Copying ng-table jar into the app lib folder -->
+                <execution>
+                  <id>copy-ng-table-lib</id>
+                  <phase>validate</phase>
+                  <goals>
+                    <goal>copy-resources</goal>
+                  </goals>
+                  <configuration>
+                    <outputDirectory>${project.build.directory}/client-lib/export/app/lib/ng-table</outputDirectory>
+                    <resources>          
+                      <resource>
+                        <directory>${project.build.directory}/client-lib/webjars/ng-table/META-INF/resources/webjars/ng-table/${ng.table.version}</directory>
+                      </resource>
+                    </resources>              
+                  </configuration>            
+                </execution>
+                
                 
                 <!-- ************************************* -->
                 <!-- ************* TEST libs ************* -->
@@ -671,6 +698,7 @@
                   <source>${project.build.directory}/client-lib/export/app/lib/angular/restangular.js</source>
                   <source>${project.build.directory}/client-lib/export/app/lib/underscore/underscore.js</source>
                   <source>${project.build.directory}/client-lib/export/app/lib/date/xdate.js</source>
+                  <source>${project.build.directory}/client-lib/export/app/lib/ng-table/ng-table.js</source>
                </preloadSources>
             </configuration>
          </plugin>
