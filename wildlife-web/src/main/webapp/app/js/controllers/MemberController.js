@@ -4,13 +4,24 @@
  * Members functionalities for the controller layer
  */
 sydneyWildlifeApp.controller('MemberController',
-    function MemberController($scope, $window, $timeout, MemberService, NavService, AlertService, $routeParams, NAV_PATHS, USER_ROLES, ALERT_CODES) {
+    function MemberController($scope, $window, $timeout, MemberService, NavService, AlertService, $routeParams, NAV_PATHS, USER_ROLES, ALERT_CODES, ngTableParams) {
        $scope.memberList = {};
 	    $scope.originalMember = {};
 	    $scope.member = {};
 	    $scope.waitingForMemberDetails = false;
 	    $scope.editMode = false;
 	    $scope.errors = [];
+	    
+	    $scope.tableParams = new ngTableParams({
+	    	// Default criteria that will be sent to the server
+		    page: 1,
+		    count: 10
+		}, {
+		    counts: [],
+		    getData: function($defer, params) {
+		    	$scope.listMembers($defer, params);
+		    }
+		});
 	    	    
 	    /**
 	     * Saves the member by calling the back-end.
@@ -37,9 +48,19 @@ sydneyWildlifeApp.controller('MemberController',
         /**
          * List members.
          */
-        $scope.listMembers = function() {
-           	MemberService.list().then(function(object) {
-           		$scope.memberList = object;
+        $scope.listMembers = function($defer, params) {
+        	var paginationParams = params.$params;
+       		var filterParams = {};
+        	if (paginationParams !== undefined && paginationParams !== null) {
+        		filterParams = {
+    				page: paginationParams.page - 1,
+    				size: paginationParams.count
+        		};
+        	}
+        	
+        	MemberService.list(filterParams).then(function(object) {
+        		params.total(object._resultmeta.total);
+        		$defer.resolve(object);
            	}, function(error) {
            	   $scope.errors.push("We cannot retrieve the list of members at the moment, please try again later.");
            	   AlertService.show(ALERT_CODES.error, "Error retrieving members.");

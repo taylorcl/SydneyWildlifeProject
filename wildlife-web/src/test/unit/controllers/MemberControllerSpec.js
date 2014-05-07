@@ -80,7 +80,7 @@ describe('MemberController Tests', function() {
 		    deferred.resolve({"length":0});
 		    spyOn(localMemberService, "list").andReturn(deferred.promise);
 		    spyOn(localAlertService, "show");
-			localScope.listMembers();
+			localScope.listMembers(null);
 			$rootScope.$digest();
 			expect(localScope.memberList.length).toBe(0);
 			expect(localAlertService.show).not.toHaveBeenCalled();
@@ -90,7 +90,7 @@ describe('MemberController Tests', function() {
 		    deferred.resolve({"length":10});
 		    spyOn(localMemberService, "list").andReturn(deferred.promise);
 		    spyOn(localAlertService, "show");
-			localScope.listMembers();
+			localScope.listMembers(null);
 			$rootScope.$digest();
 			expect(localScope.memberList.length).toBe(10);
 			expect(localAlertService.show).not.toHaveBeenCalled();

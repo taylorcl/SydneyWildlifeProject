@@ -19,10 +19,10 @@ sydneyWildlifeApp.factory('MemberService',['Restangular', 'DateService', functio
         	var aPromise = baseMembers.post(member);
         	return aPromise;
         },
-        list: function() {
+        list: function(params) {
         	var baseMembers = Restangular.all("members");
         	
-        	var aPromise = baseMembers.getList();
+        	var aPromise = baseMembers.getList(params);
         	return aPromise;
         },
         memberDetail: function(id) {

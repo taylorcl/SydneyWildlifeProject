@@ -8,11 +8,9 @@ sydneyWildlifeApp.config(function ($routeProvider, RestangularProvider, $locatio
 					RestangularProvider.addResponseInterceptor(function(data, operation, what, url, response, deferred){
 						if (operation === 'getList') {
 					        var newResponse = response.data.content;
-				            newResponse._resultmeta = {
-				                "count": response.count,
-				                "next": response.next,
-				                "previous": response.previous
-				            };
+					        newResponse._resultmeta = {
+				                "total": response.data.totalElements
+			                };
 				            angular.forEach(newResponse, function(value, key) {
 		                       if (newResponse[key] != undefined){
 		                          newResponse[key].originalData = angular.copy(value);
@@ -22,9 +20,9 @@ sydneyWildlifeApp.config(function ($routeProvider, RestangularProvider, $locatio
 						}
 						
 						var newResponse = response.data;
-                  if (newResponse != undefined) {
-                     newResponse.originalData = angular.copy(newResponse);
-                  }
+						if (newResponse != undefined) {
+							newResponse.originalData = angular.copy(newResponse);
+						}
                 
 						return newResponse;
 					});

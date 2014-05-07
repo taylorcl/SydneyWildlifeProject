@@ -1,33 +1,36 @@
 <div class="bs-docs-section" ng-if="isAuthorized([userRoles.admin])">
-  <h3><i class="fa fa-users"></i>&nbsp;&nbsp;Members' List</h3>
+  <h3>
+    <i class="fa fa-users"></i>&nbsp;&nbsp;Members' List
+  </h3>
   <div ng-switch on="getCurrentUserRole()">
-    <h5 ng-switch-when="admin">Browse all the members, View details by clicking on their first name, and Edit them if wanted.</h5>
+    <h5 ng-switch-when="admin">Browse all the members, View details
+      by clicking on their first name, and Edit them if wanted.</h5>
     <h5 ng-switch-default>Browse all the members.</h5>
   </div>
   <div ng-if="isAuthorized([userRoles.admin])">
-    <a class="btn btn-primary" ng-href="#/members/new"><i class="fa fa-user"></i><sup><i class="fa fa-plus"></i></sup>&nbsp;&nbsp;Create a new member</a>
-    <br/>
+    <a class="btn btn-primary" ng-href="#/members/new"><i
+      class="fa fa-user"></i><sup><i class="fa fa-plus"></i></sup>&nbsp;&nbsp;Create
+      a new member</a> <br />
   </div>
-  <br/>
-  <table ng-init="listMembers()" class="table table-striped table-hover">  
-    <thead>  
+  <br />
+  <table class="table table-striped table-hover" ng-table="tableParams">
+    <thead>
       <tr>
-        <th>First Name</th>  
+        <th>First Name</th>
         <th>Last Name</th>
         <th>Home Suburb</th>
         <th>Email</th>
-      </tr>  
-    </thead>  
-    <tbody ng-repeat="member in memberList">  
-      <tr>  
-        <td ng-switch on="getCurrentUserRole()">
-          <a ng-switch-when="admin" ng-href="#/members/{{member.id}}">{{member.firstName}}</a>
-          <span ng-switch-default>{{member.firstName}}</span>
-        </td>
+      </tr>
+    </thead>
+    <tbody ng-repeat="member in $data">
+      <tr>
+        <td ng-switch on="getCurrentUserRole()"><a
+          ng-switch-when="admin" ng-href="#/members/{{member.id}}">{{member.firstName}}</a>
+          <span ng-switch-default>{{member.firstName}}</span></td>
         <td>{{member.lastName}}</td>
         <td>{{member.homeAddress.suburb}}</td>
         <td>{{member.email}}</td>
-      </tr>  
-    </tbody>  
-  </table>  
+      </tr>
+    </tbody>
+  </table>
 </div>
