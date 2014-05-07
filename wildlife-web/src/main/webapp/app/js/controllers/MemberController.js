@@ -4,11 +4,10 @@
  * Members functionalities for the controller layer
  */
 sydneyWildlifeApp.controller('MemberController',
-    function MemberController($scope, $window, MemberService, NavService, AlertService, $routeParams, NAV_PATHS, USER_ROLES, ALERT_CODES, POSTAL_STATES) {
-	    $scope.postalStates = POSTAL_STATES;
+    function MemberController($scope, $window, $timeout, MemberService, NavService, AlertService, $routeParams, NAV_PATHS, USER_ROLES, ALERT_CODES) {
 	    $scope.originalMember = null;
 	    $scope.memberDetailLoading = false;
-//	    $scope.editMode = false;
+	    $scope.editMode = false;
 	    	    
 	    /**
 	     * Save member
@@ -62,17 +61,21 @@ sydneyWildlifeApp.controller('MemberController',
          */
         $scope.deleteMember = function(member) {
         	if (member != undefined && member.id != undefined){
-        	   var deleteConfirmed = $window.confirm("Are you sure you want to permanently delete member " + member.firstName + " " + member.lastName + "?");
-        	   if(deleteConfirmed) {
-           		MemberService.deleteMember(member.id).then(function(object) {
-           			$scope.member = {};
-           			AlertService.show(ALERT_CODES.info, "Successfully deleted member with Id "+ member.id + "." );
-           			NavService.goTo(NAV_PATHS.memberList);
-   	        	}, function(error) {
-   	        		AlertService.show(ALERT_CODES.error, "Error deleting member with Id " + member.id + ".");
-   	        		NavService.goTo(NAV_PATHS.memberList);
-   	        	});
-        	   }
+        	   // need to wrap this method in a timeout, otherwise a "$digest already in progress" exception is raised, this is due to the tooltip over the delete button
+        	   // this is a known issue in angular: https://github.com/angular/angular.js/issues/6364
+        	   $timeout(function() {
+           	   var deleteConfirmed = $window.confirm("Are you sure you want to permanently delete member " + member.firstName + " " + member.lastName + "?");
+           	   if(deleteConfirmed) {
+              		MemberService.deleteMember(member.id).then(function(object) {
+              			$scope.member = {};
+              			AlertService.show(ALERT_CODES.info, "Successfully deleted member with Id "+ member.id + "." );
+              			NavService.goTo(NAV_PATHS.memberList);
+      	        	}, function(error) {
+      	        		AlertService.show(ALERT_CODES.error, "Error deleting member with Id " + member.id + ".");
+      	        		NavService.goTo(NAV_PATHS.memberList);
+      	        	});
+           	   }
+        	   });
         	}
         };
         

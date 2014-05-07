@@ -22,8 +22,6 @@
       <tr>  
         <td ng-switch on="getCurrentUserRole()">
           <a ng-switch-when="admin" ng-href="#/members/{{member.id}}">{{member.firstName}}</a>
-          <a ng-switch-when="editor" ng-href="#/members/{{member.id}}">{{member.firstName}}</a>
-          <a ng-switch-when="guest" ng-href="#/members/{{member.id}}">{{member.firstName}}</a>
           <span ng-switch-default>{{member.firstName}}</span>
         </td>
         <td>{{member.lastName}}</td>
