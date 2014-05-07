@@ -105,7 +105,16 @@
     </form>
     
     <form ng-switch-default name="memberForm" class="form-horizontal">
-      <p>Sorry, an error occurred.</p>
+      <p>Sorry, an unexpected error occurred.</p>
+      <div ng-repeat="error in errors" ng-if="hasErrors()">
+        <p>{{error}}</p>
+      </div>
+      <br />
+      <div class="form-group">
+        <div class="col-sm-2 pull-right">
+          <button id="cancel-member-button" class="btn btn-default" ng-click="cancel()">Close</button>
+        </div>
+      </div>
     </form>
     
   </div>
