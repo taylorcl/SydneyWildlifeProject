@@ -9,7 +9,8 @@ sydneyWildlifeApp.directive('swAddress', [ function () {
       scope: {
          id: '@addrId',
          label: '@addrLabel',
-         required: '=addrRequired',
+         required: '@addrRequired',
+         readonly: '@addrReadonly',
          model: '=addrModel'
       },
       templateUrl: 'partials/FormAddress.html',
