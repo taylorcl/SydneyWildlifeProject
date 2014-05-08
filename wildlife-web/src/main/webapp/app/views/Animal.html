@@ -7,26 +7,7 @@
          <legend ng-show="isNew(animal)"><i class="fa fa-twitter"></i>&nbsp;&nbsp;Add a new animal</legend>
          <legend ng-show="!isNew(animal)"><i class="fa fa-twitter"></i>&nbsp;&nbsp;Update an animal's details</legend>
          <input id="id" type="hidden" ng-model="animal.id" />
-         <div class="form-group form-multiline">
-           <label for="callerAddress-line1" class="col-sm-2 control-label">Caller</label>
-           <div class="col-sm-10">
-             <input type="text" class="form-control" id="callerAddress-line1" placeholder="Address" ng-model="animal.callerAddress.line1" />
-           </div>
-           <label for="callerAddress-line2" class="col-sm-2 control-label">&nbsp;</label>
-           <div class="col-sm-10">
-             <input type="text" class="form-control" id="callerAddress-line2" placeholder="" ng-model="animal.callerAddress.line2" />
-           </div>
-           <label for="callerAddress-suburb" class="col-sm-2 control-label">&nbsp;</label>
-           <div class="col-sm-5">
-             <input type="text" class="form-control" id="callerAddress-suburb" placeholder="Suburb"  ng-model="animal.callerAddress.suburb" />
-           </div>
-           <div class="col-sm-2">
-             <input type="text" class="form-control" id="callerAddress-postcode" placeholder="Post Code" ng-model="animal.callerAddress.postcode" />
-           </div>
-           <div class="col-sm-3">
-             <select class="form-control" id="callerAddress-state" placeholder="State" ng-model="animal.callerAddress.state" ng-options="state.id as state.label for state in postalStates"></select>
-           </div>
-         </div>
+         <sw-address addr-id="callerAddress" addr-label="Caller" addr-required="true" addr-readonly="false" addr-model="animal.callerAddress"></sw-address>
          <div class="form-group">
            <label for="callerPhone" class="col-sm-2 control-label">&nbsp;</label>
            <div class="col-sm-5">
