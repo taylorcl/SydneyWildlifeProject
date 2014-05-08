@@ -13,9 +13,9 @@ sydneyWildlifeApp.factory('AuthService', function ($http, Session, USER_ROLES) {
 //            Session.create(res.id, res.userid, res.role);
 //          });
          if(credentials.username === "claire") {
-            return Session.create("000001", "123456", "admin", "Claire Taylor");
+            return Session.create("000001", "00000000-0000-0000-0000-000000000001", "admin", "Claire Taylor");
          } else if(credentials.username === "sherry") {
-            return Session.create("000001", "123456", "member", "Sherry Wang");
+            return Session.create("000001", "00000000-0000-0000-0000-000000000002", "member", "Sherry Wang");
          } else {
             return null;
          }
