@@ -49,17 +49,13 @@ sydneyWildlifeApp.controller('MemberController',
          * List members.
          */
         $scope.listMembers = function($defer, params) {
-        	var paginationParams = params.$params;
-       		var filterParams = {};
-        	if (paginationParams !== undefined && paginationParams !== null) {
-        		filterParams = {
-    				page: paginationParams.page - 1,
-    				size: paginationParams.count
-        		};
-        	}
+       		var filterParams = {
+				page: params.page - 1,
+				size: params.count
+        	};
         	
         	MemberService.list(filterParams).then(function(object) {
-        		params.total(object._resultmeta.total);
+    			params.total(object._resultmeta.total);
         		$defer.resolve(object);
            	}, function(error) {
            	   $scope.errors.push("We cannot retrieve the list of members at the moment, please try again later.");

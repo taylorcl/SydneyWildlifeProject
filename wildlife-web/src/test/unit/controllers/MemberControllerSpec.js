@@ -74,28 +74,42 @@ describe('MemberController Tests', function() {
     });
 
     
-    describe('MemberController list member tests', function() {    
-		
-		it('should list members == 0', inject(function($rootScope, $compile) {		    
-		    deferred.resolve({"length":0});
-		    spyOn(localMemberService, "list").andReturn(deferred.promise);
-		    spyOn(localAlertService, "show");
-			localScope.listMembers(null);
+    describe('MemberController list member tests', function() {
+		var mockDefer = jasmine.createSpyObj('$defer', ['resolve']);
+		var mockParams = jasmine.createSpyObj('params', ['total']);
+
+		it('should list members == 0', inject(function($rootScope, $compile) {
+			var expectedTotal = 0;
+			
+			deferred.resolve({
+				"_resultmeta" : {
+					total : expectedTotal
+				}
+			});
+			spyOn(localMemberService, "list").andReturn(deferred.promise);
+			spyOn(localAlertService, "show");
+			localScope.listMembers(mockDefer, mockParams);
 			$rootScope.$digest();
-			expect(localScope.memberList.length).toBe(0);
+			expect(mockParams.total).toHaveBeenCalledWith(expectedTotal);
 			expect(localAlertService.show).not.toHaveBeenCalled();
 		}));
-		
-		it('should list members > 0', inject(function($rootScope, $compile) {		    
-		    deferred.resolve({"length":10});
-		    spyOn(localMemberService, "list").andReturn(deferred.promise);
-		    spyOn(localAlertService, "show");
-			localScope.listMembers(null);
+
+		it('should list members > 0', inject(function($rootScope, $compile) {
+			var expectedTotal = 10;
+			
+			deferred.resolve({
+				"_resultmeta" : {
+					total : expectedTotal
+				}
+			});
+			spyOn(localMemberService, "list").andReturn(deferred.promise);
+			spyOn(localAlertService, "show");
+			localScope.listMembers(mockDefer, mockParams);
 			$rootScope.$digest();
-			expect(localScope.memberList.length).toBe(10);
+			expect(mockParams.total).toHaveBeenCalledWith(expectedTotal);
 			expect(localAlertService.show).not.toHaveBeenCalled();
-		}));		
-    });
+		}));
+	});
 
     
     describe('MemberController member detail tests', function() {    
