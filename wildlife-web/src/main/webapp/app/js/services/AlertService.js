@@ -3,22 +3,28 @@
 /*
  * Alert functionalities for the service layer
  */
-sydneyWildlifeApp.factory('AlertService', ['$rootScope', '$timeout', function ($rootScope, $timeout) {
-	
-   var alertService = {};
+sydneyWildlifeApp.factory('AlertService', [ '$rootScope', '$timeout',
+    function($rootScope, $timeout) {
 
-   // create an array of alerts available globally
-   $rootScope.alerts = [];
+      var alertService = {};
 
-   alertService.show = function(type, msg) {
-      $rootScope.alerts.push({'type': type, 'msg': msg});
-      // automatically clear alert message after 3secs
-      $timeout(function() {alertService.close(0);}, 2000);
-   };
+      // create an array of alerts available globally
+      $rootScope.alerts = [];
 
-   alertService.close = function(index) {
-      $rootScope.alerts.splice(index, 1);
-   };
+      alertService.show = function(type, msg) {
+        $rootScope.alerts.push({
+          'type' : type,
+          'msg' : msg
+        });
+        // automatically clear alert message after 3secs
+        $timeout(function() {
+          alertService.close(0);
+        }, 2000);
+      };
 
-   return alertService;
-}]);
+      alertService.close = function(index) {
+        $rootScope.alerts.splice(index, 1);
+      };
+
+      return alertService;
+    } ]);
