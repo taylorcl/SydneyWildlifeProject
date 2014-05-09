@@ -4,7 +4,7 @@
  * Login functionalities for the controller layer
  */
 sydneyWildlifeApp.controller('LoginController', function($scope, $rootScope, AUTH_EVENTS,
-    AuthService) {
+    LOAD_TYPES, AuthService, NotifService) {
 
   $scope.credentials = {
     username : '',
@@ -12,7 +12,7 @@ sydneyWildlifeApp.controller('LoginController', function($scope, $rootScope, AUT
   };
 
   $scope.login = function(credentials) {
-    $scope.startLoading();
+    NotifService.load(LOAD_TYPES.start);
     // To be uncommented when a backend is here for authentication
     // AuthService.login(credentials).then(function () {
     // $rootScope.$broadcast(AUTH_EVENTS.loginSuccess);
@@ -20,7 +20,7 @@ sydneyWildlifeApp.controller('LoginController', function($scope, $rootScope, AUT
     // $rootScope.$broadcast(AUTH_EVENTS.loginFailed);
     // });
     var user = AuthService.login(credentials);
-    $scope.stopLoading();
+    NotifService.load(LOAD_TYPES.stop);
     if (user == null) {
       $rootScope.$broadcast(AUTH_EVENTS.loginFailed, {
         msg : "Unable to log in."
@@ -28,7 +28,7 @@ sydneyWildlifeApp.controller('LoginController', function($scope, $rootScope, AUT
     } else {
       $rootScope.$broadcast(AUTH_EVENTS.loginSuccess, {
         user : user,
-        msg : "Logged in successfully."
+        msg : "User " + user.userName + " logged in successfully."
       });
     }
   };

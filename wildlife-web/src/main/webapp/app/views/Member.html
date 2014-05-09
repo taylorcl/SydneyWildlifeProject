@@ -105,10 +105,7 @@
     </form>
     
     <form ng-switch-default name="memberForm" class="form-horizontal">
-      <p>Sorry, an unexpected error occurred.</p>
-      <div ng-repeat="error in errors" ng-if="hasErrors()">
-        <p>{{error}}</p>
-      </div>
+      <p>Sorry, the user you are trying to view hasn't been found in the DataBase.</p>
       <br />
       <div class="form-group">
         <div class="col-sm-2 pull-right">

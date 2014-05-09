@@ -4,11 +4,11 @@
  * Alert functionalities for the controller layer
  */
 sydneyWildlifeApp.controller('AlertController', function AlertController($scope, $rootScope,
-    AlertService) {
+    NotifService) {
   $scope.alerts = $rootScope.alerts;
 
   $scope.close = function(index) {
-    AlertService.close(index);
+    NotifService.closeAlert(index);
   };
 
   $scope.closeable = function() {

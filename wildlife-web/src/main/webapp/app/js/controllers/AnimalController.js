@@ -4,7 +4,8 @@
  * Animals functionalities for the controller layer
  */
 sydneyWildlifeApp.controller('AnimalController', function AnimalController($scope, AnimalService,
-    NavService, AlertService, $routeParams, NAV_PATHS, ALERT_CODES, POSTAL_STATES) {
+    NavService, NotifService, $routeParams, NAV_PATHS, ALERT_TYPES, LOAD_TYPES, LOG_TYPES,
+    POSTAL_STATES) {
   $scope.postalStates = POSTAL_STATES;
 
   /**
@@ -14,20 +15,19 @@ sydneyWildlifeApp.controller('AnimalController', function AnimalController($scop
     console.log(animal);
 
     if (form.$valid) {
-      $scope.startLoading();
+      NotifService.load(LOAD_TYPES.start);
       var aPromise = AnimalService.save(animal);
       aPromise.then(function(object) {
-        $scope.stopLoading();
+        NotifService.load(LOAD_TYPES.stop);
         animal.id = object.id;
-        AlertService.show(ALERT_CODES.success, "Successfully registered/updated animal with Id "
-            + animal.id + ".");
         NavService.goTo(NAV_PATHS.animalList);
       }, function errorCallback(error) {
-        $scope.stopLoading();
-        AlertService.show(ALERT_CODES.error, "Error saving animal.");
+        NotifService.load(LOAD_TYPES.stop);
+        NotifService.log(LOG_TYPES.error, "Error saving animal.");
+        NotifService.alert(ALERT_TYPES.error, "Error saving animal.");
       });
     } else {
-      AlertService.show(ALERT_CODES.warning, "Please resolve the highlighted errors.");
+      NotifService.alert(ALERT_TYPES.warning, "Please resolve the highlighted errors.");
     }
   };
 
@@ -35,13 +35,14 @@ sydneyWildlifeApp.controller('AnimalController', function AnimalController($scop
    * List animals
    */
   $scope.listAnimals = function() {
-    $scope.startLoading();
+    NotifService.load(LOAD_TYPES.start);
     AnimalService.list().then(function(o) {
-      $scope.stopLoading();
+      NotifService.load(LOAD_TYPES.stop);
       $scope.animalList = o;
     }, function(error) {
-      $scope.stopLoading();
-      AlertService.show(ALERT_CODES.error, "Error retrieving animals.");
+      NotifService.load(LOAD_TYPES.stop);
+      NotifService.log(LOG_TYPES.error, "Error retrieving animals.");
+      NotifService.alert(ALERT_TYPES.error, "Error retrieving animals.");
     });
   };
 
@@ -50,13 +51,14 @@ sydneyWildlifeApp.controller('AnimalController', function AnimalController($scop
    */
   $scope.animalDetail = function() {
     if ($routeParams != undefined && $routeParams.animalId != undefined) {
-      $scope.startLoading();
+      NotifService.load(LOAD_TYPES.start);
       AnimalService.animalDetail($routeParams.animalId).get().then(function(object) {
-        $scope.stopLoading();
+        NotifService.load(LOAD_TYPES.stop);
         $scope.animal = object.originalData;
       }, function(error) {
-        $scope.stopLoading();
-        AlertService.show(ALERT_CODES.error, "Error retrieving animal with Id " + animalId + ".");
+        NotifService.load(LOAD_TYPES.stop);
+        NotifService.log(LOG_TYPES.error, "Error retrieving animal with Id " + animalId + ".");
+        NotifService.alert(ALERT_TYPES.error, "Error retrieving animal with Id " + animalId + ".");
       });
     }
   };
@@ -66,21 +68,18 @@ sydneyWildlifeApp.controller('AnimalController', function AnimalController($scop
    */
   $scope.deleteAnimal = function(animal) {
     if (animal != undefined && animal.id != undefined) {
-      $scope.startLoading();
-      AnimalService.deleteAnimal(animal.id).then(
-          function(object) {
-            $scope.stopLoading();
-            $scope.animal = {};
-            AlertService.show(ALERT_CODES.info, "Successfully deleted animal with Id " + animal.id
-                + ".");
-            NavService.goTo(NAV_PATHS.animalList);
-          },
-          function(error) {
-            $scope.stopLoading();
-            AlertService
-                .show(ALERT_CODES.error, "Error deleting animal with Id " + animal.id + ".");
-            NavService.goTo(NAV_PATHS.animalList);
-          });
+      NotifService.load(LOAD_TYPES.start);
+      AnimalService.deleteAnimal(animal.id).then(function(object) {
+        NotifService.load(LOAD_TYPES.stop);
+        $scope.animal = {};
+        NotifService.log(LOG_TYPES.info, "Successfully deleted animal with Id " + animal.id + ".");
+        NavService.goTo(NAV_PATHS.animalList);
+      }, function(error) {
+        NotifService.load(LOAD_TYPES.stop);
+        NotifService.log(LOG_TYPES.error, "Error deleting animal with Id " + animal.id + ".");
+        NotifService.alert(ALERT_TYPES.error, "Error deleting animal with Id " + animal.id + ".");
+        NavService.goTo(NAV_PATHS.animalList);
+      });
     }
   };
 
