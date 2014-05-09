@@ -14,12 +14,15 @@ sydneyWildlifeApp.controller('AnimalController',
         	console.log(animal);
         	
             if(form.$valid) {
+               $scope.startLoading();
             	var aPromise = AnimalService.save(animal);
             	aPromise.then(function(object){
+            	   $scope.stopLoading();
             	   animal.id = object.id;
             	   AlertService.show(ALERT_CODES.success, "Successfully registered/updated animal with Id " + animal.id + ".");
             		NavService.goTo(NAV_PATHS.animalList);
             	}, function errorCallback(error) {
+            	   $scope.stopLoading();
             	   AlertService.show(ALERT_CODES.error, "Error saving animal.");
             	});
             } else {
@@ -31,9 +34,12 @@ sydneyWildlifeApp.controller('AnimalController',
          * List animals
          */
         $scope.listAnimals = function(){
+         $scope.startLoading();
         	AnimalService.list().then(function(o){
+        	   $scope.stopLoading();
         		$scope.animalList = o;
-        	}, function(eerror){
+        	}, function(error){
+        	   $scope.stopLoading();
         	   AlertService.show(ALERT_CODES.error, "Error retrieving animals.");
         	});
         };
@@ -43,9 +49,12 @@ sydneyWildlifeApp.controller('AnimalController',
          */
         $scope.animalDetail = function(){
         	if ($routeParams != undefined && $routeParams.animalId != undefined){
+        	   $scope.startLoading();
         		AnimalService.animalDetail($routeParams.animalId).get().then(function(object) {
+        		   $scope.stopLoading();
         			$scope.animal = object.originalData;        		
 	        	}, function(error){
+	        	    $scope.stopLoading();
 	        	    AlertService.show(ALERT_CODES.error, "Error retrieving animal with Id " + animalId + ".");
 	        	});
         	}
@@ -56,11 +65,14 @@ sydneyWildlifeApp.controller('AnimalController',
          */
         $scope.deleteAnimal = function (animal) {
         	if (animal != undefined && animal.id != undefined){
+        	 $scope.startLoading();
         	 AnimalService.deleteAnimal(animal.id).then(function(object) {
+        	      $scope.stopLoading();
         			$scope.animal = {};
         			AlertService.show(ALERT_CODES.info, "Successfully deleted animal with Id "+ animal.id + "." );
         			NavService.goTo(NAV_PATHS.animalList);
 	        	}, function(error){
+	        	   $scope.stopLoading();
 	        	   AlertService.show(ALERT_CODES.error, "Error deleting animal with Id " + animal.id + ".");
 	        		NavService.goTo(NAV_PATHS.animalList);
 	        	});

@@ -10,7 +10,7 @@
   left: 0; right: 0;
 }
 
-.z100{
+.z100 {
   z-index:100;
 }
 
@@ -26,9 +26,13 @@
   display: inline-block;
 }
 
-img.big-logo{
+img.logo-big {
   width: 200px;
   margin: 20px auto;
+}
+
+.loading-primary-inverse {
+  background: url('../img/ajax-loader-wheel-primary-inverse.gif') no-repeat 5px center;
 }
 
 .alertbox.ng-enter,

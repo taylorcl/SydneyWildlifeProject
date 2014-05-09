@@ -7,6 +7,19 @@ sydneyWildlifeApp.controller('AppController', function ($scope, USER_ROLES, AUTH
   $scope.currentUser = null;
   $scope.userRoles = USER_ROLES;
   $scope.nextPath = NAV_PATHS.home;
+  $scope.loading = false;
+  
+  $scope.isLoading = function() {
+    return $scope.loading; 
+  };
+  
+  $scope.startLoading = function() {
+     $scope.loading = true; 
+  };
+  
+  $scope.stopLoading = function() {
+     $scope.loading = false; 
+  };
   
   $scope.isAuthorized = function (roles) {
      return AuthService.isAuthorized(roles);

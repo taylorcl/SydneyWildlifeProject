@@ -9,6 +9,7 @@ sydneyWildlifeApp.controller('LoginController', function ($scope, $rootScope, AU
          password: ''
    };
    $scope.login = function (credentials) {
+      $scope.startLoading();
       //To be uncommented when a backend is here for authentication
 //     AuthService.login(credentials).then(function () {
 //        $rootScope.$broadcast(AUTH_EVENTS.loginSuccess);
@@ -16,6 +17,7 @@ sydneyWildlifeApp.controller('LoginController', function ($scope, $rootScope, AU
 //        $rootScope.$broadcast(AUTH_EVENTS.loginFailed);
 //     });
       var user = AuthService.login(credentials);
+      $scope.stopLoading();
       if(user == null) {
          $rootScope.$broadcast(AUTH_EVENTS.loginFailed, {
                msg: "Unable to log in."

@@ -8,7 +8,6 @@ sydneyWildlifeApp.controller('MemberController',
        $scope.memberList = {};
 	    $scope.originalMember = {};
 	    $scope.member = {};
-	    $scope.waitingForMemberDetails = false;
 	    $scope.editMode = false;
 	    $scope.errors = [];
 	    
@@ -31,12 +30,15 @@ sydneyWildlifeApp.controller('MemberController',
 	     */
 	    $scope.saveMember = function(member, form) {
             if(form.$valid) {
+               $scope.startLoading();
             	var aPromise = MemberService.save(member);
             	aPromise.then(function(object) {
+            	   $scope.stopLoading();
             	   member.id = object.id;
             	   AlertService.show(ALERT_CODES.success, "Successfully saved member #" + member.id + "(" + member.firstName + " " + member.lastName + ").");
             	   $scope.goBack();
             	}, function errorCallback(error) {
+            	   $scope.stopLoading();
             	   $scope.errors.push("We cannot save the member #" + member.id + " (" + member.firstName + " " + member.lastName + ") at the moment, please try again later.");
             	   AlertService.show(ALERT_CODES.error, "Error saving member with Id " + member.id + ".");
             	});
@@ -54,10 +56,13 @@ sydneyWildlifeApp.controller('MemberController',
 				size: params.$params.count
         	};
         	
+         $scope.startLoading();
         	MemberService.list(filterParams).then(function(object) {
+        	   $scope.stopLoading();
     			params.total(object._resultmeta.total);
         		$defer.resolve(object);
            	}, function(error) {
+           	   $scope.stopLoading();
            	   $scope.errors.push("We cannot retrieve the list of members at the moment, please try again later.");
            	   AlertService.show(ALERT_CODES.error, "Error retrieving members.");
            	});
@@ -68,14 +73,14 @@ sydneyWildlifeApp.controller('MemberController',
          */
         $scope.memberDetail = function() {
         	if ($routeParams != undefined && $routeParams.memberId != undefined) {
-        	   $scope.waitingForMemberDetails = true;
+        	   $scope.startLoading();
         		MemberService.memberDetail($routeParams.memberId).get().then(function(object) {
-        		   $scope.waitingForMemberDetails = false;
+        		   $scope.stopLoading();
         			$scope.member = object.originalData;
         			//do a clone of the original object
         			$scope.originalMember = JSON.parse(JSON.stringify(object.originalData));
 	        	}, function(error) {
-	        	   $scope.waitingForMemberDetails = false;
+	        	   $scope.stopLoading();
 	        	   $scope.errors.push("We cannot retrieve the member #" + $routeParams.memberId + " at the moment, please try again later.");
 	        		AlertService.show(ALERT_CODES.error, "Error retrieving member with Id " + $routeParams.memberId + ".");
 	        	});
@@ -94,11 +99,14 @@ sydneyWildlifeApp.controller('MemberController',
         	   $timeout(function() {
            	   var deleteConfirmed = $window.confirm("Are you sure you want to permanently delete member " + member.firstName + " " + member.lastName + "?");
            	   if(deleteConfirmed) {
+           	      $scope.startLoading();
               		MemberService.deleteMember(member.id).then(function(object) {
+              		   $scope.stopLoading();
               			$scope.member = {};
               			AlertService.show(ALERT_CODES.info, "Successfully deleted member with Id "+ member.id + "." );
               			$scope.goBack();
       	        	}, function(error) {
+      	        	   $scope.stopLoading();
       	        	   $scope.errors.push("We cannot delete the member #" + member.id + " (" + member.firstName + " " + member.lastName + ") at the moment, please try again later.");
       	        		AlertService.show(ALERT_CODES.error, "Error deleting member with Id " + member.id + ".");
       	        	});
@@ -129,7 +137,7 @@ sydneyWildlifeApp.controller('MemberController',
          * Returns true if the member object is a new one, i.e. it hasn't been saved to the DB yet.
          */
         $scope.isNew = function() {
-           return !$scope.waitingForMemberDetails && ($scope.member == undefined || $scope.member.id == undefined);
+           return !$scope.isLoading() && ($scope.member == undefined || $scope.member.id == undefined);
         };
         
         /**

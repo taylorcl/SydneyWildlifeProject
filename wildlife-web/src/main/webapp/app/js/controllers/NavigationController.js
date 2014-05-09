@@ -7,7 +7,7 @@ sydneyWildlifeApp.controller('NavController',
     function NavController($scope, $route) {
    
        $scope.isActive = function(routeId) {
-          var activePage = {};
+          var activePage = false;
           
           if($route.current != undefined) {
              activePage = $route.current.activePage;
