@@ -3,7 +3,8 @@
 sydneyWildlifeApp.config(function($routeProvider, RestangularProvider, $locationProvider,
     USER_ROLES, NAV_PATHS) {
 
-  // TODO: we need to derive this
+  // TODO: we need to derive this because in production it needs to be
+  // 103.29.84.226 for now...
   RestangularProvider.setBaseUrl('http://localhost:8080/wildlife-api/api');
 
   RestangularProvider.addResponseInterceptor(function(data, operation, what, url, response,

@@ -1,0 +1,1 @@
+CATALINA_OPTS="$CATALINA_OPTS -javaagent:$CATALINA_BASE/lib/spring-instrument-4.0.2.RELEASE.jar"
